@@ -10,18 +10,18 @@ const config = {
 
   owner: {
     name: "Zann", // Nama owner
-    number: ["628xxxxxxxx"], // Format: 628xxx (tanpa + atau 0)
+    number: ["5491138403093"], // Format: 628xxx (tanpa + atau 0)
   },
 
   session: {
-    pairingNumber: "628xxxxxxxx", // Nomor WA yang akan di-pair, ini penting
+    pairingNumber: "5491138403093", // Nomor WA yang akan di-pair, ini penting
     usePairingCode: true, // true = Pairing Code, false = QR Code
   },
 
   bot: {
-    name: "𝗢𝗨𝗥𝗜𝗡", // Nama bot
+    name: "Nino-Al", // Nama bot
     version: "3.1", // Versi bot
-    developer: "Zann", // Nama developer
+    developer: "sebasMd", // Nama developer
   },
 
   assets: {
