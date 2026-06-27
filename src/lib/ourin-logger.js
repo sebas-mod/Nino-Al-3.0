@@ -103,12 +103,71 @@ async function runLoader(text = "memuat", options = {}) {
   console.log(`${makeTag("OK", true)} ${cWhite(text)}`);
 }
 
-async function playBootSequence(info = {}) {
-  const { name = "OURIN AI", version = "1.0.0", mode = "public" } = info;
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function showProgressBar(label) {
+  const steps = [10, 30, 55, 80, 100];
+  const barLength = 30;
+
+  for (let i = 0; i < steps.length; i++) {
+    const percent = steps[i];
+
+    const filled = Math.floor((percent / 100) * barLength);
+    const empty = barLength - filled;
+
+    const bar = "█".repeat(filled) + "░".repeat(empty);
+
+    process.stdout.write(
+      `\r${SYM.ok} ${cWhite(label)} ${cGreen(bar)} ${cGray(percent + "%")}`
+    );
+
+    await sleep(600);
+  }
+
   console.log("");
-  console.log(`${cGray("---")}`);
-  console.log(`${makeTag("BOOT", true)} ${cWhite(`Starting ${name} v${version}`)}`);
-  console.log(`${makeTag("INFO")} ${cGray(`Mode: ${mode}`)}`);
+}
+async function playBootSequence(info = {}) {
+  const {
+    name = "NINO AI",
+    version = "3.0",
+    developer = "Sebas_MD",
+    mode = "public",
+  } = info;
+
+  console.clear();
+
+  console.log(cGreen(`
+███╗   ██╗██╗███╗   ██╗ ██████╗      █████╗ ██╗
+████╗  ██║██║████╗  ██║██╔═══██╗    ██╔══██╗██║
+██╔██╗ ██║██║██╔██╗ ██║██║   ██║    ███████║██║
+██║╚██╗██║██║██║╚██╗██║██║   ██║    ██╔══██║██║
+██║ ╚████║██║██║ ╚████║╚██████╔╝    ██║  ██║██║
+╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝     ╚═╝  ╚═╝╚═╝
+`));
+
+  console.log(cGray("┌────────────────────────────────────────┐"));
+  console.log(cGray("│") + cWhite("            NINO AI 3.0                ") + cGray("│"));
+  console.log(cGray("│") + cWhite("       BOT WHATSAPP MULTI-DEVICE       ") + cGray("│"));
+  console.log(cGray("└────────────────────────────────────────┘"));
+  console.log("");
+
+  console.log(`${SYM.ok} ${cWhite("Creador")}   ${cGray("»")} ${cGreen(developer)}`);
+  console.log(`${SYM.ok} ${cWhite("Bot")}       ${cGray("»")} ${cGreen(name)}`);
+  console.log(`${SYM.ok} ${cWhite("Versión")}   ${cGray("»")} ${cGreen(version)}`);
+  console.log(`${SYM.ok} ${cWhite("Modo")}      ${cGray("»")} ${cGreen(mode)}`);
+  console.log("");
+
+  await showProgressBar("INICIANDO SISTEMA");
+  await showProgressBar("CARGANDO ARCHIVOS");
+  await showProgressBar("VERIFICANDO MODULOS");
+  await showProgressBar("CONECTANDO WHATSAPP");
+  await showProgressBar("FINALIZANDO SISTEMA");
+
+  console.log("");
+  console.log(`${cGreen("✔ SISTEMA INICIADO CORRECTAMENTE")}`);
+  console.log("");
 }
 
 function getTypeTag(msgType, isNewsletter) {
