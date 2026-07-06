@@ -1,10 +1,11 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
+
 const pluginConfig = {
     name: 'clancreate',
-    alias: ['createclan', 'guildcreate'],
+    alias: ['createclan', 'guildcreate', 'crearclan'],
     category: 'clan',
-    description: 'Buat clan baru',
-    usage: '.clancreate <nama>',
+    description: 'Crea un clan nuevo',
+    usage: '.clancreate <nombre>',
     example: '.clancreate DragonSlayer',
     isOwner: false,
     isPremium: false,
@@ -39,38 +40,38 @@ async function handler(m) {
 
     if (!clanName) {
         return m.reply(
-            `⚔️ *CREATE CLAN*\n\n` +
-            `Buat clan dan kumpulkan member!\n\n` +
-            `Biaya: *Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}*\n` +
-            `Max nama: *${MAX_CLAN_NAME} karakter*\n\n` +
-            `Contoh: *.clancreate DragonSlayer*`
+            `⚔️ *CREAR CLAN*\n\n` +
+            `¡Crea un clan y reúne a tus miembros!\n\n` +
+            `Costo: *${CLAN_CREATE_COST.toLocaleString('es-ES')} monedas*\n` +
+            `Máx. nombre: *${MAX_CLAN_NAME} caracteres*\n\n` +
+            `Ejemplo: *.clancreate DragonSlayer*`
         )
     }
 
     if (clanName.length > MAX_CLAN_NAME) {
-        return m.reply(`❌ Nama clan maksimal ${MAX_CLAN_NAME} karakter`)
+        return m.reply(`❌ El nombre del clan no puede superar los ${MAX_CLAN_NAME} caracteres.`)
     }
 
     if (!/^[a-zA-Z0-9\s]+$/.test(clanName)) {
-        return m.reply(`❌ Nama clan hanya boleh huruf, angka, dan spasi`)
+        return m.reply(`❌ El nombre del clan solo puede contener letras, números y espacios.`)
     }
 
     if (!db.db.data.clans) db.db.data.clans = {}
 
     if (user.clanId) {
-        return m.reply(`❌ Kamu sudah punya clan\nKeluar dulu: *.clanleave*`)
+        return m.reply(`❌ Ya perteneces a un clan.\nSal primero usando: *.clanleave*`)
     }
 
     const existingClan = Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanName.toLowerCase())
     if (existingClan) {
-        return m.reply(`❌ Nama *${clanName}* sudah dipakai`)
+        return m.reply(`❌ El nombre *${clanName}* ya está en uso.`)
     }
 
     if ((user.koin || 0) < CLAN_CREATE_COST) {
         return m.reply(
-            `❌ Koin tidak cukup\n\n` +
-            `Butuh: *Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}*\n` +
-            `Punya: *Rp ${(user.koin || 0).toLocaleString('id-ID')}*`
+            `❌ Monedas insuficientes\n\n` +
+            `Necesitas: *${CLAN_CREATE_COST.toLocaleString('es-ES')}*\n` +
+            `Tienes: *${(user.koin || 0).toLocaleString('es-ES')}*`
         )
     }
 
@@ -87,7 +88,7 @@ async function handler(m) {
         wins: 0,
         losses: 0,
         createdAt: new Date().toISOString(),
-        description: 'Belum ada deskripsi',
+        description: 'Sin descripción aún',
         isOpen: true
     }
 
@@ -97,13 +98,13 @@ async function handler(m) {
     await db.save()
 
     await m.reply(
-        `${emblem} *CLAN CREATED*\n\n` +
+        `${emblem} *CLAN CREADO*\n\n` +
         `*${clanName}*\n` +
-        `Leader: @${m.sender.split('@')[0]}\n` +
-        `Status: Open · 1/50 members\n\n` +
-        `_-Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}_\n\n` +
-        `Invite teman: *.claninvite @user*\n` +
-        `Atau share ID: *${clanId}*`,
+        `Líder: @${m.sender.split('@')[0]}\n` +
+        `Estado: Abierto · 1/50 miembros\n\n` +
+        `_-${CLAN_CREATE_COST.toLocaleString('es-ES')} monedas_\n\n` +
+        `Invita amigos con: *.claninvite @user*\n` +
+        `O comparte el ID: *${clanId}*`,
         { mentions: [m.sender] }
     )
 }
