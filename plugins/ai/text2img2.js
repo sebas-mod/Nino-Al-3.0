@@ -5,9 +5,9 @@ const pluginConfig = {
   name: 'text2img2',
   alias: ['t2i2', 'genimg'],
   category: 'ai',
-  description: 'Generate image from text using AI',
+  description: 'Genera imágenes a partir de texto usando IA',
   usage: '.text2img2 <prompt>',
-  example: '.text2img2 a futuristic city in mars',
+  example: '.text2img2 una ciudad futurista en marte',
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-  if (!m.fullArgs) return m.reply(`Silahkan masukkan prompt.\nContoh: ${m.prefix + m.command} car`)
+  if (!m.fullArgs) return m.reply(`Por favor, ingresa un prompt.\nContoh: ${m.prefix + m.command} coche`)
 
   await m.react('🕕')
 
