@@ -2,12 +2,13 @@ import config from '../../config.js'
 import path from 'path'
 import fs from 'fs'
 import te from '../../src/lib/ourin-error.js'
+
 const pluginConfig = {
     name: 'githubdl',
-    alias: ['gitdl', 'gitclone', 'repodownload'],
+    alias: ['gitdl', 'gitclone', 'repodownload', 'githubdescargar'],
     category: 'download',
-    description: 'Download repository GitHub sebagai ZIP',
-    usage: '.githubdl <user> <repo> <branch>',
+    description: 'Descargar repositorio de GitHub en formato ZIP',
+    usage: '.githubdl <usuario> <repositorio> <rama>',
     example: '.githubdl niceplugin NiceBot main',
     isOwner: false,
     isPremium: false,
@@ -37,26 +38,26 @@ async function handler(m, { sock }) {
     
     if (!username) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}githubdl <user> <repo> <branch>\`\n\n` +
-            `> Contoh:\n` +
+            `⚠️ *MODO DE USO*\n\n` +
+            `> \`${m.prefix}githubdl <usuario> <repositorio> <rama>\`\n\n` +
+            `> Ejemplos:\n` +
             `> \`${m.prefix}githubdl niceplugin NiceBot main\`\n` +
             `> \`${m.prefix}githubdl https://github.com/user/repo\``
         )
     }
     
     if (!repo) {
-        return m.reply(`❌ *ʀᴇᴘᴏ ᴅɪʙᴜᴛᴜʜᴋᴀɴ*\n\n> Masukkan nama repository`)
+        return m.reply(`❌ *REPOSITORIO REQUERIDO*\n\n> Por favor, ingresa el nombre del repositorio.`)
     }
     
-    await m.react('🕕')
+    await m.react('Campana')
 
     try {
         const repoInfo = await fetch(`https://api.github.com/repos/${username}/${repo}`)
         
         if (!repoInfo.ok) {
             await m.react('❌')
-            return m.reply(`❌ *ʀᴇᴘᴏ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> \`${username}/${repo}\` tidak ada`)
+            return m.reply(`❌ *REPOSITORIO NO ENCONTRADO*\n\n> No existe el repositorio \`${username}/${repo}\``)
         }
         
         const repoData = await repoInfo.json()
@@ -68,12 +69,12 @@ async function handler(m, { sock }) {
         const checkRes = await fetch(zipUrl, { method: 'HEAD' })
         if (!checkRes.ok) {
             await m.react('❌')
-            return m.reply(`❌ *ʙʀᴀɴᴄʜ ᴛɪᴅᴀᴋ ᴀᴅᴀ*\n\n> Branch \`${branch}\` tidak ditemukan\n> Default: \`${defaultBranch}\``)
+            return m.reply(`❌ *RAMA NO ENCONTRADA*\n\n> La rama \`${branch}\` no fue encontrada\n> Por defecto: \`${defaultBranch}\``)
         }
         
         await sock.sendMedia(m.chat, zipUrl, null, m, {
             type: 'document',
-            fileName: `${repo} - Branch: ${branch}.zip`,
+            fileName: `${repo} - Rama: ${branch}.zip`,
             mimetype: 'application/zip',
             contextInfo: {
                 forwardingScore: 99,
