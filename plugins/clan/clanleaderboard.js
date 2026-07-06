@@ -1,9 +1,10 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
+
 const pluginConfig = {
     name: 'clanleaderboard',
-    alias: ['clanlb', 'topclan', 'guildrank'],
+    alias: ['clanlb', 'topclan', 'guildrank', 'tabla-clanes'],
     category: 'clan',
-    description: 'Lihat ranking clan',
+    description: 'Muestra la tabla de clasificación de clanes',
     usage: '.clanleaderboard',
     example: '.clanleaderboard',
     isOwner: false,
@@ -31,7 +32,7 @@ async function handler(m) {
 
     const clans = Object.values(db.db.data.clans)
     if (clans.length === 0) {
-        return m.reply(`🏰 Belum ada clan terdaftar\n\nBuat: *.clancreate <nama>*`)
+        return m.reply(`🏰 No hay clanes registrados aún.\n\nCrea uno con: *.clancreate <nombre>*`)
     }
 
     clans.sort((a, b) => {
@@ -42,7 +43,7 @@ async function handler(m) {
 
     const medals = ['🥇', '🥈', '🥉']
 
-    let txt = `🏰 *CLAN LEADERBOARD*\n\n`
+    let txt = `🏆 *TABLA DE CLANES (TOP CLAN)* 🏆\n\n`
 
     clans.slice(0, 10).forEach((clan, i) => {
         const medal = medals[i] || `${i + 1}.`
@@ -54,10 +55,10 @@ async function handler(m) {
         const rank = getRankTitle(clan.level || 1)
 
         txt += `${medal} ${emblem} *${clan.name}*\n`
-        txt += `   ${rank} Lv.${clan.level || 1} · ${clan.wins || 0}W/${clan.losses || 0}L (${winRate}%) · 👥 ${clan.members.length}\n\n`
+        txt += `   ${rank} Lv.${clan.level || 1} · ${clan.wins || 0}V/${clan.losses || 0}D (${winRate}%) · 👥 ${clan.members.length}/50\n\n`
     })
 
-    txt += `Total *${clans.length}* clan terdaftar`
+    txt += `Total de *${clans.length}* clanes registrados.`
 
     await m.reply(txt)
 }
