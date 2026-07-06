@@ -2,9 +2,9 @@ import axios from "axios";
 
 const pluginConfig = {
   name: "douyindl",
-  alias: ["douyin", "dydl"],
+  alias: ["douyin", "dydl", "douyindescargar"],
   category: "download",
-  description: "Download video/audio dari Douyin (TikTok China)",
+  description: "Descargar video/audio de Douyin (TikTok China)",
   usage: ".douyindl <url>",
   example: ".douyindl https://v.douyin.com/xxx",
   isOwner: false,
@@ -37,10 +37,10 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `🎵 *Douyin Downloader*\n\n` +
-        `Download video atau audio dari Douyin (TikTok China).\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}douyindl <link>*\n\n` +
-        `*CONTOH:*\n` +
+        `Descarga video o audio de Douyin (TikTok China).\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}douyindl <enlace>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}douyindl https://v.douyin.com/xxx*`,
     );
   }
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal mengambil data Douyin, coba lagi nanti");
+    m.reply("❌ Error al obtener los datos de Douyin. Inténtalo de nuevo más tarde.");
   }
 }
 
