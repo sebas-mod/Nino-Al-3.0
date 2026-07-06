@@ -3,12 +3,12 @@ import axios from 'axios'
 import config from '../../config.js'
 
 const pluginConfig = {
-    name: 'matematika',
+    name: 'matematica',
     alias: ['mathgpt', 'math', 'mathsolver'],
     category: 'ai',
-    description: 'AI untuk menyelesaikan soal matematika',
-    usage: '.matematika <soal>',
-    example: '.matematika 2+2 berapa?',
+    description: 'IA para resolver problemas matemáticos',
+    usage: '.matematica <problema>',
+    example: '.matematica 2+2 cuanto es?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const text = m.args.join(' ')
 
     if (!text) {
-        return m.reply(`📐 *ᴍᴀᴛʜ ɢᴘᴛ*\n\n> Masukkan soal matematika\n\n\`Contoh: ${m.prefix}matematika 2+2 berapa?\``)
+        return m.reply(`📐 *ᴍᴀᴛʜ ɢᴘᴛ*\n\n> Ingresa un problema matemático\n\n\`Ejemplo: ${m.prefix}matematika 2+2 berapa?\``)
     }
 
     m.react('🕕')
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
         if (!data.status || !data.result) {
             await m.react('❌')
-            return m.reply("⚠️ Gagal memproses soal matematika.")
+            return m.reply("⚠️ Error al procesar el problema matemático.")
         }
 
         const answer = data.result
