@@ -9,12 +9,12 @@ const config = {
   },
 
   owner: {
-    name: "Zann", // Nama owner
+    name: "sebasMD", // Nama owner
     number: ["5491138403093"], // Format: 628xxx (tanpa + atau 0)
   },
 
   session: {
-    pairingNumber: "5491138403093", // Nomor WA yang akan di-pair, ini penting
+    pairingNumber: "5491140951814", // Nomor WA yang akan di-pair, ini penting
     usePairingCode: true, // true = Pairing Code, false = QR Code
   },
 
@@ -101,39 +101,39 @@ const config = {
 
   sticker: {
     packname: "𝗢𝗨𝗥𝗜𝗡", // Nama pack sticker
-    author: "Zann", // Author sticker
+    author: "sebas", // Author sticker
   },
 
   saluran: {
-    id: "120363400911374213@newsletter", // ID saluran (contoh: 120363xxx@newsletter)                          // ID saluran (contoh: 120363xxx@newsletter)
+    id: "", // ID saluran (contoh: 120363xxx@newsletter)                          // ID saluran (contoh: 120363xxx@newsletter)
     name: "Join saluran resmi ourin", // Nama saluran
-    link: "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t", // Link saluran
+    link: "", // Link saluran
   },
 
   groupProtection: {
-    antilink: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antilinkGc: "⚠ *Antilink WA* — @%user% mengirim link WA.\nPesan dihapus.",
-    antilinkGcKick:
-      "⚠ *Antilink WA* — @%user% di-kick karena mengirim link WA.",
-    antilinkAll: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkAllKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antitagsw: "⚠ *AntiTagSW* — Tag status dari @%user% dihapus.",
-    antiviewonce: "👁️ *ViewOnce* — Dari @%user%",
-    antiremove: "🗑️ *AntiDelete* — @%user% menghapus pesan:",
-    antiswgc: "⚠ *AntiSWGC* — Gak ada sw grup sw grup @%user%",
-    antihidetag: "⚠ *AntiHidetag* — Hidetag dari @%user% dihapus.",
-    antitoxicWarn:
-      "⚠ @%user% berkata kasar.\nPeringatan ke %warn% dari %max%, pelanggaran berikutnya bisa di-%method%.",
-    antitoxicAction: "🚫 @%user% di-%method% karena toxic. (%warn%/%max%)",
-    antidocument: "⚠ *AntiDocument* — Dokumen dari @%user% dihapus.",
-    antisticker: "⚠ *AntiSticker* — Sticker dari @%user% dihapus.",
-    antimedia: "⚠ *AntiMedia* — Media dari @%user% dihapus.",
-    antibot: "🤖 *AntiBot* — @%user% terdeteksi sebagai bot dan di-kick.",
-    notAdmin: "⚠ Bot bukan admin, tidak bisa menghapus pesan.",
-  },
+    antilink: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+antilinkKick: "⚠ *Antilink* — @%user% fue expulsado por enviar un enlace.",
+antilinkGc: "⚠ *Antilink WA* — @%user% envió un enlace de WhatsApp.\nMensaje eliminado.",
+antilinkGcKick:
+  "⚠ *Antilink WA* — @%user% fue expulsado por enviar un enlace de WhatsApp.",
+antilinkAll: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+antilinkAllKick: "⚠ *Antilink* — @%user% fue expulsado por enviar un enlace.",
+antitagsw: "⚠ *AntiTagSW* — La etiqueta del estado de @%user% fue eliminada.",
+antiviewonce: "👁️ *ViewOnce* — De @%user%",
+antiremove: "🗑️ *AntiDelete* — @%user% eliminó un mensaje:",
+antiswgc: "⚠ *AntiSWGC* — No se permiten estados de grupo de @%user%.",
+antihidetag: "⚠ *AntiHidetag* — El hidetag de @%user% fue eliminado.",
+antitoxicWarn:
+  "⚠ @%user% dijo una grosería.\nAdvertencia %warn% de %max%, la próxima infracción podría resultar en %method%.",
+antitoxicAction: "🚫 @%user% fue %method% por comportamiento tóxico. (%warn%/%max%)",
+antidocument: "⚠ *AntiDocument* — El documento de @%user% fue eliminado.",
+antisticker: "⚠ *AntiSticker* — El sticker de @%user% fue eliminado.",
+antimedia: "⚠ *AntiMedia* — El archivo multimedia de @%user% fue eliminado.",
+antibot: "🤖 *AntiBot* — @%user% fue detectado como bot y expulsado.",
+notAdmin: "⚠ El bot no es administrador, no puede eliminar mensajes.",
+},
 
-  errorTemplate: `☢ Kayaknya command \`{prefix}{command}\` lagi ada kendala\nSilahkan coba lagi nanti, {pushName}\n\n_Jika masalah berlanjut, silahkan hubungi owner bot_`,
+errorTemplate: `☢ Parece que el comando \`{prefix}{command}\` está teniendo un problema.\nPor favor, inténtalo de nuevo más tarde, {pushName}.\n\n_Si el problema continúa, comunícate con el propietario del bot._`,
 
   features: {
     antiCall: false, // Jika true, bot akan menolak panggilan masuk
@@ -162,34 +162,34 @@ const config = {
   },
 
   messages: {
-    wait: "🕕 *Proses...* Mohon tunggu sebentar ya.",
-    success: "✅ *Berhasil!* Permintaan kamu sudah selesai.",
-    error: "❌ *Error!* Ada masalah pada sistem, coba lagi nanti.",
+    wait: "🕕 *Procesando...* Por favor, espera un momento.",
+success: "✅ *¡Completado!* Tu solicitud se procesó correctamente.",
+error: "❌ *¡Error!* Ocurrió un problema en el sistema, inténtalo de nuevo más tarde.",
 
-    ownerOnly: "*Akses Ditolak!* Fitur ini khusus untuk Owner bot.",
-    premiumOnly:
-      "💎 *Premium Only!* Fitur ini khusus member Premium. Ketik *.benefitpremium* untuk info upgrade.",
+ownerOnly: "*¡Acceso denegado!* Esta función es exclusiva del propietario del bot.",
+premiumOnly:
+  "💎 *¡Solo Premium!* Esta función es exclusiva para miembros Premium. Escribe *.benefitpremium* para obtener información sobre la mejora.",
 
-    groupOnly: "👥 *Group Only!* Fitur ini hanya bisa digunakan di dalam grup.",
-    privateOnly:
-      "� *Private Only!* Fitur ini hanya bisa digunakan di chat pribadi bot.",
+groupOnly: "👥 *¡Solo grupos!* Esta función solo puede usarse dentro de un grupo.",
+privateOnly:
+  "📩 *¡Solo chat privado!* Esta función solo puede usarse en el chat privado del bot.",
 
-    adminOnly:
-      "�️ *Admin Only!* Kamu harus jadi Admin grup untuk pakai fitur ini.",
-    botAdminOnly:
-      "🤖 *Bot Bukan Admin!* Jadikan bot sebagai Admin grup dulu biar bisa kerja.",
+adminOnly:
+  "🛡️ *¡Solo administradores!* Debes ser administrador del grupo para usar esta función.",
+botAdminOnly:
+  "🤖 *¡El bot no es administrador!* Asciende al bot como administrador del grupo para que pueda funcionar.",
 
-    cooldown:
-      "🕕 *Tunggu Dulu!* Kamu masih dalam cooldown. Tunggu %time% detik lagi ya.",
-    energiExceeded:
-      "⚡ *Energi Habis!* Energi kamu sudah habis. Tunggu reset besok atau beli Premium.",
-    limitDeducted:
-      "🔋 Limit kau berkurang sebanyak {amount}. Sisa limit: {sisa}",
+cooldown:
+  "🕕 *¡Espera un momento!* Aún estás en tiempo de espera. Vuelve a intentarlo en %time% segundos.",
+energiExceeded:
+  "⚡ *¡Sin energía!* Tu energía se agotó. Espera al reinicio de mañana o compra Premium.",
+limitDeducted:
+  "🔋 Se descontaron {amount} de tu límite. Límite restante: {sisa}",
 
-    banned:
-      "🚫 *Kamu Dibanned!* Kamu tidak bisa menggunakan bot ini karena telah melanggar aturan.",
+banned:
+  "🚫 *¡Has sido bloqueado!* No puedes usar este bot porque infringiste las reglas.",
 
-    rejectCall: "🚫 JANGAN TELPON NOMOR INI WEH",
+rejectCall: "🚫 ¡NO LLAMES A ESTE NÚMERO!",
   },
 
   database: { path: "./database/main" },
