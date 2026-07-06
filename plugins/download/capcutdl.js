@@ -1,10 +1,11 @@
 import { capcut } from 'btch-downloader'
 import te from '../../src/lib/ourin-error.js'
+
 const pluginConfig = {
     name: 'capcutdl',
-    alias: ['ccdl', 'capcut', 'cc'],
+    alias: ['ccdl', 'capcut', 'cc', 'capcutdescargar'],
     category: 'download',
-    description: 'Download video CapCut',
+    description: 'Descargar videos de CapCut',
     usage: '.ccdl <url>',
     example: '.ccdl https://www.capcut.com/t/xxx',
     isOwner: false,
@@ -21,15 +22,15 @@ async function handler(m, { sock }) {
 
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *MODO DE USO*\n\n` +
             `> \`${m.prefix}ccdl <url>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}ccdl https://www.capcut.com/t/xxx\``
         )
     }
 
     if (!url.match(/capcut\.com/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link CapCut.`)
+        return m.reply(`❌ URL no válida. Asegúrate de usar un enlace de CapCut.`)
     }
 
     await m.react('🕕')
@@ -38,7 +39,7 @@ async function handler(m, { sock }) {
         const data = await capcut(url)
 
         if (!data?.status || !data?.originalVideoUrl) {
-            return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+            return m.reply(`❌ Error al obtener el video. Intenta con otro enlace.`)
         }
 
         await sock.sendMedia(m.chat, data.originalVideoUrl, null, m, {
