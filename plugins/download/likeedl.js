@@ -1,10 +1,11 @@
 import likee from '../../src/scraper/likee.js'
 import te from '../../src/lib/ourin-error.js'
+
 const pluginConfig = {
     name: 'likeedl',
-    alias: ['lkdl', 'likee', 'lk'],
+    alias: ['lkdl', 'likee', 'lk', 'likeedescargar'],
     category: 'download',
-    description: 'Download video Likee',
+    description: 'Descargar videos de Likee',
     usage: '.lkdl <url>',
     example: '.lkdl https://likee.video/@xxx',
     isOwner: false,
@@ -21,15 +22,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *MODO DE USO*\n\n` +
             `> \`${m.prefix}lkdl <url>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}lkdl https://likee.video/@xxx\``
         )
     }
     
     if (!url.match(/likee\.(video|com)/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link Likee.`)
+        return m.reply(`❌ URL no válida. Asegúrate de usar un enlace de Likee.`)
     }
     
     await m.react('🕕')
@@ -38,13 +39,13 @@ async function handler(m, { sock }) {
         const data = await likee(url)
         
         if (!data) {
-            return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+            return m.reply(`❌ Error al obtener el video. Intenta con otro enlace.`)
         }
         
         const videoUrl = data.without_watermark || data.with_watermark
         
         if (!videoUrl) {
-            return m.reply(`❌ Video tidak ditemukan.`)
+            return m.reply(`❌ No se encontró ningún archivo de video disponible.`)
         }
         
         await sock.sendMedia(m.chat, videoUrl, null, m, {
