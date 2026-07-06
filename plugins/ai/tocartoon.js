@@ -4,8 +4,8 @@ const pluginConfig = {
     name: 'tocartoon',
     alias: ['cartoon', 'cartoonify', 'tooncartoon'],
     category: 'ai',
-    description: 'Ubah foto menjadi gaya kartun',
-    usage: '.tocartoon (reply/kirim gambar)',
+    description: 'Transforma una foto en estilo de dibujo animado/caricatura',
+    usage: '.tocartoon (responde/envía una imagen)',
     example: '.tocartoon',
     isOwner: false,
     isPremium: true,
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🎬 *ᴛᴏ ᴄᴀʀᴛᴏᴏɴ*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke gaya kartun\n\n` +
+            `> Envía o responde a una imagen para transformarla a estilo de dibujo animado\n\n` +
             `\`${m.prefix}tocartoon\``
         )
     }
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)
