@@ -6,8 +6,8 @@ const pluginConfig = {
   name: "deepseek",
   alias: ["ds", "dsv4", "deepthink"],
   category: "ai",
-  description: "Chat dengan DeepSeek V4 (thinking/reasoning)",
-  usage: ".deepseek <pertanyaan>",
+  description: "Chatea con DeepSeek V4 (thinking/reasoning)",
+  usage: ".deepseek <pregunta>",
   example: ".deepseek Jelaskan black hole",
   isOwner: false,
   isPremium: false,
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🧠 *DeepSeek V4*\n\n` +
-        `AI yang bisa mikir dulu sebelum jawab — cocok buat pertanyaan yang butuh penalaran.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}deepseek <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
+        `Una IA que piensa antes de responder — ideal para preguntas que requieren razonamiento.\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}deepseek <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}deepseek Jelaskan black hole*\n` +
         `> *${m.prefix}deepseek Buat kode sorting algorithm*\n\n` +
-        `_Bot akan mikir dulu, baru jawab — jadi agak lama sedikit_`,
+        `_El bot pensará primero y luego responderá — por lo que tardará un poco más_`,
     );
   }
 
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
 
     if (!result.success) {
       await m.react("☢");
-      return m.reply(`❌ *DeepSeek Gagal*\n\n> Gagal mendapatkan respons`);
+      return m.reply(`❌ *DeepSeek Falló*\n\n> Error al obtener una respuesta`);
     }
 
     await m.react("✅");
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
     }
 
     if (reply.length > 4096) {
-      reply = reply.slice(0, 4096) + "\n\n... (dipotong)";
+      reply = reply.slice(0, 4096) + "\n\n... (recortado)";
     }
 
     await m.reply(reply);
