@@ -5,8 +5,8 @@ const pluginConfig = {
   name: "kobo-ai",
   alias: ["koboai", "kobo"],
   category: "ai",
-  description: "Chat dengan Kobo Kanaeru — VTuber Hololive ID",
-  usage: ".kobo-ai <pertanyaan>",
+  description: "Chatea con Kobo Kanaeru — VTuber de Hololive ID",
+  usage: ".kobo-ai <pregunta>",
   example: ".kobo-ai Kobo lagi apa?",
   isOwner: false,
   isPremium: false,
@@ -22,10 +22,10 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🌬️ *Kobo Kanaeru*\n\n` +
-        `> VTuber Hololive Indonesia Gen 3\n> Wind Shaman yang cheerfull dan suka prank!\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}kobo-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
+        `> VTuber de Hololive Indonesia Gen 3\n> ¡Una Chamán del Viento alegre a la que le encantan las bromas!\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}kobo-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}kobo-ai Kobo lagi apa?*`
     );
   }
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Kobo AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Kobo AI Error*\n\n> ${result.error || "Error al obtener una respuesta"}`);
     }
 
     await m.react("✅");
