@@ -6,9 +6,9 @@ const pluginConfig = {
   name: "text2img",
   alias: [],
   category: "ai",
-  description: "Buat gambar dari teks",
-  usage: ".text2img <teks>",
-  example: ".text2img Buat gambar dari teks",
+  description: "Crea imágenes a partir de texto",
+  usage: ".text2img <texto>",
+  example: ".text2img Un astronauta montando un caballo en el espacio",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `📿 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}text2img Buat gambar dari teks\``,
+      `📿 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n> Ingresa un texto\n\n\`Ejemplo: ${m.prefix}text2img Un astronauta montando un caballo en el espacio\``,
     );
   }
 
