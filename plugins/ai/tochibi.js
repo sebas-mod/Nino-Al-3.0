@@ -6,8 +6,8 @@ const pluginConfig = {
     name: 'tochibi',
     alias: ['chibi', 'chibistyle'],
     category: 'ai',
-    description: 'Ubah gambar ke style Chibi',
-    usage: '.tochibi (reply gambar)',
+    description: 'Transforma una foto en estilo Chibi',
+    usage: '.tochibi (responde a una imagen)',
     example: '.tochibi',
     isOwner: false,
     isPremium: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Kirim/reply gambar untuk diubah ke style Chibi\n\n\`${m.prefix}tochibi\``)
+        return m.reply(`🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Envía o responde a una imagen para transformarla a estilo Chibi\n\n\`${m.prefix}tochibi\``)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
 
         const PROMPT = `Transform into chibi style, big head and small body proportions, cute expression, big sparkling eyes, smooth shading, soft lighting, highly detailed, high quality`
