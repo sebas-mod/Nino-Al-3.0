@@ -1,41 +1,32 @@
+import axios from 'axios'
+import { uploadImage } from '../../src/lib/ourin-uploader.js'
+import { f } from '../../src/lib/ourin-http.js'
 import te from '../../src/lib/ourin-error.js'
-import { live3d } from '../../src/scraper/seaart.js'
 const pluginConfig = {
-    name: 'tofigure3',
-    alias: ['figurine3', 'tofigure3', 'bandai3', 'actionfigure3'],
+    name: 'tofigurev2',
+    alias: ['figurev2', 'figure2'],
     category: 'ai',
-    description: 'Ubah foto menjadi action figure/figurine koleksi',
-    usage: '.tofigure3 (reply/kirim gambar)',
-    example: '.tofigure3',
+    description: 'Transforma una foto en estilo de figura de acción v2',
+    usage: '.tofigurev2 (responde a una imagen)',
+    example: '.tofigurev2',
     isOwner: false,
-    isPremium: true,
+    isPremium: false,
     isGroup: false,
     isPrivate: false,
-    cooldown: 60,
-    energi: 3,
+    cooldown: 30,
+    energi: 2,
     isEnabled: true
 }
 
-const PROMPT = `Using the model, create a 1/7 scale commercialized figurine of the characters in the picture, 
-in a realistic style, in a real environment. The figurine is placed on a computer desk. 
-The figurine has a round transparent acrylic base, with no text on the base. 
-The content on the computer screen is the modeling process of this figurine. 
-Next to the computer screen is a BANDAI-style toy packaging box printed with the original artwork. 
-The packaging features two-dimensional flat illustrations.`
-
 async function handler(m, { sock }) {
-    const isImage = m.isImage || (m.quoted && (m.quoted.isImage || m.quoted.type === 'imageMessage'))
+    const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(
-            `🎭 *ᴛᴏ ꜰɪɢᴜʀ 3*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke figurine/action figure\n\n` +
-            `\`${m.prefix}tofigure3\``
-        )
+        return m.reply(`🎭 *ꜰɪɢᴜʀᴇ sᴛʏʟᴇ ᴠ2*\n\n> Envía o responde a una imagen para transformarla a estilo Figura\n\n\`${m.prefix}tofigurev2\``)
     }
     
     m.react('🕕')
-    
+
     try {
         let buffer
         if (m.quoted && m.quoted.isMedia) {
@@ -46,16 +37,17 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
+        const imageUrl = await uploadImage(buffer, 'image.jpg')
         
-        
-        const result = await live3d(buffer, PROMPT)
+        const url = `https://api-faa.my.id/faa/tofigurav3?url=${encodeURIComponent(imageUrl)}`
+        const res = await f(url, 'arrayBuffer')
         
         m.react('✅')
         
-        await sock.sendMedia(m.chat, result.image, null, m, {
+        await sock.sendMedia(m.chat, Buffer.from(res), null, m, {
             type: 'image'
         })
         
