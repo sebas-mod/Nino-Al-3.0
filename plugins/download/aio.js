@@ -4,10 +4,10 @@ import { saluranCtx } from "../../src/lib/ourin-context.js";
 
 const pluginConfig = {
   name: "aio",
-  alias: ["allinone", "download", "dl"],
+  alias: ["allinone", "download", "dl", "descargar"],
   category: "downloader",
   description:
-    "All in one downloader (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, dll)",
+    "Descargador todo en uno (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, etc.)",
   usage: ".aio <url>",
   example: ".aio https://instagram.com/p/xxx",
   isOwner: false,
@@ -24,9 +24,9 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `📥 *ᴀʟʟ ɪɴ ᴏɴᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
-        `> Download dari berbagai platform!\n\n` +
-        `╭┈┈⬡「 🌐 *ᴘʟᴀᴛꜰᴏʀᴍ* 」\n` +
+      `📥 *ᴅᴇsᴄᴀʀɢᴀᴅᴏʀ ᴛᴏᴅᴏ ᴇɴ ᴜɴᴏ*\n\n` +
+        `> ¡Descarga contenido de múltiples plataformas!\n\n` +
+        `╭┈┈⬡「 🌐 *ᴘʟᴀᴛᴀꜰᴏʀᴍᴀs* 」\n` +
         `┃ • Instagram\n` +
         `┃ • TikTok\n` +
         `┃ • Facebook\n` +
@@ -36,12 +36,12 @@ async function handler(m, { sock }) {
         `┃ • CapCut\n` +
         `┃ • Threads / Reddit\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> *Contoh:* ${m.prefix}aio https://instagram.com/p/xxx`,
+        `> *Ejemplo:* ${m.prefix}aio https://instagram.com/p/xxx`,
     );
   }
 
   if (!url.startsWith("http")) {
-    return m.reply(`❌ URL tidak valid! Harus dimulai dengan http/https`);
+    return m.reply(`❌ ¡URL no válida! Debe comenzar con http o https`);
   }
 
   await m.react("🕕");
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Gagal mengambil media. Pastikan URL valid.`);
+      return m.reply(`❌ No se pudo obtener el archivo multimedia. Asegúrate de que la URL sea válida.`);
     }
 
     const ctxInfo = saluranCtx();
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
           contextInfo: ctxInfo,
         });
       }
-      break;
+      break; // Descarga solo el primer elemento multimedia disponible
     }
 
     await m.react("✅");
