@@ -6,8 +6,8 @@ const pluginConfig = {
     name: 'tofigurev2',
     alias: ['figurev2', 'figure2'],
     category: 'ai',
-    description: 'Ubah gambar ke style Figure v2',
-    usage: '.tofigurev2 (reply gambar)',
+    description: 'Transforma una foto en estilo de figura de acción v2',
+    usage: '.tofigurev2 (responde a una imagen)',
     example: '.tofigurev2',
     isOwner: false,
     isPremium: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🎭 *ꜰɪɢᴜʀᴇ sᴛʏʟᴇ ᴠ2*\n\n> Kirim/reply gambar untuk diubah ke style Figure\n\n\`${m.prefix}tofigurev2\``)
+        return m.reply(`🎭 *ꜰɪɢᴜʀᴇ sᴛʏʟᴇ ᴠ2*\n\n> Envía o responde a una imagen para transformarla a estilo Figura\n\n\`${m.prefix}tofigurev2\``)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
         const imageUrl = await uploadImage(buffer, 'image.jpg')
