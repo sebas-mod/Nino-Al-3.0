@@ -5,8 +5,8 @@ const pluginConfig = {
   name: "jokowi-ai",
   alias: ["jokowiai", "jokowi", "pakjokowi"],
   category: "ai",
-  description: "Chat dengan Pak Jokowi — Pria Solo",
-  usage: ".jokowi-ai <pertanyaan>",
+  description: "Chatea con Pak Jokowi — El hombre de Solo",
+  usage: ".jokowi-ai <pregunta>",
   example: ".jokowi-ai Pak, gimana kabar?",
   isOwner: false,
   isPremium: false,
@@ -22,10 +22,10 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🏛️ *Pak Jokowi*\n\n` +
-        `> Pria Solo — Mantan Presiden RI\n> Sederhana, bijak, dan suka blusukan\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}jokowi-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
+        `> El hombre de Solo — Expresidente de la RI\n> Sencillo, sabio y le gusta el blusukan (visitas improvisadas)\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}jokowi-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}jokowi-ai Pak, gimana kabar?*`
     );
   }
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Jokowi AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Jokowi AI Error*\n\n> ${result.error || "Error al obtener una respuesta"}`);
     }
 
     await m.react("✅");
