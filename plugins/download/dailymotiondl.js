@@ -9,9 +9,9 @@ const exec = promisify(execFile);
 
 const pluginConfig = {
   name: "dailymotiondl",
-  alias: ["dailymotion", "dmdl"],
+  alias: ["dailymotion", "dmdl", "dailymotiondescargar"],
   category: "download",
-  description: "Download video dari Dailymotion",
+  description: "Descargar videos de Dailymotion",
   usage: ".dailymotiondl <url>",
   example: ".dailymotiondl https://www.dailymotion.com/video/xxx",
   isOwner: false,
@@ -29,12 +29,12 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `🎬 *Dailymotion Downloader*\n\n` +
-        `Download video dari Dailymotion, otomatis dikonversi ke MP4.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}dailymotiondl <link>*\n\n` +
-        `*CONTOH:*\n` +
+        `Descarga videos de Dailymotion con conversión automática a MP4.\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}dailymotiondl <enlace>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}dailymotiondl https://www.dailymotion.com/video/xxx*\n\n` +
-        `_Proses konversi mungkin agak lama_`,
+        `_Nota: El proceso de conversión puede tardar un poco._`,
     );
   }
 
@@ -45,14 +45,14 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Dailymotion Gagal*\n\n> ${result.error}`);
+      return m.reply(`❌ *Error en Dailymotion*\n\n> ${result.error}`);
     }
 
     let caption =
       `🎬 *Dailymotion*\n\n` +
       `> 📌 ${result.title}\n` +
-      `> ⏱️ Durasi: ${result.duration}\n` +
-      `> 📺 Kualitas: ${result.quality}`;
+      `> ⏱️ Duración: ${result.duration}\n` +
+      `> 📺 Calidad: ${result.quality}`;
 
     if (result.thumbnail) {
       await sock.sendMedia(m.chat, result.thumbnail, caption, m, {
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal mengambil data Dailymotion, coba lagi nanti");
+    m.reply("❌ Error al obtener los datos de Dailymotion. Inténtalo de nuevo más tarde.");
   }
 }
 
