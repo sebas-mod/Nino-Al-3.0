@@ -1,11 +1,12 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
+
 const pluginConfig = {
     name: 'clanwar',
-    alias: ['war', 'guildwar'],
+    alias: ['war', 'guildwar', 'guerra-clan'],
     category: 'clan',
-    description: 'War melawan clan lain',
-    usage: '.clanwar <clan_id>',
-    example: '.clanwar clan_123456',
+    description: 'Declara la guerra contra otro clan',
+    usage: '.clanwar <clan_id / nombre_clan>',
+    example: '.clanwar ABC1',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -68,16 +69,16 @@ async function handler(m) {
     const user = db.getUser(m.sender)
     const targetClanId = m.text?.trim()
 
-    if (!user?.clanId) return m.reply(`❌ Kamu belum punya clan`)
+    if (!user?.clanId) return m.reply(`❌ No perteneces a ningún clan`)
 
     if (!targetClanId) {
         return m.reply(
-            `⚔️ *CLAN WAR*\n\n` +
-            `Tantang clan lain untuk berperang!\n\n` +
-            `Contoh: *.clanwar clan_123456*\n` +
-            `Cek ID: *.clanleaderboard*\n\n` +
-            `Syarat: Minimal 3 member per clan\n` +
-            `Cooldown: 1 jam`
+            `⚔️ *GUERRA DE CLANES*\n\n` +
+            `¡Desafía a otro clan a una batalla por la gloria y recompensas!\n\n` +
+            `Ejemplo: *.clanwar ABC1*\n` +
+            `Buscar IDs: *.clanleaderboard*\n\n` +
+            `Requisitos: Mínimo 3 miembros por clan\n` +
+            `Tiempo de espera (cooldown): 1 hora`
         )
     }
 
@@ -88,11 +89,11 @@ async function handler(m) {
         || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === targetClanId.toLowerCase())
         || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === targetClanId.toLowerCase())
 
-    if (!myClan) return m.reply(`❌ Clan kamu tidak ditemukan`)
-    if (!enemyClan) return m.reply(`❌ Clan lawan tidak ditemukan`)
-    if (user.clanId === targetClanId) return m.reply(`❌ Tidak bisa war melawan clan sendiri`)
-    if (myClan.members.length < 3) return m.reply(`❌ Clan kamu butuh minimal 3 member`)
-    if (enemyClan.members.length < 3) return m.reply(`❌ Clan lawan butuh minimal 3 member`)
+    if (!myClan) return m.reply(`❌ No se encontró la información de tu clan`)
+    if (!enemyClan) return m.reply(`❌ No se encontró el clan enemigo`)
+    if (user.clanId === enemyClan.id) return m.reply(`❌ No puedes declarar la guerra contra tu propio clan`)
+    if (myClan.members.length < 3) return m.reply(`❌ Tu clan necesita al menos 3 miembros para ir a la guerra`)
+    if (enemyClan.members.length < 3) return m.reply(`❌ El clan enemigo necesita al menos 3 miembros para competir`)
 
     const myPower = calculatePower(db, myClan)
     const enemyPower = calculatePower(db, enemyClan)
@@ -145,22 +146,21 @@ async function handler(m) {
     const bar = powerBar(myPower, enemyPower)
     const winnerClan = isWin ? myClan : enemyClan
     const winnerE = isWin ? myE : enE
-    const r = isWin ? myR : myR
 
-    let txt = `⚔️ *WAR RESULT*\n\n`
+    let txt = `⚔️ *RESULTADO DE LA GUERRA*\n\n`
     txt += `${myE} *${myClan.name}*  vs  *${enemyClan.name}* ${enE}\n`
-    txt += `💪 ${myPower.toLocaleString('id-ID')}  vs  ${enemyPower.toLocaleString('id-ID')}\n`
+    txt += `💪 Pod.: ${myPower.toLocaleString('es-ES')}  vs  Pod.: ${enemyPower.toLocaleString('es-ES')}\n`
     txt += `${bar}\n\n`
-    txt += `${winnerE} *${winnerClan.name} WINS!*\n\n`
+    txt += `${winnerE} *¡${winnerClan.name} GANÓ LA GUERRA!*\n\n`
 
     if (isWin) {
-        txt += `🎁 Reward per member:\n`
-        txt += `+Rp ${myR.koinWin.toLocaleString('id-ID')} · +${myR.expWin.toLocaleString('id-ID')} EXP · +${myR.energiWin} Energi\n`
-        txt += `+${REWARDS.clanExpWin.toLocaleString('id-ID')} Clan EXP`
+        txt += `🎁 Recompensas por miembro (Ganadores):\n`
+        txt += `+${myR.koinWin.toLocaleString('es-ES')} monedas · +${myR.expWin.toLocaleString('es-ES')} EXP · +${myR.energiWin} Energía\n`
+        txt += `+${REWARDS.clanExpWin.toLocaleString('es-ES')} EXP de Clan`
     } else {
-        txt += `😔 Konsolasi per member:\n`
-        txt += `+Rp ${myR.koinLose.toLocaleString('id-ID')} · +${myR.expLose.toLocaleString('id-ID')} EXP · +${myR.energiLose} Energi\n`
-        txt += `+${REWARDS.clanExpLose.toLocaleString('id-ID')} Clan EXP`
+        txt += `😔 Premio de consolación por miembro:\n`
+        txt += `+${myR.koinLose.toLocaleString('es-ES')} monedas · +${myR.expLose.toLocaleString('es-ES')} EXP · +${myR.energiLose} Energía\n`
+        txt += `+${REWARDS.clanExpLose.toLocaleString('es-ES')} EXP de Clan`
     }
 
     await m.reply(txt)
