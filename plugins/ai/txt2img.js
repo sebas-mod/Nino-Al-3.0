@@ -5,8 +5,8 @@ const pluginConfig = {
     name: 'text2img3',
     alias: [],
     category: 'ai',
-    description: 'Generate gambar dari teks dengan AI',
-    usage: '.txt2img <prompt> | <style>',
+    description: 'Genera imágenes a partir de texto con IA',
+    usage: '.txt2img <prompt> | <estilo>',
     example: '.txt2img beautiful sunset | anime',
     isOwner: false,
     isPremium: false,
@@ -24,9 +24,9 @@ async function handler(m, { sock }) {
     if (!input) {
         return m.reply(
             `🎨 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n` +
-            `> Generate gambar dari teks dengan AI\n\n` +
-            `\`Contoh: ${m.prefix}txt2img beautiful sunset | anime\`\n\n` +
-            `🎭 *sᴛʏʟᴇs*\n` +
+            `> Genera imágenes a partir de texto con IA\n\n` +
+            `\`Ejemplo: ${m.prefix}txt2img beautiful sunset | anime\`\n\n` +
+            `🎭 *ᴇsᴛɪʟᴏs*\n` +
             `> \`${STYLES.join(', ')}\``
         )
     }
