@@ -5,8 +5,8 @@ const pluginConfig = {
   name: "ourin-ai",
   alias: ["ourinai", "ourin"],
   category: "ai",
-  description: "Chat dengan Ourin AI — Asisten bot cerdas",
-  usage: ".ourin-ai <pertanyaan>",
+  description: "Chatea con Ourin AI — Un asistente de bot inteligente",
+  usage: ".ourin-ai <pregunta>",
   example: ".ourin-ai Apa itu Node.js?",
   isOwner: false,
   isPremium: false,
@@ -22,10 +22,10 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🤖 *Ourin AI*\n\n` +
-        `> Asisten cerdas siap membantu\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}ourin-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
+        `> Un asistente inteligente listo para ayudarte\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}ourin-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}ourin-ai Apa itu Node.js?*`
     );
   }
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Ourin AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Ourin AI Error*\n\n> ${result.error || "Error al obtener una respuesta"}`);
     }
 
     await m.react("✅");
