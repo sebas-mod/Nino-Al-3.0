@@ -7,8 +7,8 @@ const pluginConfig = {
   name: "toblack",
   alias: ["black", "hitamkan", "hitam", "tohitam"],
   category: "ai",
-  description: "Ubah gambar ke skin tone lebih gelap",
-  usage: ".toblack (reply gambar)",
+  description: "Cambia el tono de piel de la imagen a uno más oscuro",
+  usage: ".toblack (responde a una imagen)",
   example: ".toblack",
   isOwner: false,
   isPremium: false,
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
   if (!isImage) {
     return m.reply(
-      `🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Kirim/reply gambar\n\n\`${m.prefix}toblack\``,
+      `🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Envía o responde a una imagen\n\n\`${m.prefix}toblack\``,
     );
   }
 
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
 
     if (!buffer) {
       m.react("❌");
-      return m.reply(`❌ Gagal mendownload gambar`);
+      return m.reply(`❌ Error al descargar la imagen`);
     }
 
     const result = await live3d(buffer, PROMPT);
