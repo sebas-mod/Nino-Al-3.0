@@ -1,10 +1,11 @@
 import { cocofun } from 'btch-downloader'
 import te from '../../src/lib/ourin-error.js'
+
 const pluginConfig = {
     name: 'cocofundl',
-    alias: ['cfdl', 'cocofun', 'cf'],
+    alias: ['cfdl', 'cocofun', 'cf', 'cocofundescargar'],
     category: 'download',
-    description: 'Download video CocoFun',
+    description: 'Descargar videos de CocoFun',
     usage: '.cfdl <url>',
     example: '.cfdl https://www.cocofun.com/share/post/xxx',
     isOwner: false,
@@ -21,15 +22,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *MODO DE USO*\n\n` +
             `> \`${m.prefix}cfdl <url>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}cfdl https://www.cocofun.com/share/post/xxx\``
         )
     }
     
     if (!url.match(/cocofun\.com/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link CocoFun.`)
+        return m.reply(`❌ URL no válida. Asegúrate de usar un enlace de CocoFun.`)
     }
     
     await m.react('🕕')
@@ -38,14 +39,14 @@ async function handler(m, { sock }) {
         const data = await cocofun(url)
         
         if (!data?.status || !data?.result) {
-            return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+            return m.reply(`❌ Error al obtener el video. Intenta con otro enlace.`)
         }
         
         const result = data.result
         const videoUrl = result.no_watermark || result.watermark
         
         if (!videoUrl) {
-            return m.reply(`❌ Video tidak ditemukan.`)
+            return m.reply(`❌ No se encontró ningún archivo de video disponible.`)
         }
         
         await sock.sendMedia(m.chat, videoUrl, null, m, {
