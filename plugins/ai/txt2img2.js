@@ -4,8 +4,8 @@ const pluginConfig = {
   name: "text2img4",
   alias: ["t2i2", "imggen2", "flux"],
   category: "ai",
-  description: "Buat gambar dari teks pakai Flux Klein 4B",
-  usage: ".txt2img2 <deskripsi gambar>",
+  description: "Crea imágenes a partir de texto usando Flux Klein 4B",
+  usage: ".txt2img2 <descripción de la imagen>",
   example: ".txt2img2 Mobil Lamborghini revuelto",
   isOwner: false,
   isPremium: false,
@@ -22,13 +22,13 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `🎨 *Text to Image (Flux)*\n\n` +
-      `Buat gambar dari deskripsi teks pakai AI Flux Klein 4B.\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `> *${m.prefix}txt2img2 <deskripsi>*\n\n` +
-      `*CONTOH:*\n` +
-      `> *${m.prefix}txt2img2 Mobil Lamborghini revuelto*\n` +
-      `> *${m.prefix}txt2img2 Kucing lucu pakai topi*\n\n` +
-      `_Proses generate agak lama, sekitar 30-60 detik_`
+      `Crea imágenes a partir de descripciones de texto usando la IA Flux Klein 4B.\n\n` +
+      `*MODO DE USO:*\n` +
+      `> *${m.prefix}txt2img2 <descripción>*\n\n` +
+      `*EJEMPLOS:*\n` +
+      `> *${m.prefix}txt2img2 un auto Lamborghini revuelto*\n` +
+      `> *${m.prefix}txt2img2 un gato tierno usando un sombrero*\n\n` +
+      `_El proceso de generación puede tardar un poco, entre 30 y 60 segundos_`
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Generate Gagal*\n\n> ${result.error}`);
+      return m.reply(`❌ *Error de Generación*\n\n> ${result.error}`);
     }
 
     await sock.sendMedia(m.chat, result.url, `🎨 *Flux Klein 4B*\n\n> Prompt: *${result.prompt}*`, m, {
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal generate gambar, coba lagi nanti");
+    m.reply("❌ Error al generar la imagen, por favor inténtalo de nuevo más tarde");
   }
 }
 
