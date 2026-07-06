@@ -1,10 +1,11 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
+
 const pluginConfig = {
     name: 'claninfo',
     alias: ['infoclan', 'myclan', 'guildinfo'],
     category: 'clan',
-    description: 'Lihat info clan',
-    usage: '.claninfo [clan_id]',
+    description: 'Ver la información de un clan',
+    usage: '.claninfo [clan_id / nombre_clan]',
     example: '.claninfo',
     isOwner: false,
     isPremium: false,
@@ -23,12 +24,12 @@ function expBar(exp, nextLevel) {
 }
 
 function getRankTitle(level) {
-    if (level >= 50) return '👑 Legendary'
-    if (level >= 30) return '💎 Diamond'
-    if (level >= 20) return '🏆 Platinum'
-    if (level >= 10) return '🥇 Gold'
-    if (level >= 5) return '🥈 Silver'
-    return '🥉 Bronze'
+    if (level >= 50) return '👑 Legendario'
+    if (level >= 30) return '💎 Diamante'
+    if (level >= 20) return '🏆 Platino'
+    if (level >= 10) return '🥇 Oro'
+    if (level >= 5) return '🥈 Plata'
+    return '🥉 Bronce'
 }
 
 async function handler(m) {
@@ -38,9 +39,9 @@ async function handler(m) {
 
     if (!clanId) {
         return m.reply(
-            `❌ Kamu belum punya clan\n\n` +
-            `Buat: *.clancreate <nama>*\n` +
-            `Gabung: *.clanjoin <id>*`
+            `❌ Aún no perteneces a ningún clan.\n\n` +
+            `Crear uno: *.clancreate <nombre>*\n` +
+            `Unirse a uno: *.clanjoin <id>*`
         )
     }
 
@@ -49,7 +50,8 @@ async function handler(m) {
     const clan = db.db.data.clans[clanId]
         || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
         || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
-    if (!clan) return m.reply(`❌ Clan tidak ditemukan`)
+        
+    if (!clan) return m.reply(`❌ No se encontró el clan.`)
 
     const totalGames = (clan.wins || 0) + (clan.losses || 0)
     const winRate = totalGames > 0
@@ -62,15 +64,15 @@ async function handler(m) {
 
     await m.reply(
         `${emblem} *${clan.name}*\n` +
-        `${rank} · Level ${clan.level || 1}\n\n` +
+        `${rank} · Nivel ${clan.level || 1}\n\n` +
         `EXP  ${bar}\n\n` +
-        `┌ 👑 Leader · @${clan.leader.split('@')[0]}\n` +
-        `├ 👥 Members · ${clan.members.length}/50\n` +
-        `├ 🔓 Status · ${clan.isOpen ? 'Open' : 'Closed'}\n` +
-        `└ 📅 Dibuat · ${new Date(clan.createdAt).toLocaleDateString('id-ID')}\n\n` +
-        `⚔️ *War Stats*\n` +
-        `${clan.wins || 0}W · ${clan.losses || 0}L · ${winRate}% WR\n\n` +
-        `_${clan.description || 'Belum ada deskripsi'}_\n\n` +
+        `┌ 👑 Líder · @${clan.leader.split('@')[0]}\n` +
+        `├ 👥 Miembros · ${clan.members.length}/50\n` +
+        `├ 🔓 Estado · ${clan.isOpen ? 'Abierto' : 'Cerrado'}\n` +
+        `└ 📅 Creado · ${new Date(clan.createdAt).toLocaleDateString('es-ES')}\n\n` +
+        `⚔️ *Estadísticas de Guerra*\n` +
+        `${clan.wins || 0}V · ${clan.losses || 0}D · ${winRate}% WR\n\n` +
+        `_${clan.description || 'Sin descripción aún'}_\n\n` +
         `ID: \`${clan.id}\``,
         { mentions: [clan.leader] }
     )
