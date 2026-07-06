@@ -3,9 +3,9 @@ import mediafire from "../../src/scraper/mediafire.js";
 
 const pluginConfig = {
   name: "mediafiredl",
-  alias: ["mfdl", "mediafire", "mf"],
+  alias: ["mfdl", "mediafire", "mf", "mediafiredescargar"],
   category: "download",
-  description: "Download file dari MediaFire",
+  description: "Descargar archivos de MediaFire",
   usage: ".mfdl <url>",
   example: ".mfdl https://www.mediafire.com/file/xxx",
   isOwner: false,
@@ -33,15 +33,15 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+      `⚠️ *MODO DE USO*\n\n` +
         `> \`${m.prefix}mfdl <url>\`\n\n` +
-        `> Contoh:\n` +
+        `> Ejemplo:\n` +
         `> \`${m.prefix}mfdl https://www.mediafire.com/file/xxx\``,
     );
   }
 
   if (!url.match(/mediafire\.com/i)) {
-    return m.reply(`❌ *URL tidak valid. Gunakan link MediaFire.*`);
+    return m.reply(`❌ *URL no válida. Asegúrate de usar un enlace de MediaFire.*`);
   }
   await m.react("🕕");
 
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
         contextInfo: {
           forwardingScore: 99,
           isForwarded: true,
-        },
+          },
       },
       { quoted: m },
     );
