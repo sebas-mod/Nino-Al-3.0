@@ -8,8 +8,12 @@ import {
   getPluginCount,
   getAllPlugins,
   pluginStore,
+  getAllCommandNames,
 } from "./lib/ourin-plugins.js";
 import {
+  findSimilarCommands,
+  formatSuggestionMessage,
+} from "./lib/ourin-similarity.js";
 import { getDatabase } from "./lib/ourin-database.js";
 import {
   formatUptime,
@@ -1438,6 +1442,96 @@ async function messageHandler(msg, sock, options = {}) {
 
         await m.reply(caption);
         return;
+      }
+
+      const storeCommands = Object.keys(storeData);
+      const allCommands = [...getAllCommandNames(), ...storeCommands];
+
+      const similarityEnabled = db.setting("similarity") !== false;
+
+      if (similarityEnabled) {
+        const suggestions = findSimilarCommands(m.command, allCommands, {
+          maxResults: 1,
+          minSimilarity: 0.6,
+          maxDistance: 3,
+        });
+
+        if (suggestions.length > 0) {
+          const message = formatSuggestionMessage(
+            m.command,
+            suggestions,
+            m.prefix,
+            m,
+          );
+          try {
+            const { prepareWAMessageMedia } = await import("ourin");
+            const media = await prepareWAMessageMedia(
+              { image: fs.readFileSync(config.assets["ourin"]) },
+              { upload: sock.waUploadToServer }
+            );
+
+            await sock.relayMessage(
+              m.chat,
+              {
+                viewOnceMessage: {
+                  message: {
+                    messageContextInfo: {},
+                    interactiveMessage: {
+                      header: {
+                        title: "",
+                        subtitle: "",
+                        hasMediaAttachment: true,
+                        imageMessage: media.imageMessage
+                      },
+                      body: {
+                        text: message.message
+                      },
+                      footer: {
+                        text: "Mungkin maksud kamu adalah command ini"
+                      },
+                      contextInfo: {
+                        isForwarded: true,
+                        forwardingScore: 9,
+                        participant: "0@s.whatsapp.net",
+                        quotedMessage: {
+                          conversation: `🔍 Command Tidak Ditemukan`
+                        },
+                        mentionedJid: [m.sender]
+                      },
+                      nativeFlowMessage: {
+                        messageParamsJson: JSON.stringify({
+                          limited_time_offer: {
+                            text: `Saran Command`,
+                            url: "",
+                            copy_code: config.bot.name,
+                            expiration_time: Date.now() + 1000000,
+                          },
+                          bottom_sheet: {
+                            in_thread_buttons_limit: 2,
+                            divider_indices: [1, 2, 3],
+                            list_title: "Saran Command",
+                            button_title: "🎯 Pilih Command",
+                          },
+                          tap_target_configuration: {
+                            title: " X ",
+                            description: "Close",
+                            canonical_url: "https://ourin.site",
+                            domain: "ourin.example",
+                            button_index: 0,
+                          },
+                        }),
+                        buttons: message.interactiveButtons
+                      }
+                    }
+                  }
+                }
+              },
+              {}
+            );
+          } catch (err) {
+            console.error("[Similarity] Gagal mengirim pesan similarity relay:", err.message);
+          }
+        }
       }
 
       return;
