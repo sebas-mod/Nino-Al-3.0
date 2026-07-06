@@ -5,9 +5,9 @@ const pluginConfig = {
   name: "simi",
   alias: ["simisimi"],
   category: "ai",
-  description: "Ngobrol santai bareng SimiSimi",
-  usage: ".simi <pesan>",
-  example: ".simi Halo Simi!",
+  description: "Chatea de forma relajada con SimiSimi",
+  usage: ".simi <mensaje>",
+  example: ".simi ¡Hola Simi!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ Mau ngobrol apa sama Simi?\n\nContoh: `.simi Halo Simi!`");
+    return m.reply("❌ ¿De qué quieres hablar con Simi?\n\nEjemplo: `.simi ¡Hola Simi!`");
   }
 
   await m.react("🕕");
@@ -35,19 +35,10 @@ async function handler(m, { sock }) {
       }
     });
 
-    const data = res.data;
-    if (!data.status || !data.result) {
-      await m.react("❌");
-      return m.reply("⚠️ Simi lagi ngambek, nggak mau balas.");
-    }
-
-    await m.reply(data.result);
-    await m.react("✅");
-
   } catch (error) {
     console.error("[SimiSimi]", error.message);
     await m.react("☢");
-    m.reply("😔 Simi gagal membalas pesanmu.");
+    m.reply("😔 Simi no pudo responder a tu mensaje.");
   }
 }
 
