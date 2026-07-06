@@ -5,9 +5,9 @@ const pluginConfig = {
   name: "waguri-ai",
   alias: ["waguriai", "waguri"],
   category: "ai",
-  description: "Chat dengan Waguri-san — Gadis pemalu yang lupa kacamata",
-  usage: ".waguri-ai <pertanyaan>",
-  example: ".waguri-ai Waguri-san, halo!",
+  description: "Chatea con Waguri-san — Una chica tímida que olvidó sus lentes",
+  usage: ".waguri-ai <pregunta>",
+  example: ".waguri-ai Waguri-san, ¡hola!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `👓 *Waguri-san*\n\n` +
-        `> Gadis pemalu dari "The Girl I Like Forgot Her Glasses"\n> Manis, perhatian, dan sering salah tingkah~\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}waguri-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}waguri-ai Waguri-san, halo!*`
+        `> Una chica tímida de "The Girl I Like Forgot Her Glasses"\n> Dulce, atenta y que suele ponerse nerviosa fácilmente~\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}waguri-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}waguri-ai Waguri-san, ¡hola!*`
     );
   }
 
@@ -36,8 +36,8 @@ async function handler(m, { sock }) {
     const result = await UnlimitedAI(text, "waguri-ai");
 
     if (!result.status) {
-      await m.react("☢");
-      return m.reply(`❌ *Waguri AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      await m.react("gradient_error");
+      return m.reply(`❌ *Error de Waguri AI*\n\n> ${result.error || "Error al obtener respuesta"}`);
     }
 
     await m.react("✅");
