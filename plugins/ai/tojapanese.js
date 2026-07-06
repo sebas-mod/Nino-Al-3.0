@@ -6,8 +6,8 @@ const pluginConfig = {
     name: 'tojapanese',
     alias: ['japanese', 'japanesestyle'],
     category: 'ai',
-    description: 'Ubah gambar ke style Japanese',
-    usage: '.tojapanese (reply gambar)',
+    description: 'Transforma una foto en estilo japonés',
+    usage: '.tojapanese (responde a una imagen)',
     example: '.tojapanese',
     isOwner: false,
     isPremium: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🎌 *ᴊᴀᴘᴀɴᴇsᴇ sᴛʏʟᴇ*\n\n> Kirim/reply gambar untuk diubah ke style Japanese\n\n\`${m.prefix}tojapanese\``)
+        return m.reply(`🎌 *ᴊᴀᴘᴀɴᴇsᴇ sᴛʏʟᴇ*\n\n> Envía o responde a una imagen para transformarla a estilo japonés\n\n\`${m.prefix}tojapanese\``)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
         const imageUrl = await uploadImage(buffer, 'image.jpg')
