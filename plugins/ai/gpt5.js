@@ -6,8 +6,8 @@ const pluginConfig = {
   name: "gpt5",
   alias: ["gpt5nano", "gpt41"],
   category: "ai",
-  description: "Chat dengan GPT-4.1 Nano via OverChat",
-  usage: ".gpt5 <pertanyaan>",
+  description: "Chatea con GPT-4.1 Nano a través de OverChat",
+  usage: ".gpt5 <pregunta>",
   example: ".gpt5 Apa itu quantum computing?",
   isOwner: false,
   isPremium: false,
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🤖 *GPT-4.1 Nano*\n\n` +
-        `Tanya apa aja ke AI, nanti dijawab pakai model GPT-4.1 Nano.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}gpt5 <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
+        `Pregúntale lo que quieras a la IA, te responderá usando el modelo GPT-4.1 Nano.\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}gpt5 <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}gpt5 Apa itu quantum computing?*\n` +
         `> *${m.prefix}gpt5 Buat puisi tentang Indonesia*\n\n` +
-        `_Jawaban bisa agak lama, sabar ya_`,
+        `_La respuesta puede tardar un poco, ten paciencia_`,
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *GPT-5 Gagal*\n\n> ${result.error || "Gagal mendapatkan respons"}`,
+        `❌ *GPT-5 Falló*\n\n> ${result.error || "Error al obtener una respuesta"}`,
       );
     }
 
