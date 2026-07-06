@@ -1,10 +1,11 @@
 import { fbdown } from 'btch-downloader'
 import te from '../../src/lib/ourin-error.js'
+
 const pluginConfig = {
     name: 'facebookdl',
-    alias: ['fbdown', 'fb', 'facebook'],
+    alias: ['fbdown', 'fb', 'facebook', 'facebookdescargar'],
     category: 'download',
-    description: 'Download video Facebook',
+    description: 'Descargar videos de Facebook',
     usage: '.facebookdl <url>',
     example: '.facebookdl https://www.facebook.com/watch?v=xxx',
     isOwner: false,
@@ -21,15 +22,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *MODO DE USO*\n\n` +
             `> \`${m.prefix}facebookdl <url>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}fbdown https://www.facebook.com/watch?v=xxx\``
         )
     }
     
     if (!url.match(/facebook\.com|fb\.watch/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link Facebook.`)
+        return m.reply(`❌ URL no válida. Asegúrate de usar un enlace de Facebook.`)
     }
     
     await m.react('🕕')
@@ -38,13 +39,13 @@ async function handler(m, { sock }) {
         const data = await fbdown(url)
         
         if (!data?.status) {
-            return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+            return m.reply(`❌ Error al obtener el video. Intenta con otro enlace.`)
         }
         
         const videoUrl = data.HD || data.Normal_video
         
         if (!videoUrl) {
-            return m.reply(`❌ Video tidak ditemukan.`)
+            return m.reply(`❌ No se encontró ningún archivo de video disponible.`)
         }
         
         const quality = data.HD ? 'HD' : 'SD'
