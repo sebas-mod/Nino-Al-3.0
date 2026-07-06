@@ -4,8 +4,8 @@ const pluginConfig = {
     name: 'tomanga',
     alias: ['manga', 'mangafy', 'mangastyle'],
     category: 'ai',
-    description: 'Ubah foto menjadi gaya manga Jepang',
-    usage: '.tomanga (reply/kirim gambar)',
+    description: 'Transforma una foto en estilo manga japonés',
+    usage: '.tomanga (responde/envía una imagen)',
     example: '.tomanga',
     isOwner: false,
     isPremium: true,
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `📖 *ᴛᴏ ᴍᴀɴɢᴀ*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke gaya manga\n\n` +
+            `> Envía o responde a una imagen para transformarla a estilo manga\n\n` +
             `\`${m.prefix}tomanga\``
         )
     }
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)
