@@ -2,6 +2,7 @@ import { Canvas, loadImage, FontLibrary } from 'skia-canvas'
 import fs from 'fs'
 import path from 'path'
 import te from '../../src/lib/ourin-error.js'
+
 async function ensureFile(url, file) {
   const dir = path.dirname(file)
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
@@ -59,13 +60,14 @@ async function generateImage(saldo, greet) {
 
   return await canvas.png
 }
+
 const pluginConfig = {
     name: 'fakebankjago',
     alias: ['fakebankjago'],
     category: 'canvas',
-    description: 'Membuat gambar chat iPhone style',
-    usage: '.fakebankjago <text>',
-    example: '.fakebankjago Hai cantik',
+    description: 'Crea una imagen al estilo de la app del banco (Bank Jago)',
+    usage: '.fakebankjago <nombre>,<monto>',
+    example: '.fakebankjago Zann,10000',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -76,22 +78,23 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-    const [nama,nominal] = m.text?.split(',')
+    const [nama, nominal] = m.text?.split(',') || []
     if (!nama || !nominal) {
-        return m.reply(`*FAKE BANK*\n\n> Masukkan teks untuk chat\n\n\`Contoh: ${m.prefix}fakebank Zann,10000\``)
+        return m.reply(`*BANK FALSO*\n\n> Ingresa el texto para el chat\n\n\`Ejemplo: ${m.prefix}fakebank Zann,10000\``)
     }
-    if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
+    if (isNaN(nominal)) return m.reply(`*POR FAVOR INGRESA UN NÚMERO VÁLIDO*`)
     m.react('🕕')
     
     try {
         const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
         const hour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta', hour: '2-digit', hour12: false })
         const h = Number(hour)
-        let waktu = 'Malam'
-        if (h >= 4 && h < 11) waktu = 'Pagi'
-        else if (h >= 11 && h < 15) waktu = 'Siang'
-        else if (h >= 15 && h < 18) waktu = 'Sore'
-        const fake = await generateImage(saldo, `Selamat ${waktu}, ${nama}`)
+        let waktu = 'Noche'
+        if (h >= 4 && h < 11) waktu = 'Días'
+        else if (h >= 11 && h < 15) waktu = 'Tardes'
+        else if (h >= 15 && h < 18) typeof waktu === 'string' ? waktu = 'Tardes' : 'Tardes'
+        
+        const fake = await generateImage(saldo, `Buenos/as ${waktu}, ${nama}`)
         await sock.sendMedia(m.chat, fake, null, m, {
             type: 'image',
         })
