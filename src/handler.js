@@ -11,9 +11,6 @@ import {
   getAllCommandNames,
 } from "./lib/ourin-plugins.js";
 import {
-  findSimilarCommands,
-  formatSuggestionMessage,
-} from "./lib/ourin-similarity.js";
 import { getDatabase } from "./lib/ourin-database.js";
 import {
   formatUptime,
