@@ -1,53 +1,52 @@
-import axios from "axios";
+import { UnlimitedAI } from "../../src/scraper/unlimitedai.js";
 import te from "../../src/lib/ourin-error.js";
 
 const pluginConfig = {
-  name: "quilbot",
-  alias: ["quillbot", "parafrase"],
+  name: "prabowo-ai",
+  alias: ["prabowoi", "prabowo", "pakprabowo"],
   category: "ai",
-  description: "AI Quillbot untuk menulis ulang atau menyempurnakan kalimat",
-  usage: ".quilbot <teks>",
-  example: ".quilbot Saya sedang makan nasi di rumah",
+  description: "Chatea con Pak Prabowo — El hombre de la palma",
+  usage: ".prabowo-ai <pregunta>",
+  example: ".prabowo-ai ¡Señor, debemos ser soberanos!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
-  cooldown: 5,
-  energi: 1,
+  cooldown: 10,
+  energi: 2,
   isEnabled: true,
 };
 
 async function handler(m, { sock }) {
-  const text = m.args.join(" ") || m.text?.trim();
-
+  const text = m.args.join(" ");
   if (!text) {
-    return m.reply("❌ Masukkan teks yang ingin disempurnakan.\n\nContoh: `.quilbot Saya sedang makan nasi di rumah`");
+    return m.reply(
+      `🇮🇩 *Pak Prabowo*\n\n` +
+        `> El hombre de la palma — Presidente de la RI\n> Firme, patriótico y carismático\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}prabowo-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}prabowo-ai ¡Señor, debemos ser soberanos!*`
+    );
   }
 
   await m.react("🕕");
 
   try {
-    const apiUrl = `https://api.nexray.eu.cc/ai/quillbot?text=${encodeURIComponent(text)}`;
-    const res = await axios.get(apiUrl, {
-      timeout: 15000,
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-      }
-    });
+    const result = await UnlimitedAI(text, "prabowo-ai");
 
-    const data = res.data;
-    if (!data.status || !data.result) {
-      await m.react("❌");
-      return m.reply("⚠️ Quillbot gagal memproses teks.");
+    if (!result.status) {
+      await m.react("☢");
+      return m.reply(`❌ *Prabowo AI Error*\n\n> ${result.error || "Error al obtener una respuesta"}`);
     }
 
-    await m.reply(data.result);
     await m.react("✅");
-
-  } catch (error) {
-    console.error("[Quillbot]", error.message);
+    const reply = result.answer;
+    await m.reply(reply.length > 4096 ? reply.slice(0, 4096) + "..." : reply);
+  } catch (e) {
+    console.error(e);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat memproses teks ke Quillbot.");
+    m.reply(te(m.prefix, m.command, m.pushName));
   }
 }
 
