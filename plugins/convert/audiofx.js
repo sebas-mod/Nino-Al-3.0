@@ -2,32 +2,33 @@ import { queueFFmpeg } from '../../src/lib/ourin-ffmpeg.js'
 import fs from 'fs'
 import path from 'path'
 import te from '../../src/lib/ourin-error.js'
+
 const EFFECTS = {
-    bass:      { emoji: '🔊', filter: 'bass=g=20:f=110:w=0.6', desc: 'Bass boost' },
-    blown:     { emoji: '💥', filter: 'acrusher=level_in=4:level_out=5:bits=8:mode=log:aa=1', desc: 'Distortion' },
-    deep:      { emoji: '🎤', filter: 'asetrate=44100*0.7,atempo=1.3', desc: 'Suara berat' },
-    earrape:   { emoji: '📢', filter: 'volume=10,bass=g=30:f=80:w=0.6,acrusher=level_in=8:level_out=12:bits=4:mode=log:aa=1', desc: 'Earrape' },
-    echo:      { emoji: '🔁', filter: 'aecho=0.8:0.88:60:0.4', desc: 'Echo/gema' },
-    fast:      { emoji: '⚡', filter: 'atempo=1.5', desc: 'Percepat 1.5x' },
-    fat:       { emoji: '🎵', filter: 'bass=g=15:f=60:w=0.8,lowpass=f=3000,volume=1.5', desc: 'Thick bass' },
-    nightcore: { emoji: '🌙', filter: 'asetrate=44100*1.25,atempo=0.9', desc: 'Nightcore' },
-    reverse:   { emoji: '🔄', filter: 'areverse', desc: 'Putar mundur' },
-    robot:     { emoji: '🤖', filter: "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75", desc: 'Suara robot' },
-    slow:      { emoji: '🐢', filter: 'atempo=0.8,asetrate=44100*0.9', desc: 'Slowed' },
-    smooth:    { emoji: '🎶', filter: 'lowpass=f=4000,bass=g=3:f=100,treble=g=-2:f=3000,aecho=0.8:0.88:60:0.4', desc: 'Mellow' },
-    tupai:     { emoji: '🐿️', filter: 'asetrate=44100*1.5,atempo=0.8', desc: 'Chipmunk' },
-    superfast: { emoji: '💨', filter: 'atempo=2.0', desc: 'Percepat 2x' },
-    superslow: { emoji: '🦥', filter: 'atempo=0.5', desc: 'Perlambat 2x' },
-    tremolo:   { emoji: '〰️', filter: 'tremolo=f=8:d=0.7', desc: 'Tremolo / getar' },
-    vibrato:   { emoji: '🎸', filter: 'vibrato=f=7:d=0.5', desc: 'Vibrato' },
-    phone:     { emoji: '📞', filter: 'highpass=f=300,lowpass=f=3400,volume=1.5', desc: 'Suara telepon' },
-    cave:      { emoji: '🕳️', filter: 'aecho=0.8:0.9:500:0.3,aecho=0.8:0.9:1000:0.2', desc: 'Gema gua' },
-    radio:     { emoji: '📻', filter: 'highpass=f=300,lowpass=f=3000,acrusher=level_in=2:level_out=3:bits=12:mode=log:aa=1', desc: 'Suara radio' },
-    demon:     { emoji: '👹', filter: 'asetrate=44100*0.5,atempo=1.5,aecho=0.8:0.88:200:0.5', desc: 'Suara iblis' },
-    underwater:{ emoji: '💧', filter: 'lowpass=f=500,tremolo=f=2:d=0.4', desc: 'Bawah air' },
-    concert:   { emoji: '🏟️', filter: 'aecho=0.8:0.88:40:0.4,aecho=0.8:0.88:80:0.3,treble=g=3:f=4000', desc: 'Live concert' },
-    '8bit':    { emoji: '👾', filter: 'acrusher=level_in=3:level_out=4:bits=4:mode=log:aa=0,aresample=8000', desc: '8-bit retro' },
-    helium:    { emoji: '🎈', filter: 'asetrate=44100*2.0,atempo=0.6', desc: 'Suara helium' },
+    bass:      { emoji: '🔊', filter: 'bass=g=20:f=110:w=0.6', desc: 'Potenciación de graves (Bass Boost)' },
+    blown:     { emoji: '💥', filter: 'acrusher=level_in=4:level_out=5:bits=8:mode=log:aa=1', desc: 'Distorsión extrema' },
+    deep:      { emoji: '🎤', filter: 'asetrate=44100*0.7,atempo=1.3', desc: 'Voz grave y gruesa' },
+    earrape:   { emoji: '📢', filter: 'volume=10,bass=g=30:f=80:w=0.6,acrusher=level_in=8:level_out=12:bits=4:mode=log:aa=1', desc: 'Destruye oídos (Earrape)' },
+    echo:      { emoji: '🔁', filter: 'aecho=0.8:0.88:60:0.4', desc: 'Efecto de eco / gema' },
+    fast:      { emoji: '⚡', filter: 'atempo=1.5', desc: 'Acelerar 1.5x' },
+    fat:       { emoji: '🎵', filter: 'bass=g=15:f=60:w=0.8,lowpass=f=3000,volume=1.5', desc: 'Graves profundos y densos' },
+    nightcore: { emoji: '🌙', filter: 'asetrate=44100*1.25,atempo=0.9', desc: 'Efecto Nightcore' },
+    reverse:   { emoji: '🔄', filter: 'areverse', desc: 'Invertir audio (Al revés)' },
+    robot:     { emoji: '🤖', filter: "fftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75", desc: 'Voz de robot' },
+    slow:      { emoji: '🐢', filter: 'atempo=0.8,asetrate=44100*0.9', desc: 'Ralentizado (Slowed)' },
+    smooth:    { emoji: '🎶', filter: 'lowpass=f=4000,bass=g=3:f=100,treble=g=-2:f=3000,aecho=0.8:0.88:60:0.4', desc: 'Audio suave / melódico' },
+    tupai:     { emoji: '🐿️', filter: 'asetrate=44100*1.5,atempo=0.8', desc: 'Voz de ardilla (Chipmunk)' },
+    superfast: { emoji: '💨', filter: 'atempo=2.0', desc: 'Acelerar 2x' },
+    superslow: { emoji: '🦥', filter: 'atempo=0.5', desc: 'Ralentizar 2x' },
+    tremolo:   { emoji: '〰️', filter: 'tremolo=f=8:d=0.7', desc: 'Efecto trémolo / vibrante' },
+    vibrato:   { emoji: '🎸', filter: 'vibrato=f=7:d=0.5', desc: 'Efecto vibrato' },
+    phone:     { emoji: '📞', filter: 'highpass=f=300,lowpass=f=3400,volume=1.5', desc: 'Efecto de teléfono' },
+    cave:      { emoji: '🕳️', filter: 'aecho=0.8:0.9:500:0.3,aecho=0.8:0.9:1000:0.2', desc: 'Eco de caverna' },
+    radio:     { emoji: '📻', filter: 'highpass=f=300,lowpass=f=3000,acrusher=level_in=2:level_out=3:bits=12:mode=log:aa=1', desc: 'Efecto de radio antigua' },
+    demon:     { emoji: '👹', filter: 'asetrate=44100*0.5,atempo=1.5,aecho=0.8:0.88:200:0.5', desc: 'Voz demoníaca' },
+    underwater:{ emoji: '💧', filter: 'lowpass=f=500,tremolo=f=2:d=0.4', desc: 'Efecto bajo el agua' },
+    concert:   { emoji: '🏟️', filter: 'aecho=0.8:0.88:40:0.4,aecho=0.8:0.88:80:0.3,treble=g=3:f=4000', desc: 'Concierto en vivo / estadio' },
+    '8bit':    { emoji: '👾', filter: 'acrusher=level_in=3:level_out=4:bits=4:mode=log:aa=0,aresample=8000', desc: 'Estilo retro de 8-bits' },
+    helium:    { emoji: '🎈', filter: 'asetrate=44100*2.0,atempo=0.6', desc: 'Voz con helio' },
 }
 
 const EFFECT_NAMES = Object.keys(EFFECTS)
@@ -39,10 +40,10 @@ for (const name of EFFECT_NAMES) {
 
 const pluginConfig = {
     name: [...EFFECT_NAMES],
-    alias: [],
+    alias: ['audiofx', 'fx', 'audioeffect'],
     category: 'convert',
-    description: 'Audio effects & voice changer',
-    usage: '.<effect>',
+    description: 'Efectos de audio y cambiador de voz',
+    usage: '.<efecto>',
     example: '',
     isOwner: false,
     isPremium: false,
@@ -70,16 +71,16 @@ function getMediaSource(m) {
 
 function buildEffectList() {
     const categories = {
-        '🎚️ *Bass & Tone*': ['bass', 'fat', 'deep', 'smooth'],
-        '⏩ *Speed*': ['fast', 'superfast', 'slow', 'superslow', 'nightcore'],
-        '🎙️ *Voice*': ['tupai', 'helium', 'robot', 'demon', 'phone'],
-        '🌊 *Space & Echo*': ['echo', 'cave', 'concert', 'underwater', 'reverse'],
-        '💀 *Distortion*': ['blown', 'earrape', 'radio', '8bit'],
-        '〰️ *Modulation*': ['tremolo', 'vibrato'],
+        '🎚️ *Grave y Tono*': ['bass', 'fat', 'deep', 'smooth'],
+        '⏩ *Velocidad*': ['fast', 'superfast', 'slow', 'superslow', 'nightcore'],
+        '🎙️ *Modulación de Voz*': ['tupai', 'helium', 'robot', 'demon', 'phone'],
+        '🌊 *Espacio y Eco*': ['echo', 'cave', 'concert', 'underwater', 'reverse'],
+        '💀 *Distorsión*': ['blown', 'earrape', 'radio', '8bit'],
+        '〰️ *Oscilación*': ['tremolo', 'vibrato'],
     }
 
-    let txt = `🎧 *AUDIO FX* — ${EFFECT_NAMES.length} effects\n\n`
-    txt += `Reply audio/video lalu ketik efeknya\n\n`
+    let txt = `🎧 *EFECTOS DE AUDIO* — ${EFFECT_NAMES.length} efectos disponibles\n\n`
+    txt += `Responde (reply) a un audio/video y escribe el comando del efecto:\n\n`
 
     for (const [cat, effects] of Object.entries(categories)) {
         txt += `${cat}\n`
@@ -90,7 +91,7 @@ function buildEffectList() {
         txt += `\n`
     }
 
-    txt += `_Contoh: reply audio lalu ketik .bass_`
+    txt += `_Ejemplo: Responde a un audio y escribe .bass_`
     return txt
 }
 
@@ -107,14 +108,14 @@ async function handler(m, { sock }) {
     const fx = EFFECTS[effectName]
     if (!fx) {
         return m.reply(
-            `❌ Efek *${effectName}* tidak ditemukan\n\n` +
-            `Ketik *${m.prefix}audiofx list* untuk daftar efek`
+            `❌ El efecto *${effectName}* no existe\n\n` +
+            `Escribe *${m.prefix}audiofx list* para ver la lista completa.`
         )
     }
 
     const media = getMediaSource(m)
     if (!media) {
-        return m.reply(`${fx.emoji} *${effectName.toUpperCase()}*\n\nReply audio/video dengan command ini`)
+        return m.reply(`${fx.emoji} *${effectName.toUpperCase()}*\n\nResponde a un audio o video con este comando para aplicarlo.`)
     }
 
     m.react('🕕')
@@ -129,14 +130,14 @@ async function handler(m, { sock }) {
     try {
         const buffer = await media.download()
         if (!buffer?.length) {
-            return m.reply(`❌ Gagal download media`)
+            return m.reply(`❌ Error al descargar el archivo multimedia.`)
         }
 
         fs.writeFileSync(inputPath, buffer)
         await queueFFmpeg(`ffmpeg -y -i "${inputPath}" -af "${fx.filter}" -vn "${outputPath}"`)
 
         if (!fs.existsSync(outputPath)) {
-            return m.reply(`❌ Gagal memproses audio`)
+            return m.reply(`❌ Error al procesar el audio.`)
         }
 
         const audioBuffer = fs.readFileSync(outputPath)
