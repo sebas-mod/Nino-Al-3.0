@@ -6,8 +6,8 @@ const pluginConfig = {
     name: 'toghibli',
     alias: ['ghibli', 'ghiblistyle'],
     category: 'ai',
-    description: 'Ubah gambar ke style Ghibli',
-    usage: '.toghibli (reply gambar)',
+    description: 'Transforma una foto en estilo Studio Ghibli',
+    usage: '.toghibli (responde a una imagen)',
     example: '.toghibli',
     isOwner: false,
     isPremium: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🎨 *ɢʜɪʙʟɪ sᴛʏʟᴇ*\n\n> Kirim/reply gambar untuk diubah ke style Ghibli\n\n\`${m.prefix}toghibli\``)
+        return m.reply(`🎨 *ɢʜɪʙʟɪ sᴛʏʟᴇ*\n\n> Envía o responde a una imagen para transformarla a estilo Ghibli\n\n\`${m.prefix}toghibli\``)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
         const imageUrl = await uploadImage(buffer, 'image.jpg')
