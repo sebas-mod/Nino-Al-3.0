@@ -6,8 +6,8 @@ const pluginConfig = {
   name: "claudehaiku",
   alias: ["claude", "haiku", "chiku"],
   category: "ai",
-  description: "Chat dengan Claude Haiku 4.5 via OverChat",
-  usage: ".claudehaiku <pertanyaan>",
+  description: "Chatea con Claude Haiku 4.5 a través de OverChat",
+  usage: ".claudehaiku <pregunta>",
   example: ".claudehaiku Jelaskan teori relativitas",
   isOwner: false,
   isPremium: false,
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🤍 *Claude Haiku 4.5*\n\n` +
-        `Tanya apa aja ke AI Claude Haiku — cepat dan ringan, cocok buat pertanyaan sehari-hari.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}claudehaiku <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
+        `Pregúntale lo que quieras a la IA Claude Haiku — rápida y ligera, ideal para preguntas cotidianas.\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}claudehaiku <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}claudehaiku Jelaskan teori relativitas*\n` +
         `> *${m.prefix}claudehaiku Tips biar produktif*\n\n` +
-        `_Respons cepat, tapi tetap cerdas_`
+        `_Respuesta rápida, pero siempre inteligente_`
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *Claude Haiku Gagal*\n\n> ${result.error || "Gagal mendapatkan respons"}`
+        `❌ *Claude Haiku Falló*\n\n> ${result.error || "Error al obtener una respuesta"}`
       );
     }
 
