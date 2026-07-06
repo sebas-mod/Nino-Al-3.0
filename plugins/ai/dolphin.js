@@ -5,8 +5,8 @@ const pluginConfig = {
     name: 'dolphin',
     alias: ['dolphinai', 'dphn'],
     category: 'ai',
-    description: 'Chat dengan Dolphin AI (24B Model)',
-    usage: '.dolphin <pertanyaan> atau .dolphin --<template> <pertanyaan>',
+    description: 'Chatea con Dolphin AI (Modelo 24B)',
+    usage: '.dolphin <pregunta> o .dolphin --<plantilla> <pregunta>',
     example: '.dolphin jelaskan tentang AI',
     isOwner: false,
     isPremium: false,
@@ -41,7 +41,7 @@ async function dolphinAI(question, template = 'logical') {
         .map(line => line.choices[0].delta.content)
         .join('')
     
-    if (!result) throw new Error('Tidak ada respon dari AI')
+    if (!result) throw new Error('No hay respuesta de la IA')
     
     return result
 }
@@ -52,15 +52,15 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🐬 *ᴅᴏʟᴘʜɪɴ ᴀɪ*\n\n` +
-            `> Chat dengan Dolphin AI 24B Model\n\n` +
-            `╭┈┈⬡「 📋 *ᴛᴇᴍᴘʟᴀᴛᴇs* 」\n` +
-            `┃ • \`logical\` - Jawaban logis\n` +
-            `┃ • \`creative\` - Jawaban kreatif\n` +
-            `┃ • \`summarize\` - Ringkasan\n` +
-            `┃ • \`code-beginner\` - Kode pemula\n` +
-            `┃ • \`code-advanced\` - Kode lanjutan\n` +
+            `> Chatea con Dolphin AI Modelo 24B\n\n` +
+            `╭┈┈⬡「 📋 *ᴘʟᴀɴᴛɪʟʟᴀs* 」\n` +
+            `┃ • \`logical\` - Respuesta lógica\n` +
+            `┃ • \`creative\` - Respuesta creativa\n` +
+            `┃ • \`summarize\` - Resumen\n` +
+            `┃ • \`code-beginner\` - Código para principiantes\n` +
+            `┃ • \`code-advanced\` - Código avanzado\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> *Contoh:*\n` +
+            `> *Ejemplo:*\n` +
             `> ${m.prefix}dolphin apa itu AI?\n` +
             `> ${m.prefix}dolphin --creative buat puisi`
         )
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     }
     
     if (!text) {
-        return m.reply(`❌ Masukkan pertanyaan!`)
+        return m.reply(`❌ ¡Ingresa una pregunta!`)
     }
     
     await m.react('🕕')
