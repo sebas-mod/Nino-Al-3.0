@@ -28,7 +28,7 @@ const pluginConfig = {
   name: "menu",
   alias: ["help", "bantuan", "commands", "m"],
   category: "main",
-  description: "Menampilkan menu utama bot",
+  description: "Muestra el menu principal del bot",
   usage: ".menu",
   example: ".menu",
   isOwner: false,
@@ -40,71 +40,71 @@ const pluginConfig = {
   isEnabled: true,
 };
 const CATEGORY_EMOJIS = {
-  owner: "👑",
-  main: "🏠",
-  utility: "🔧",
-  tools: "🛠️",
-  fun: "🎮",
-  game: "🎯",
-  download: "📥",
-  downloader: "📥",
-  search: "🔍",
-  sticker: "🖼️",
-  media: "🎬",
-  ai: "🤖",
-  group: "👥",
-  religi: "☪️",
-  islamic: "🕌",
-  info: "ℹ️",
-  cek: "📁",
-  user: "📊",
-  canvas: "🎨",
-  random: "🎲",
-  ephoto: "🖌️",
-  jpm: "📨",
-  anime: "🍥",
-  asupan: "🎞️",
-  clan: "⚔️",
-  convert: "🔄",
-  berita: "📰",
-  rpg: "🗡️",
-  nsfw: "🔞",
-  linode: "☁️",
-  primbon: "🔮",
-  cecan: "💃",
-  stalker: "🕵️",
-  tts: "🗣️",
-  vps: "🌊",
-  panel: "🖥️"
+  owner: "ðŸ‘‘",
+  main: "ðŸ ",
+  utility: "ðŸ”§",
+  tools: "ðŸ› ï¸",
+  fun: "ðŸŽ®",
+  game: "ðŸŽ¯",
+  download: "ðŸ“¥",
+  downloader: "ðŸ“¥",
+  search: "ðŸ”",
+  sticker: "ðŸ–¼ï¸",
+  media: "ðŸŽ¬",
+  ai: "ðŸ¤–",
+  group: "ðŸ‘¥",
+  religi: "â˜ªï¸",
+  islamic: "ðŸ•Œ",
+  info: "â„¹ï¸",
+  cek: "ðŸ“",
+  user: "ðŸ“Š",
+  canvas: "ðŸŽ¨",
+  random: "ðŸŽ²",
+  ephoto: "ðŸ–Œï¸",
+  jpm: "ðŸ“¨",
+  anime: "ðŸ¥",
+  asupan: "ðŸŽžï¸",
+  clan: "âš”ï¸",
+  convert: "ðŸ”„",
+  berita: "ðŸ“°",
+  rpg: "ðŸ—¡ï¸",
+  nsfw: "ðŸ”ž",
+  linode: "â˜ï¸",
+  primbon: "ðŸ”®",
+  cecan: "ðŸ’ƒ",
+  stalker: "ðŸ•µï¸",
+  tts: "ðŸ—£ï¸",
+  vps: "ðŸŒŠ",
+  panel: "ðŸ–¥ï¸"
 };
 function toSmallCaps(text) {
   const smallCaps = {
-    a: "ᴀ",
-    b: "ʙ",
-    c: "ᴄ",
-    d: "ᴅ",
-    e: "ᴇ",
-    f: "ꜰ",
-    g: "ɢ",
-    h: "ʜ",
-    i: "ɪ",
-    j: "ᴊ",
-    k: "ᴋ",
-    l: "ʟ",
-    m: "ᴍ",
-    n: "ɴ",
-    o: "ᴏ",
-    p: "ᴘ",
-    q: "ǫ",
-    r: "ʀ",
+    a: "á´€",
+    b: "Ê™",
+    c: "á´„",
+    d: "á´…",
+    e: "á´‡",
+    f: "êœ°",
+    g: "É¢",
+    h: "Êœ",
+    i: "Éª",
+    j: "á´Š",
+    k: "á´‹",
+    l: "ÊŸ",
+    m: "á´",
+    n: "É´",
+    o: "á´",
+    p: "á´˜",
+    q: "Ç«",
+    r: "Ê€",
     s: "s",
-    t: "ᴛ",
-    u: "ᴜ",
-    v: "ᴠ",
-    w: "ᴡ",
+    t: "á´›",
+    u: "á´œ",
+    v: "á´ ",
+    w: "á´¡",
     x: "x",
-    y: "ʏ",
-    z: "ᴢ",
+    y: "Ê",
+    z: "á´¢",
   };
   return text
     .toLowerCase()
@@ -114,32 +114,32 @@ function toSmallCaps(text) {
 }
 const toMonoUpperBold = (text) => {
   const chars = {
-    A: "𝗔",
-    B: "𝗕",
-    C: "𝗖",
-    D: "𝗗",
-    E: "𝗘",
-    F: "𝗙",
-    G: "𝗚",
-    H: "𝗛",
-    I: "𝗜",
-    J: "𝗝",
-    K: "𝗞",
-    L: "𝗟",
-    M: "𝗠",
-    N: "𝗡",
-    O: "𝗢",
-    P: "𝗣",
-    Q: "𝗤",
-    R: "𝗥",
-    S: "𝗦",
-    T: "𝗧",
-    U: "𝗨",
-    V: "𝗩",
-    W: "𝗪",
-    X: "𝗫",
-    Y: "𝗬",
-    Z: "𝗭",
+    A: "ð—”",
+    B: "ð—•",
+    C: "ð—–",
+    D: "ð——",
+    E: "ð—˜",
+    F: "ð—™",
+    G: "ð—š",
+    H: "ð—›",
+    I: "ð—œ",
+    J: "ð—",
+    K: "ð—ž",
+    L: "ð—Ÿ",
+    M: "ð— ",
+    N: "ð—¡",
+    O: "ð—¢",
+    P: "ð—£",
+    Q: "ð—¤",
+    R: "ð—¥",
+    S: "ð—¦",
+    T: "ð—§",
+    U: "ð—¨",
+    V: "ð—©",
+    W: "ð—ª",
+    X: "ð—«",
+    Y: "ð—¬",
+    Z: "ð—­",
   };
   return text
     .toUpperCase()
@@ -204,7 +204,7 @@ function getSortedCategories(m, botMode) {
     if (excludeCats && excludeCats.includes(cat.toLowerCase())) continue;
     const cmds = commandsByCategory[cat] || [];
     if (cmds.length === 0) continue;
-    const emoji = CATEGORY_EMOJIS[cat] || "📁";
+    const emoji = CATEGORY_EMOJIS[cat] || "ðŸ“";
     result.push({ cat, cmds, emoji });
   }
   for (const cat of categories) {
@@ -242,47 +242,47 @@ async function buildMenuText(
   const totalCases = getCaseCount();
   const casesByCategory = getCasesByCategory();
   const totalFeatures = totalCommands + totalCases;
-  let userRole = "User",
-    roleEmoji = "👤";
+  let userRole = "Usuario",
+    roleEmoji = "ðŸ‘¤";
   if (m.isOwner) {
     userRole = "Owner";
-    roleEmoji = "👑";
+    roleEmoji = "ðŸ‘‘";
   } else if (m.isPremium) {
     userRole = "Premium";
-    roleEmoji = "💎";
+    roleEmoji = "ðŸ’Ž";
   }
   const greeting = getTimeGreeting();
   const uptimeFormatted = formatUptime(uptime);
   const totalUsers = db.getUserCount();
-  let txt = `Hai *@${m.pushName || "User"}* 🪸
-Aku ${botConfig.bot?.name || "Ourin-AI"}, bot WhatsApp yang siap bantu kamu.  
-Kamu bisa pakai aku buat cari info, ambil data, atau bantu hal-hal sederhana langsung lewat WhatsApp — praktis tanpa ribet.`;
+  let txt = `Hola *@${m.pushName || "Usuario"}* ðŸª¸
+Soy Nino-Al, un bot de WhatsApp listo para ayudarte.  
+Puedes usarme para buscar informacion, obtener datos o ayudarte con cosas simples directamente desde WhatsApp, de forma practica y sin complicaciones.`;
   const botInfoLines = [
-    `🖐 ɴᴀᴍᴀ     : ${botConfig.bot?.name || "Ourin-AI"}`,
-    `🔑 ᴠᴇʀsɪ    : v${botConfig.bot?.version || "1.2.0"}`,
-    `⚙️ ᴍᴏᴅᴇ     : ${(botConfig.mode || "public").toUpperCase()}`,
-    `🧶 ᴘʀᴇꜰɪx    : [ ${prefix} ]`,
-    `⏱ ᴜᴘᴛɪᴍᴇ   : ${uptimeFormatted}`,
-    `👥 ᴛᴏᴛᴀʟ    : ${totalUsers} Users`,
-    `🏷 ɢʀᴏᴜᴘ     : ${botMode.toUpperCase()}`,
-    `👑 ᴏᴡɴᴇʀ    : ${botConfig.owner?.name || "Ourin-AI"}`,
+    `ðŸ– É´á´€á´á´€     : Nino-Al`,
+    `ðŸ”‘ á´ á´‡Ê€sÉª    : v${botConfig.bot?.version || "1.2.0"}`,
+    `âš™ï¸ á´á´á´…á´‡     : ${(botConfig.mode || "public").toUpperCase()}`,
+    `ðŸ§¶ á´˜Ê€á´‡êœ°Éªx    : [ ${prefix} ]`,
+    `â± á´œá´˜á´›Éªá´á´‡   : ${uptimeFormatted}`,
+    `ðŸ‘¥ á´›á´á´›á´€ÊŸ    : ${totalUsers} Usuarios`,
+    `ðŸ· É¢Ê€á´á´œá´˜     : ${botMode.toUpperCase()}`,
+    `ðŸ‘‘ á´á´¡É´á´‡Ê€    : Sebas-MD`,
   ];
   const userInfoLines = [
-    `🙋 ɴᴀᴍᴀ     : ${m.pushName}`,
-    `🎭 ʀᴏʟᴇ     : ${roleEmoji} ${userRole}`,
-    `🎟 ᴇɴᴇʀɢɪ   : ${m.isOwner || m.isPremium ? "∞ Unlimited" : (user?.energi ?? 25)}`,
-    `⚡ ʟᴇᴠᴇʟ    : ${Math.floor((user?.exp || 0) / 20000) + 1}`,
-    `✨ ᴇxᴘ       : ${(user?.exp ?? 0).toLocaleString()}`,
-    `💰 ᴋᴏɪɴ      : ${(user?.koin ?? 0).toLocaleString()}`,
+    `ðŸ™‹ É´á´€á´á´€     : ${m.pushName}`,
+    `ðŸŽ­ Ê€á´ÊŸá´‡     : ${roleEmoji} ${userRole}`,
+    `ðŸŽŸ á´‡É´á´‡Ê€É¢Éª   : ${m.isOwner || m.isPremium ? "âˆž Ilimitado" : (user?.energi ?? 25)}`,
+    `âš¡ ÊŸá´‡á´ á´‡ÊŸ    : ${Math.floor((user?.exp || 0) / 20000) + 1}`,
+    `âœ¨ á´‡xá´˜       : ${(user?.exp ?? 0).toLocaleString()}`,
+    `ðŸ’° á´‹á´ÉªÉ´      : ${(user?.koin ?? 0).toLocaleString()}`,
   ];
   const rpg = user?.rpg || {};
   if (rpg.health !== undefined) {
     userInfoLines.push(
-      `❤️ ʜᴘ        : ${rpg.health}/${rpg.maxHealth || rpg.health}`,
+      `â¤ï¸ Êœá´˜        : ${rpg.health}/${rpg.maxHealth || rpg.health}`,
     );
-    userInfoLines.push(`🔮 ᴍᴀɴᴀ      : ${rpg.mana}/${rpg.maxMana || rpg.mana}`);
+    userInfoLines.push(`ðŸ”® á´á´€É´á´€      : ${rpg.mana}/${rpg.maxMana || rpg.mana}`);
     userInfoLines.push(
-      `🏃 sᴛᴀᴍɪɴᴀ   : ${rpg.stamina}/${rpg.maxStamina || rpg.stamina}`,
+      `ðŸƒ sá´›á´€á´ÉªÉ´á´€   : ${rpg.stamina}/${rpg.maxStamina || rpg.stamina}`,
     );
   }
   const inv = user?.inventory || {};
@@ -290,41 +290,41 @@ Kamu bisa pakai aku buat cari info, ambil data, atau bantu hal-hal sederhana lan
     (a, b) => a + (typeof b === "number" ? b : 0),
     0,
   );
-  if (invCount > 0) userInfoLines.push(`🎒 ɪɴᴠᴇɴᴛᴏʀʏ : ${invCount} items`);
-  userInfoLines.push(`🕒 ᴡᴀᴋᴛᴜ    : ${timeStr} WIB`);
-  userInfoLines.push(`📅 ᴛᴀɴɢɢᴀʟ  : ${dateStr}`);
+  if (invCount > 0) userInfoLines.push(`ðŸŽ’ ÉªÉ´á´ á´‡É´á´›á´Ê€Ê : ${invCount} elementos`);
+  userInfoLines.push(`ðŸ•’ á´¡á´€á´‹á´›á´œ    : ${timeStr} WIB`);
+  userInfoLines.push(`ðŸ“… á´›á´€É´É¢É¢á´€ÊŸ  : ${dateStr}`);
 
   if (useBracketBoxStyle) {
     txt += `\n\n`;
-    txt += createBracketBox("BOT INFO", botInfoLines);
-    txt += createBracketBox("USER INFO", userInfoLines);
+    txt += createBracketBox("INFO DEL BOT", botInfoLines);
+    txt += createBracketBox("INFO DEL USUARIO", userInfoLines);
   } else {
-    txt += `\n\n╭─〔 🤖 *ʙᴏᴛ ɪɴꜰᴏ* 〕\n`;
-    txt += `*│* 🖐 ɴᴀᴍᴀ     : *${botConfig.bot?.name || "Ourin-AI"}*\n`;
-    txt += `*│* 🔑 ᴠᴇʀsɪ    : *v${botConfig.bot?.version || "1.2.0"}*\n`;
-    txt += `*│* ⚙️ ᴍᴏᴅᴇ     : *${(botConfig.mode || "public").toUpperCase()}*\n`;
-    txt += `*│* 🧶 ᴘʀᴇꜰɪx    : *[ ${prefix} ]*\n`;
-    txt += `*│* ⏱ ᴜᴘᴛɪᴍᴇ   : *${uptimeFormatted}*\n`;
-    txt += `*│* 👥 ᴛᴏᴛᴀʟ    : *${totalUsers} Users*\n`;
-    txt += `*│* 🏷 ɢʀᴏᴜᴘ     : *${botMode.toUpperCase()}*\n`;
-    txt += `*│* 👑 ᴏᴡɴᴇʀ    : *${botConfig.owner?.name || "Ourin-AI"}*\n`;
-    txt += `╰────────────────⬣\n\n`;
-    txt += `╭─〔 👤 *ᴜsᴇʀ ɪɴꜰᴏ* 〕\n`;
-    txt += `*│* 🙋 ɴᴀᴍᴀ     : *${m.pushName}*\n`;
-    txt += `*│* 🎭 ʀᴏʟᴇ     : *${roleEmoji} ${userRole}*\n`;
-    txt += `*│* 🎟 ᴇɴᴇʀɢɪ   : *${m.isOwner || m.isPremium ? "∞ Unlimited" : (user?.energi ?? 25)}*\n`;
-    txt += `*│* ⚡ ʟᴇᴠᴇʟ    : *${Math.floor((user?.exp || 0) / 20000) + 1}*\n`;
-    txt += `*│* ✨ ᴇxᴘ       : *${(user?.exp ?? 0).toLocaleString()}*\n`;
-    txt += `*│* 💰 ᴋᴏɪɴ      : *${(user?.koin ?? 0).toLocaleString()}*\n`;
+    txt += `\n\nâ•­â”€ã€” ðŸ¤– *Ê™á´á´› ÉªÉ´êœ°á´* ã€•\n`;
+    txt += `*â”‚* ðŸ– É´á´€á´á´€     : *Nino-Al*\n`;
+    txt += `*â”‚* ðŸ”‘ á´ á´‡Ê€sÉª    : *v${botConfig.bot?.version || "1.2.0"}*\n`;
+    txt += `*â”‚* âš™ï¸ á´á´á´…á´‡     : *${(botConfig.mode || "public").toUpperCase()}*\n`;
+    txt += `*â”‚* ðŸ§¶ á´˜Ê€á´‡êœ°Éªx    : *[ ${prefix} ]*\n`;
+    txt += `*â”‚* â± á´œá´˜á´›Éªá´á´‡   : *${uptimeFormatted}*\n`;
+    txt += `*â”‚* ðŸ‘¥ á´›á´á´›á´€ÊŸ    : *${totalUsers} Usuarios*\n`;
+    txt += `*â”‚* ðŸ· É¢Ê€á´á´œá´˜     : *${botMode.toUpperCase()}*\n`;
+    txt += `*â”‚* ðŸ‘‘ á´á´¡É´á´‡Ê€    : *Sebas-MD*\n`;
+    txt += `â•°â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â¬£\n\n`;
+    txt += `â•­â”€ã€” ðŸ‘¤ *á´œsá´‡Ê€ ÉªÉ´êœ°á´* ã€•\n`;
+    txt += `*â”‚* ðŸ™‹ É´á´€á´á´€     : *${m.pushName}*\n`;
+    txt += `*â”‚* ðŸŽ­ Ê€á´ÊŸá´‡     : *${roleEmoji} ${userRole}*\n`;
+    txt += `*â”‚* ðŸŽŸ á´‡É´á´‡Ê€É¢Éª   : *${m.isOwner || m.isPremium ? "âˆž Ilimitado" : (user?.energi ?? 25)}*\n`;
+    txt += `*â”‚* âš¡ ÊŸá´‡á´ á´‡ÊŸ    : *${Math.floor((user?.exp || 0) / 20000) + 1}*\n`;
+    txt += `*â”‚* âœ¨ á´‡xá´˜       : *${(user?.exp ?? 0).toLocaleString()}*\n`;
+    txt += `*â”‚* ðŸ’° á´‹á´ÉªÉ´      : *${(user?.koin ?? 0).toLocaleString()}*\n`;
     if (rpg.health !== undefined) {
-      txt += `*│* ❤️ ʜᴘ        : *${rpg.health}/${rpg.maxHealth || rpg.health}*\n`;
-      txt += `*│* 🔮 ᴍᴀɴᴀ      : *${rpg.mana}/${rpg.maxMana || rpg.mana}*\n`;
-      txt += `*│* 🏃 sᴛᴀᴍɪɴᴀ   : *${rpg.stamina}/${rpg.maxStamina || rpg.stamina}*\n`;
+      txt += `*â”‚* â¤ï¸ Êœá´˜        : *${rpg.health}/${rpg.maxHealth || rpg.health}*\n`;
+      txt += `*â”‚* ðŸ”® á´á´€É´á´€      : *${rpg.mana}/${rpg.maxMana || rpg.mana}*\n`;
+      txt += `*â”‚* ðŸƒ sá´›á´€á´ÉªÉ´á´€   : *${rpg.stamina}/${rpg.maxStamina || rpg.stamina}*\n`;
     }
-    if (invCount > 0) txt += `*│* 🎒 ɪɴᴠᴇɴᴛᴏʀʏ : *${invCount} items*\n`;
-    txt += `*│* 🕒 ᴡᴀᴋᴛᴜ    : *${timeStr} WIB*\n`;
-    txt += `*│* 📅 ᴛᴀɴɢɢᴀʟ  : *${dateStr}*\n`;
-    txt += `╰────────────────⬣\n\n`;
+    if (invCount > 0) txt += `*â”‚* ðŸŽ’ ÉªÉ´á´ á´‡É´á´›á´Ê€Ê : *${invCount} elementos*\n`;
+    txt += `*â”‚* ðŸ•’ á´¡á´€á´‹á´›á´œ    : *${timeStr} WIB*\n`;
+    txt += `*â”‚* ðŸ“… á´›á´€É´É¢É¢á´€ÊŸ  : *${dateStr}*\n`;
+    txt += `â•°â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â¬£\n\n`;
   }
   const categoryOrder = [
     "owner",
@@ -398,26 +398,26 @@ Kamu bisa pakai aku buat cari info, ambil data, atau bantu hal-hal sederhana lan
     const caseCmds = casesByCategory[category] || [];
     const totalCmds = pluginCmds.length + caseCmds.length;
     if (totalCmds === 0) continue;
-    const emoji = CATEGORY_EMOJIS[category] || "📁";
+    const emoji = CATEGORY_EMOJIS[category] || "ðŸ“";
     categoryLines.push(`${prefix}menucat ${category} ${emoji}`);
   }
   if (useBracketBoxStyle) {
-    txt += createBracketBox("LIST CATEGORY", categoryLines);
+    txt += createBracketBox("LISTA DE CATEGORIAS", categoryLines);
   } else {
-    txt += `📂 *ᴅᴀꜰᴛᴀʀ ᴍᴇɴᴜ*\n`;
+    txt += `ðŸ“‚ *á´…á´€êœ°á´›á´€Ê€ á´á´‡É´á´œ*\n`;
     for (const line of categoryLines) {
-      txt += `- \`◦\` ${toSmallCaps(line)}\n`;
+      txt += `- \`â—¦\` ${toSmallCaps(line)}\n`;
     }
   }
   return txt;
 }
 
-function createBracketBox(title, lines = [], emoji = "🤖") {
-  let text = `╭─〔 ${emoji} \`${title}\`〕─⬣\n`;
+function createBracketBox(title, lines = [], emoji = "ðŸ¤–") {
+  let text = `â•­â”€ã€” ${emoji} \`${title}\`ã€•â”€â¬£\n`;
   for (const line of lines) {
-    text += `│ ✦ *${line}*\n`;
+    text += `â”‚ âœ¦ *${line}*\n`;
   }
-  text += `╰─⬣\n\n`;
+  text += `â•°â”€â¬£\n\n`;
   return text;
 }
 
@@ -429,15 +429,15 @@ function getContextInfo(
 ) {
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || "Nino-Al";
   const saluranLink = botConfig.saluran?.link || "";
   const ctx = {
     mentionedJid: [m.sender],
     forwardingScore: 9,
     isForwarded: true,
     externalAdReply: {
-      title: botConfig.bot?.name || "Ourin-AI",
-      body: `BOT WHATSAPP MULTI DEVICE`,
+      title: "Nino-Al",
+      body: `BOT DE WHATSAPP MULTIDISPOSITIVO`,
       sourceUrl: saluranLink,
       previewType: "VIDEO",
       showAdAttribution: false,
@@ -456,7 +456,7 @@ function getVerifiedQuoted(botConfig, m) {
       },
       message: {
         contactMessage: {
-          displayName: `🍂 Yth. ${m.pushName}`,
+          displayName: `ðŸ‚ Estimado/a ${m.pushName}`,
           vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
           sendEphemeral: true,
         },
@@ -470,7 +470,7 @@ function getVerifiedQuoted(botConfig, m) {
     },
     message: {
       contactMessage: {
-        displayName: `🪸 ${botConfig.bot?.name}`,
+        displayName: `ðŸª¸ Nino-Al`,
         vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=13135550002:+1 (313) 555-0002\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
         sendEphemeral: true,
       },
@@ -500,12 +500,12 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     imageBuffer = fs.readFileSync(botConfig.assets["ourin"])
     thumbBuffer = fs.readFileSync(botConfig.assets["ourin2"])
   } catch (e) {
-    console.error("Gagal load assets:", e.message);
+    console.error("Error al cargar assets:", e.message);
   }
   const prefix = botConfig.command?.prefix || ".";
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || "Nino-Al";
   const saluranLink =
     botConfig.saluran?.link ||
     "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t";
@@ -522,7 +522,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     const zann_pengin_rehat = categories.sorted.map(({ cat, cmds, emoji }) => {
       return {
         title: `${emoji} ${toMonoUpperBold(cat)}`,
-        description: `Command ini memiliki  (${cmds.length}) Perintah`,
+        description: `Esta categoria tiene (${cmds.length}) comandos`,
         id: `${m.prefix}menucat ${cat}`,
       };
     });
@@ -532,38 +532,38 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           await sock.sendMessage(m.chat, {
             image: fs.readFileSync(config.assets["ourin"]),
             caption: ``,
-            footer: `Hai @${m.pushName} 👋
+            footer: `Hola @${m.pushName} ðŸ‘‹
             
-🌿 Selamat datang di assistant ${config.bot?.name}
+ðŸŒ¿ Bienvenido/a al asistente Nino-Al
 
-╭┈┈⫹⫺ *INFORMASI BOT* ⫹⫺┈┈╮
-│ ◈ *Nama Bot* : *${config.bot?.name}*
-│ ◈ *Versi* : *${config.bot.version}*  
-│ ◈ *Pengembang* : *${config.bot.developer}*  
-│ ◈ *Pustaka* : \`ourin-baileys\`
-╰┈┈┈┈┈┈┈┈
+â•­â”ˆâ”ˆâ«¹â«º *INFORMACION DEL BOT* â«¹â«ºâ”ˆâ”ˆâ•®
+â”‚ â—ˆ *Nombre del bot* : *Nino-Al*
+â”‚ â—ˆ *Version* : *${config.bot.version}*  
+â”‚ â—ˆ *Desarrollador* : *Sebas-MD*  
+â”‚ â—ˆ *Libreria* : \`ourin-baileys\`
+â•°â”ˆâ”ˆâ”ˆâ”ˆâ”ˆâ”ˆâ”ˆâ”ˆ
 
-╭┈┈⫹⫺ *INFORMASI PENGGUNA* ⫹⫺┈┈╮
-│ ◈ *Nama* : *${m.pushName}*
-│ ◈ *Member?* : *${m?.isOwner ? "Bukan, tapi Owner" : m?.isPremium ? "Bukan, tapi Premium" : "Iyapp"}*
-│ ◈ *Level* : *${user.level || 0}*
-│ ◈ *Exp* : *${user.exp || 0}* 
-│ ◈ *Energi* : *${user.energi || 0}*
-│ ◈ *Koin* : *${user.koin || 0}*
-│ ◈ *Register* : *${user.isRegistered ? "Sudah" : "Belum"}*
-│ ◈ *Energi* : *${user.energi || 0}*
-╰┈┈┈┈┈┈┈┈
+â•­â”ˆâ”ˆâ«¹â«º *INFORMACION DEL USUARIO* â«¹â«ºâ”ˆâ”ˆâ•®
+â”‚ â—ˆ *Nombre* : *${m.pushName}*
+â”‚ â—ˆ *Miembro?* : *${m?.isOwner ? "No, pero es owner" : m?.isPremium ? "No, pero es premium" : "Si"}*
+â”‚ â—ˆ *Nivel* : *${user.level || 0}*
+â”‚ â—ˆ *Exp* : *${user.exp || 0}* 
+â”‚ â—ˆ *Energia* : *${user.energi || 0}*
+â”‚ â—ˆ *Monedas* : *${user.koin || 0}*
+â”‚ â—ˆ *Registro* : *${user.isRegistroed ? "Si" : "No"}*
+â”‚ â—ˆ *Energia* : *${user.energi || 0}*
+â•°â”ˆâ”ˆâ”ˆâ”ˆâ”ˆâ”ˆâ”ˆâ”ˆ
 
-Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
+Pulsa el boton de abajo para mas informacion y para elegir una categoria
 `,
             interactiveButtons: [
               {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                  title: "🍃 Menu Utama",
+                  title: "ðŸƒ Menu principal",
                   sections: [
                     {
-                      title: "Berikut adalah pilihan nya",
+                      title: "Estas son las opciones",
                       rows: zann_pengin_rehat
                     }
                   ],
@@ -573,24 +573,24 @@ Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
               {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                  title: "Selengkapnya",
+                  title: "Ver mas",
                   sections: [
                     {
-                      title: "Berikut adalah pilihan nya",
+                      title: "Estas son las opciones",
                       rows: [
                         {
-                          title: "🍔 Lihat semua menu yang ada di bot ini",
-                          description: "Silahkan tap lalu kirim",
+                          title: "ðŸ” Ver todos los menus disponibles en este bot",
+                          description: "Toca y envia",
                           id: `${m.prefix}sc`
                         },
                         {
-                          title: "🥰 Kamu mau samaan kayak bot ini?",
-                          description: "Silahkan tap lalu kirim, nanti bot akan mengirimkan sebuah link download",
+                          title: "ðŸ¥° Quieres tener uno igual a este bot?",
+                          description: "Toca y envia; el bot te enviara un enlace de descarga",
                           id: `${m.prefix}sc`
                         },
                         {
-                          title: "🌾 Siapakah owner dari bot ini?",
-                          description: "Tap dan klik kirim untuk melanjutkan",
+                          title: "ðŸŒ¾ Quien es el owner de este bot?",
+                          description: "Toca y pulsa enviar para continuar",
                           id: `${m.prefix}owner`
                         },
                       ]
@@ -610,11 +610,11 @@ Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
       case 2:
         let s = ""
         categories.sorted.map(({ cat, cmds, emoji }) => {
-          s += `╭─☰ ${toMonoUpperBold(cat)}\n`
+          s += `â•­â”€â˜° ${toMonoUpperBold(cat)}\n`
           cmds.map((cmd) => {
             s += `> ${m.prefix}${cmd}\n`
           })
-          s += "╰─⬣\n\n"
+          s += "â•°â”€â¬£\n\n"
         });
         const media = await prepareWAMessageMedia({
           image: fs.readFileSync(config.assets["ourin"])
@@ -634,36 +634,36 @@ Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `🥞 *Hello Brother*
+                    text: `ðŸ¥ž *Hola*
 
-Welcome to ${config.bot?.name}, Our bot will help you
+Bienvenido/a a Nino-Al, nuestro bot te ayudara
 
-🍅 *BOT INFORMATION*
-> 🤖 *Name*: ${config.bot?.name}
-> ⚙️ *Version*: ${config.bot?.version}
-> 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`ourin-baileys\`
+ðŸ… *INFORMACION DEL BOT*
+> ðŸ¤– *Nombre*: Nino-Al
+> âš™ï¸ *Versionon*: ${config.bot?.version}
+> ðŸ‘¨â€ðŸ’» *Desarrollador*: Sebas-MD
+> ðŸ§© *Libreria*: \`ourin-baileys\`
 
-🍅 *USER INFORMATION*
-> 🧑 *Name*: ${m.pushName}
-> 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
-> 🧀 *Level*: ${user.level || 0}
-> 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Energi*: ${user.energi || 0}
-> 🎏 *Koin*: ${user.koin || 0}
-> 🍬 *Register*: ${user.isRegistered ? "Sudah" : "Belum"}
+ðŸ… *INFORMACION DEL USUARIO*
+> ðŸ§‘ *Nombre*: ${m.pushName}
+> ðŸ¥ *Rol*: ${m?.isOwner ? "ðŸ”¥ Owner" : m?.isPremium ? "ðŸ‘‘ Premium" : "ðŸ˜Š User"}
+> ðŸ§€ *Nivel*: ${user.level || 0}
+> ðŸ— *Exp*: ${user.exp || 0}
+> ðŸ¥© *Energia*: ${user.energi || 0}
+> ðŸŽ *Monedas*: ${user.koin || 0}
+> ðŸ¬ *Registro*: ${user.isRegistroed ? "Si" : "No"}
 
 ${readmore}${s}`
                   },
                   footer: {
-                    text: "Pilih tombol dibawah untuk info lebih lanjut"
+                    text: "Elige el boton de abajo para mas informacion"
                   },
                   contextInfo: {
                     isForwarded: true,
                     fprwardingScore: 9,
                     participant: "0@s.whatsapp.net",
                     quotedMessage: {
-                      conversation: `${config.bot?.name}`
+                      conversation: `Nino-Al`
                     },
                     mentionedJid: [
                       `${m.sender}`
@@ -674,14 +674,14 @@ ${readmore}${s}`
                       limited_time_offer: {
                         text: `${greeting}`,
                         url: "Hai",
-                        copy_code: "Dibuat oleh " + config.bot?.developer,
+                        copy_code: "Creado por " + "Sebas-MD",
                         expiration_time: Date.now() + 1000000,
                       },
                       bottom_sheet: {
                         in_thread_buttons_limit: 2,
                         divider_indices: [1, 2, 3, 4, 5, 999],
-                        list_title: "Silahkan pilih menu yang kamu inginkan",
-                        button_title: "🍅 Selengkapnya",
+                        list_title: "Elige el menu que quieras",
+                        button_title: "ðŸ… Ver mas",
                       },
                       tap_target_configuration: {
                         title: " X ",
@@ -701,7 +701,7 @@ ${readmore}${s}`
                       {
                         name: "cta_url",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "🍫 Owner Kami",
+                          display_text: "ðŸ« Nuestro owner",
                           url: `https://wa.me/${botConfig.owner?.number?.[0]}`,
                           merchant_url: `https://wa.me/${config.owner?.number?.[0]}`,
                         })
@@ -709,7 +709,7 @@ ${readmore}${s}`
                       {
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "🍛 Dapatkan Script ( Gratis )",
+                          display_text: "ðŸ› Obtener script (gratis)",
                           id: `${m.prefix}sc`
                         })
                       }
@@ -731,42 +731,42 @@ ${readmore}${s}`
               {
                 buttonId: `${m.prefix}owner`,
                 buttonText: {
-                  displayText: '🧀 Owner',
+                  displayText: 'ðŸ§€ Owner',
                 },
                 type: 1,
               },
               {
                 buttonId: `${m.prefix}allmenu`,
                 buttonText: {
-                  displayText: '💐 Allmenu',
+                  displayText: 'ðŸ’ Menu completo',
                 },
                 type: 1,
               },
             ],
             locationMessage: {
               jpegThumbnail: await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 170).toBuffer(),
-              name: config.bot.name,
-              address: `Versi saat ini: ${config.bot.version}`
+              name: "Nino-Al",
+              address: `Version saat ini: ${config.bot.version}`
             },
-            contentText: `🥞 *Hello Brother*
+            contentText: `ðŸ¥ž *Hola*
 
-Welcome to ${config.bot?.name}, Our bot will help you
+Bienvenido/a a Nino-Al, nuestro bot te ayudara
 
-🍅 *BOT INFORMATION*
-> 🤖 *Name*: ${config.bot?.name}
-> ⚙️ *Version*: ${config.bot?.version}
-> 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`ourin-baileys\`
+ðŸ… *INFORMACION DEL BOT*
+> ðŸ¤– *Nombre*: Nino-Al
+> âš™ï¸ *Versionon*: ${config.bot?.version}
+> ðŸ‘¨â€ðŸ’» *Desarrollador*: Sebas-MD
+> ðŸ§© *Libreria*: \`ourin-baileys\`
 
-🍅 *USER INFORMATION*
-> 🧑 *Name*: ${m.pushName}
-> 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
-> 🧀 *Level*: ${user.level || 0}
-> 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Energi*: ${user.energi || 0}
-> 🎏 *Koin*: ${user.koin || 0}
-> 🍬 *Register*: ${user.isRegistered ? "Sudah" : "Belum"}`,
-            footerText: '🍔 Silahkan pilih dari salah satu tombol di bawah',
+ðŸ… *INFORMACION DEL USUARIO*
+> ðŸ§‘ *Nombre*: ${m.pushName}
+> ðŸ¥ *Rol*: ${m?.isOwner ? "ðŸ”¥ Owner" : m?.isPremium ? "ðŸ‘‘ Premium" : "ðŸ˜Š User"}
+> ðŸ§€ *Nivel*: ${user.level || 0}
+> ðŸ— *Exp*: ${user.exp || 0}
+> ðŸ¥© *Energia*: ${user.energi || 0}
+> ðŸŽ *Monedas*: ${user.koin || 0}
+> ðŸ¬ *Registro*: ${user.isRegistroed ? "Si" : "No"}`,
+            footerText: 'ðŸ” Elige uno de los botones de abajo',
             headerType: 6,
           },
         };
@@ -789,7 +789,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
           },
           message: {
             videoMessage: {
-              caption: config.bot.name,
+              caption: "Nino-Al",
               seconds: 999999999,
               mimetype: "video/mp4",
               jpegThumbnail: thumbnail,
@@ -808,12 +808,12 @@ Welcome to ${config.bot?.name}, Our bot will help you
               title: `${cat.emoji} ${cat.cat} Menu`,
               sections: [
                 {
-                  title: "Please select the command",
-                  highlight_label: config.bot.name,
+                  title: "Selecciona el comando",
+                  highlight_label: "Nino-Al",
                   rows: cat.cmds.map((cmd, i) => {
                     return {
                       title: (i + 1).toString() + " " + cmd,
-                      description: "Select this command?",
+                      description: "Seleccionar este comando?",
                       id: `${prefix}${cmd}`
                     }
                   })
@@ -835,21 +835,21 @@ Welcome to ${config.bot?.name}, Our bot will help you
                   videoMessage: media4.videoMessage
                 },
                 footer: {
-                  text: `Please select the button in below`
+                  text: `Selecciona el boton de abajo`
                 },
                 body: {
-                  text: `*${greeting} ${m.pushName}*, 𝘔𝘺 𝘯𝘢𝘮𝘦 𝘪𝘴 ${config.bot.name}.
+                  text: `*${greeting} ${m.pushName}*, ð˜”ð˜º ð˜¯ð˜¢ð˜®ð˜¦ ð˜ªð˜´ Nino-Al.
 
-  🏔 𝘐 𝘊𝘢𝘯 𝘩𝘦𝘭𝘱 𝘺𝘰𝘶 𝘸𝘪𝘵𝘩 𝘴𝘦𝘷𝘦𝘳𝘢𝘭 𝘵𝘩𝘪𝘯𝘨𝘴 𝘸𝘪𝘵𝘩𝘪𝘯 𝘞𝘩𝘢𝘵𝘴𝘈𝘱𝘱. 𝘈𝘯𝘥 𝘐 𝘢𝘮 𝘈𝘳𝘮𝘦𝘥 𝘢 *𝘑𝘢𝘷𝘢𝘴𝘤𝘳𝘪𝘱𝘵* 𝘗𝘳𝘰𝘨𝘳𝘢𝘮 𝘈𝘴𝘴𝘦𝘮𝘣𝘭𝘦𝘥 𝘣𝘺 𝘮𝘺 𝘤𝘳𝘦𝘢𝘵𝘰𝘳.
+  ðŸ” ð˜ ð˜Šð˜¢ð˜¯ ð˜©ð˜¦ð˜­ð˜± ð˜ºð˜°ð˜¶ ð˜¸ð˜ªð˜µð˜© ð˜´ð˜¦ð˜·ð˜¦ð˜³ð˜¢ð˜­ ð˜µð˜©ð˜ªð˜¯ð˜¨ð˜´ ð˜¸ð˜ªð˜µð˜©ð˜ªð˜¯ ð˜žð˜©ð˜¢ð˜µð˜´ð˜ˆð˜±ð˜±. ð˜ˆð˜¯ð˜¥ ð˜ ð˜¢ð˜® ð˜ˆð˜³ð˜®ð˜¦ð˜¥ ð˜¢ *ð˜‘ð˜¢ð˜·ð˜¢ð˜´ð˜¤ð˜³ð˜ªð˜±ð˜µ* ð˜—ð˜³ð˜°ð˜¨ð˜³ð˜¢ð˜® ð˜ˆð˜´ð˜´ð˜¦ð˜®ð˜£ð˜­ð˜¦ð˜¥ ð˜£ð˜º ð˜®ð˜º ð˜¤ð˜³ð˜¦ð˜¢ð˜µð˜°ð˜³.
 
-\`INFORMATION BOT\`
-> 🍛 *Creator*: ${config.bot?.developer}
-> 🥞 *Name*: ${config.bot?.name}
-> 🥩 *Version*: ${config.bot?.version}
-> 🍂 *Type*: \`Plugin x Cases\`
-> 🦴 *Mode*: *${config.mode === 'public' ? '🍕 Unlock for everyone' : '🥖 Only for Owner'}*
+\`INFORMACION DEL BOT\`
+> ðŸ› *Creador*: Sebas-MD
+> ðŸ¥ž *Nombre*: Nino-Al
+> ðŸ¥© *Versionon*: ${config.bot?.version}
+> ðŸ‚ *Tipo*: \`Plugin x Cases\`
+> ðŸ¦´ *Modo*: *${config.mode === 'public' ? 'ðŸ• Disponible para todos' : 'ðŸ¥– Solo para el owner'}*
 
-Enjoy your use brother.`
+Disfruta usando el bot.`
                 },
                 contextInfo: {
                   mentionedJid: [m.sender],
@@ -866,8 +866,8 @@ Enjoy your use brother.`
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menu",
+                      button_title: "ðŸ™ Ver categorias",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -881,7 +881,7 @@ Enjoy your use brother.`
                     {
                       name: "cta_url",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "🧀 Visit My Creator",
+                        display_text: "ðŸ§€ Visitar a mi creador",
                         url: `https://wa.me/${botConfig.owner?.number?.[0]}`,
                         merchant_url: `https://wa.me/${config.owner?.number?.[0]}`,
                       })
@@ -909,22 +909,22 @@ Enjoy your use brother.`
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
 
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} Dias ${m} Minutos ${s} Segundos`;
         }
 
         const weatherCode = {
-          0: "☀️ Cerah",
-          1: "🌤️ Cerah Berawan",
-          2: "⛅ Berawan",
-          3: "☁️ Mendung",
-          45: "🌫️ Berkabut",
-          48: "🌫️ Kabut Tebal",
-          51: "🌦️ Gerimis",
-          61: "🌧️ Hujan Ringan",
-          63: "🌧️ Hujan",
-          65: "⛈️ Hujan Lebat",
-          80: "🌦️ Hujan Lokal",
-          95: "⛈️ Badai Petir"
+          0: "â˜€ï¸ Soleado",
+          1: "ðŸŒ¤ï¸ Soleado con nubes",
+          2: "â›… Nublado",
+          3: "â˜ï¸ Cubierto",
+          45: "ðŸŒ«ï¸ Con niebla",
+          48: "ðŸŒ«ï¸ Niebla densa",
+          51: "ðŸŒ¦ï¸ Llovizna",
+          61: "ðŸŒ§ï¸ Lluvia ligera",
+          63: "ðŸŒ§ï¸ Lluvia",
+          65: "â›ˆï¸ Lluvia fuerte",
+          80: "ðŸŒ¦ï¸ Lluvia local",
+          95: "â›ˆï¸ Tormenta electrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -934,18 +934,18 @@ Enjoy your use brother.`
             )
 
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
 
             const res = await axios.get(
               `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`
             )
 
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "ðŸŒ Desconocido"
 
-            return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
+            return `${kondisi} | ðŸŒ¡ï¸ ${Math.round(current.temperature_2m)}Â°C\nðŸ“ ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
         const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
@@ -980,26 +980,26 @@ Enjoy your use brother.`
                   videoMessage: media4.videoMessage
                 },
                 footer: {
-                  text: `Please select the button in below`
+                  text: `Selecciona el boton de abajo`
                 },
                 body: {
-                  text: `🍟 Hai *${m.pushName}* 
+                  text: `ðŸŸ Hola *${m.pushName}* 
                   
-_i am an automated system (WhatsApp bot) that can help to do something search and get data / information only through WhatsApp._
+_soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obtener datos o informacion solo a traves de WhatsApp._
 
-*\`乂 I N F O - B O T\`*
-┌ ◦ Name : ${config.bot.name}
-│ ◦ Author : @${config.bot.developer}
-│ ◦ Type Script : Case x Plugins
-│ ◦ Uptime : ${runtime(process.uptime())}
-└ ◦ Versi : ${config.bot.version}
+*\`ä¹‚ I N F O - B O T\`*
+â”Œ â—¦ Nombre : Nino-Al
+â”‚ â—¦ Autor : @Sebas-MD
+â”‚ â—¦ Tipo de script : Case x Plugins
+â”‚ â—¦ Tiempo activo : ${runtime(process.uptime())}
+â”” â—¦ Version : ${config.bot.version}
 
-*\`乂 I N F O - U S E R\`*
-┌ ◦ Nama : ${m.pushName}
-│ ◦ Status : ${m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🏷️ Free"}
-│ ◦ Mode : ${config.mode === "pblic" ? "Bisa digunakan semua" : "Hanya Owner :b"}
-│ ◦ Nomor : @${m.sender.split("@")[0]}
-└ ◦ ${greeting}
+*\`ä¹‚ I N F O - U S E R\`*
+â”Œ â—¦ Nombre : ${m.pushName}
+â”‚ â—¦ Estado : ${m.isOwner ? "ðŸ‘‘ Owner" : m.isPremium ? "ðŸ’Ž Premium" : "ðŸ·ï¸ Gratis"}
+â”‚ â—¦ Modo : ${config.mode === "pblic" ? "Puede usarlo cualquiera" : "Solo owner :b"}
+â”‚ â—¦ Numero : @${m.sender.split("@")[0]}
+â”” â—¦ ${greeting}
 `
                 },
                 contextInfo: {
@@ -1017,14 +1017,14 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     limited_time_offer: {
                       text: `${greeting}`,
                       url: "Hai",
-                      // copy_code: "Dibuat oleh " + config.bot?.developer,
+                      // copy_code: "Creado por " + "Sebas-MD",
                       expiration_time: Date.now() + 10000,
                     },
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menu",
+                      button_title: "ðŸ™ Ver categorias",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -1042,14 +1042,14 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "🥩 Allmenu",
+                        display_text: "ðŸ¥© Menu completo",
                         id: `${prefix}allmenu`
                       })
                     },
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "🥞 Rules",
+                        display_text: "ðŸ¥ž Reglas",
                         id: `${prefix}rules`
                       })
                     },
@@ -1074,22 +1074,22 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
 
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} Dias ${m} Minutos ${s} Segundos`;
         }
 
         const weatherCode = {
-          0: "☀️ Cerah",
-          1: "🌤️ Cerah Berawan",
-          2: "⛅ Berawan",
-          3: "☁️ Mendung",
-          45: "🌫️ Berkabut",
-          48: "🌫️ Kabut Tebal",
-          51: "🌦️ Gerimis",
-          61: "🌧️ Hujan Ringan",
-          63: "🌧️ Hujan",
-          65: "⛈️ Hujan Lebat",
-          80: "🌦️ Hujan Lokal",
-          95: "⛈️ Badai Petir"
+          0: "â˜€ï¸ Soleado",
+          1: "ðŸŒ¤ï¸ Soleado con nubes",
+          2: "â›… Nublado",
+          3: "â˜ï¸ Cubierto",
+          45: "ðŸŒ«ï¸ Con niebla",
+          48: "ðŸŒ«ï¸ Niebla densa",
+          51: "ðŸŒ¦ï¸ Llovizna",
+          61: "ðŸŒ§ï¸ Lluvia ligera",
+          63: "ðŸŒ§ï¸ Lluvia",
+          65: "â›ˆï¸ Lluvia fuerte",
+          80: "ðŸŒ¦ï¸ Lluvia local",
+          95: "â›ˆï¸ Tormenta electrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -1099,18 +1099,18 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
             )
 
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
 
             const res = await axios.get(
               `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`
             )
 
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "ðŸŒ Desconocido"
 
-            return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
+            return `${kondisi} | ðŸŒ¡ï¸ ${Math.round(current.temperature_2m)}Â°C\nðŸ“ ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
         const rawStats = fs.readFileSync(path.join(process.cwd(), 'database/main/stats.json'), 'utf8')
@@ -1121,13 +1121,13 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           .sort((a, b) => b.count - a.count)
           .slice(0, 5)
 
-        let topCmdText = "\n*\`乂 T O P - C O M M A N D\`*\n"
+        let topCmdText = "\n*\`ä¹‚ T O P - C O M A N D O S\`*\n"
         if (commandStats.length > 0) {
           commandStats.forEach((cmd, i) => {
-            topCmdText += `${i === commandStats.length - 1 ? '└' : '├'} ◦ ${m.prefix}${cmd.name} (${cmd.count}x)\n`
+            topCmdText += `${i === commandStats.length - 1 ? 'â””' : 'â”œ'} â—¦ ${m.prefix}${cmd.name} (${cmd.count}x)\n`
           })
         } else {
-          topCmdText += "└ ◦ Belum ada command\n"
+          topCmdText += "â”” â—¦ No ada command\n"
         }
 
         const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
@@ -1141,13 +1141,13 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                   locationMessage: {
                     degreesLatitude: 0,
                     degreesLongitude: 0,
-                    name: config.bot?.name || "Ourin-AI",
+                    name: "Nino-Al",
                     address: await weatherMenu(),
                     jpegThumbnail: thumbnail
                   }
                 },
                 body: {
-                  text: `🍟 Hai *${m.pushName}* \n\n_i am an automated system (WhatsApp bot) that can help to do something search and get data / information only through WhatsApp._\n\n*\`乂 I N F O - B O T\`*\n┌ ◦ Name : ${config.bot.name}\n│ ◦ Author : @${config.bot.developer}\n│ ◦ Type Script : Case x Plugins\n│ ◦ Uptime : ${runtime(process.uptime())}\n└ ◦ Versi : ${config.bot.version}\n\n*\`乂 I N F O - U S E R\`*\n┌ ◦ Nama : ${m.pushName}\n│ ◦ Status : ${m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🏷️ Free"}\n│ ◦ Mode : ${config.mode === "pblic" ? "Bisa digunakan semua" : "Hanya Owner :b"}\n│ ◦ Nomor : @${m.sender.split("@")[0]}\n└ ◦ ${greeting}\n${topCmdText}`
+                  text: `ðŸŸ Hola *${m.pushName}* \n\n_soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obtener datos o informacion solo a traves de WhatsApp._\n\n*\`ä¹‚ I N F O - B O T\`*\nâ”Œ â—¦ Nombre : Nino-Al\nâ”‚ â—¦ Autor : @Sebas-MD\nâ”‚ â—¦ Tipo de script : Case x Plugins\nâ”‚ â—¦ Tiempo activo : ${runtime(process.uptime())}\nâ”” â—¦ Version : ${config.bot.version}\n\n*\`ä¹‚ I N F O - U S E R\`*\nâ”Œ â—¦ Nombre : ${m.pushName}\nâ”‚ â—¦ Estado : ${m.isOwner ? "ðŸ‘‘ Owner" : m.isPremium ? "ðŸ’Ž Premium" : "ðŸ·ï¸ Gratis"}\nâ”‚ â—¦ Modo : ${config.mode === "pblic" ? "Puede usarlo cualquiera" : "Solo owner :b"}\nâ”‚ â—¦ Numero : @${m.sender.split("@")[0]}\nâ”” â—¦ ${greeting}\n${topCmdText}`
                 },
                 contextInfo: {
                   mentionedJid: [m.sender],
@@ -1164,8 +1164,8 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menu",
+                      button_title: "ðŸ™ Ver categorias",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -1183,14 +1183,14 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "🥩 Allmenu",
+                        display_text: "ðŸ¥© Menu completo",
                         id: `${prefix}allmenu`
                       })
                     },
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "🥞 Rules",
+                        display_text: "ðŸ¥ž Reglas",
                         id: `${prefix}rules`
                       })
                     },
@@ -1256,7 +1256,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
               key: { participant: "0@s.whatsapp.net" },
               message: {
                 pollCreationMessage: {
-                  name: config.bot.name
+                  name: "Nino-Al"
                 }
               }
             };
@@ -1332,8 +1332,8 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                   itemCount: totalCmds,
                   status: "INQUIRY",
                   surface: "CATALOG",
-                  message: `★ ${config.bot.name}`,
-                  orderTitle: `📋 ${totalCmds} Commands`,
+                  message: `â˜… Nino-Al`,
+                  orderTitle: `ðŸ“‹ ${totalCmds} Comandos`,
                   sellerJid: botConfig.botNumber
                     ? `${botConfig.botNumber}@s.whatsapp.net`
                     : m.sender,
@@ -1376,14 +1376,17 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           }
         }
       } catch (e) {
-        console.error("[Menu] Error sending dynamic audio:", e.message);
+        console.error("[Menu] Error al enviar audio dinamico:", e.message);
       }
     }
   } catch (error) {
-    console.error("[Menu] Error on command execution:", error.message);
+    console.error("[Menu] Error al ejecutar el comando:", error.message);
   }
 }
 export default {
   config: pluginConfig,
   handler,
 };
+
+
+
