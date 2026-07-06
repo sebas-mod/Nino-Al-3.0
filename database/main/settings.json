@@ -20,7 +20,7 @@
   "audioMenu": true,
   "transactionSessions": {},
   "premiumUsers": [],
-  "similarity": true,
+  "similarity": false,
   "botRules": "1.tes\\n2. tes",
   "goodbyeType": 7,
   "onlyAdmin": false,
