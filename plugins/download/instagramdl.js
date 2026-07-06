@@ -1,9 +1,10 @@
 import instagramDownloader from "../../src/scraper/ig.js";
+
 const pluginConfig = {
   name: "instagramdl",
-  alias: ["igdl", "ig", "instagram"],
+  alias: ["igdl", "ig", "instagram", "instagramdescargar"],
   category: "download",
-  description: "Download video/foto Instagram",
+  description: "Descargar videos o fotos de Instagram",
   usage: ".instagramdl <url>",
   example: ".instagramdl https://www.instagram.com/reel/xxx",
   isOwner: false,
@@ -24,7 +25,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `📸 *ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
         `> \`${m.prefix}igdl <url>\`\n\n` +
-        `*ᴄᴏɴᴛᴏʜ:*\n` +
+        `*ᴇᴊᴇᴍᴘʟᴏs:*\n` +
         `> \`${m.prefix}igdl https://www.instagram.com/reel/xxx\`\n` +
         `> \`${m.prefix}igdl https://www.instagram.com/p/xxx\``,
     );
@@ -32,7 +33,7 @@ async function handler(m, { sock }) {
 
   if (!IG_REGEX.test(url)) {
     return m.reply(
-      `❌ URL tidak valid. Gunakan link Instagram (reel/post/story).`,
+      `❌ URL no válida. Asegúrate de usar un enlace de Instagram (reel, post o story).`,
     );
   }
 
@@ -43,7 +44,7 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Gagal mengambil media. Coba link lain.`);
+      return m.reply(`❌ Error al obtener el archivo multimedia. Intenta con otro enlace.`);
     }
 
     const isStory = url.includes("/stories/");
@@ -68,13 +69,13 @@ async function handler(m, { sock }) {
           { quoted: m },
         );
       }
-      caption = "";
+      caption = ""; // Limpia el subtítulo para publicaciones con múltiples archivos (carrusel)
     }
 
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    return m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+    return m.reply(`❌ *ᴇʀʀᴏʀ ᴀʟ ᴅᴇsᴄᴀʀɢᴀʀ*\n\n> ${err.message}`);
   }
 }
 
