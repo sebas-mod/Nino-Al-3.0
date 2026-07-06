@@ -1,11 +1,12 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
+
 const pluginConfig = {
     name: 'clanjoin',
-    alias: ['joinclan', 'guildjoin'],
+    alias: ['joinclan', 'guildjoin', 'unirseclan'],
     category: 'clan',
-    description: 'Gabung ke clan',
+    description: 'Unirse a un clan',
     usage: '.clanjoin <clan_id>',
-    example: '.clanjoin clan_123456',
+    example: '.clanjoin ABC1',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -24,15 +25,15 @@ async function handler(m) {
 
     if (!clanId) {
         return m.reply(
-            `🏰 *JOIN CLAN*\n\n` +
-            `Masukkan ID clan!\n\n` +
-            `Contoh: *.clanjoin clan_123456*\n` +
-            `Cek ID: *.clanleaderboard*`
+            `🏰 *UNIRSE AL CLAN*\n\n` +
+            `¡Por favor, ingresa el ID del clan!\n\n` +
+            `Ejemplo: *.clanjoin ABC1*\n` +
+            `Revisar IDs disponibles: *.clanleaderboard*`
         )
     }
 
     if (user.clanId) {
-        return m.reply(`❌ Kamu sudah punya clan\nKeluar dulu: *.clanleave*`)
+        return m.reply(`❌ Ya perteneces a un clan.\nSal primero usando: *.clanleave*`)
     }
 
     if (!db.db.data.clans) db.db.data.clans = {}
@@ -40,22 +41,23 @@ async function handler(m) {
     const clan = db.db.data.clans[clanId]
         || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
         || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
-    if (!clan) return m.reply(`❌ Clan tidak ditemukan`)
-    if (!clan.isOpen) return m.reply(`❌ *${clan.name}* sedang tertutup`)
-    if (clan.members.length >= MAX_MEMBERS) return m.reply(`❌ *${clan.name}* sudah penuh (${MAX_MEMBERS}/${MAX_MEMBERS})`)
+        
+    if (!clan) return m.reply(`❌ No se encontró el clan.`)
+    if (!clan.isOpen) return m.reply(`❌ *${clan.name}* está cerrado actualmente.`)
+    if (clan.members.length >= MAX_MEMBERS) return m.reply(`❌ *${clan.name}* ya está lleno (${MAX_MEMBERS}/${MAX_MEMBERS}).`)
 
     clan.members.push(m.sender)
-    db.setUser(m.sender, { clanId })
+    db.setUser(m.sender, { clanId: clan.id })
     db.save()
 
     const emblem = clan.emblem || '🏰'
 
     await m.reply(
-        `${emblem} *WELCOME!*\n\n` +
-        `@${m.sender.split('@')[0]} bergabung ke *${clan.name}*\n\n` +
-        `Leader: @${clan.leader.split('@')[0]}\n` +
-        `Members: ${clan.members.length}/${MAX_MEMBERS}\n\n` +
-        `Lihat info: *.claninfo*`,
+        `${emblem} *¡BIENVENIDO/A!*\n\n` +
+        `@${m.sender.split('@')[0]} se ha unido a *${clan.name}*\n\n` +
+        `Líder: @${clan.leader.split('@')[0]}\n` +
+        `Miembros: ${clan.members.length}/${MAX_MEMBERS}\n\n` +
+        `Ver información: *.claninfo*`,
         { mentions: [m.sender, clan.leader] }
     )
 }
