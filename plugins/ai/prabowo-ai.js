@@ -5,9 +5,9 @@ const pluginConfig = {
   name: "prabowo-ai",
   alias: ["prabowoi", "prabowo", "pakprabowo"],
   category: "ai",
-  description: "Chat dengan Pak Prabowo — Pria Sawit",
-  usage: ".prabowo-ai <pertanyaan>",
-  example: ".prabowo-ai Saudara, kita harus berdaulat!",
+  description: "Chatea con Pak Prabowo — El hombre de la palma",
+  usage: ".prabowo-ai <pregunta>",
+  example: ".prabowo-ai ¡Señor, debemos ser soberanos!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🇮🇩 *Pak Prabowo*\n\n` +
-        `> Pria Sawit — Presiden RI\n> Tegas, patriotik, dan karismatik\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}prabowo-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}prabowo-ai Saudara, kita harus berdaulat!*`
+        `> El hombre de la palma — Presidente de la RI\n> Firme, patriótico y carismático\n\n` +
+        `*MODO DE USO:*\n` +
+        `> *${m.prefix}prabowo-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}prabowo-ai ¡Señor, debemos ser soberanos!*`
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Prabowo AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Prabowo AI Error*\n\n> ${result.error || "Error al obtener una respuesta"}`);
     }
 
     await m.react("✅");
