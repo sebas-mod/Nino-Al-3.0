@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "ytmp4",
   alias: ["youtubemp4", "ytvideo"],
   category: "download",
-  description: "Download video YouTube",
+  description: "Descargar video de YouTube",
   usage: ".ytmp4 <url>",
   example: ".ytmp4 https://youtube.com/watch?v=xxx",
   cooldown: 20,
@@ -36,7 +36,7 @@ async function getVideoDownloadUrl(url) {
           await new Promise(resolve => setTimeout(resolve, 3000));
           attempts++;
         }
-        throw new Error("Timeout processing video");
+        throw new Error("Tiempo de espera agotado al procesar el video");
       }
     }
   } catch { }
@@ -46,15 +46,15 @@ async function getVideoDownloadUrl(url) {
     return fallback.dl;
   }
 
-  throw new Error(fallback?.mess || "Gagal mendapatkan video download URL");
+  throw new Error(fallback?.mess || "No se pudo obtener la URL de descarga del video");
 }
 
 async function handler(m, { sock }) {
   const url = m.text?.trim();
   if (!url)
-    return m.reply(`Contoh: ${m.prefix}ytmp4 https://youtube.com/watch?v=xxx`);
+    return m.reply(`Ejemplo: ${m.prefix}ytmp4 https://youtube.com/watch?v=xxx`);
   if (!url.includes("youtube.com") && !url.includes("youtu.be"))
-    return m.reply("❌ URL harus YouTube");
+    return m.reply("❌ La URL debe ser de YouTube");
 
   m.react("🕕");
 
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[YTMP4]", err);
     m.react("❌");
-    m.reply("Gagal mengunduh video.");
+    m.reply("Error al descargar el video.");
   }
 }
 
