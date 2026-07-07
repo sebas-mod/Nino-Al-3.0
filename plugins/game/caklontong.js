@@ -1,10 +1,10 @@
 import { games } from '../../src/lib/ourin-games.js'
 
 games.register('caklontong', {
-    alias: ['cak', 'lontong'],
+    alias: ['cak', 'lontong', 'troll', 'absurdo'],
     emoji: '🤔',
-    title: 'CAK LONTONG',
-    description: 'Game cak lontong - jawaban receh'
+    title: 'ACERTIJO ABSURDO',
+    description: 'Juego de lógica absurda - respuestas graciosas y trolls'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('caklontong')
