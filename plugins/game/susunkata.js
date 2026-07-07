@@ -1,10 +1,10 @@
 import { games } from '../../src/lib/ourin-games.js'
 
 games.register('susunkata', {
-    alias: ['susun', 'scramble'],
+    alias: ['susun', 'ordenarpalabra', 'ordenar', 'scramble'],
     emoji: '🔠',
-    title: 'SUSUN KATA',
-    description: 'Susun kata dari huruf'
+    title: 'ORDENAR PALABRA',
+    description: 'Ordena las letras para formar la palabra correcta'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('susunkata')
