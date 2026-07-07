@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "rednotedl",
   alias: ["rednote", "xhsdl", "xiaohongshu"],
   category: "download",
-  description: "Download video/foto dari RedNote (XiaoHongShu)",
+  description: "Descargar video/fotos de RedNote (XiaoHongShu)",
   usage: ".rednotedl <url>",
   example: ".rednotedl https://www.xiaohongshu.com/xxx",
   isOwner: false,
@@ -22,10 +22,10 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `📕 *RedNote Downloader*\n\n` +
-        `Download video atau foto dari XiaoHongShu (RedNote).\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}rednotedl <link>*\n\n` +
-        `*CONTOH:*\n` +
+        `Descargar video o fotos de XiaoHongShu (RedNote).\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}rednotedl <enlace>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}rednotedl https://www.xiaohongshu.com/xxx*`,
     );
   }
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *RedNote Gagal*\n\n> ${result.error}`);
+      return m.reply(`❌ *Error en RedNote*\n\n> ${result.error}`);
     }
 
     if (result.type === "video" && result.results?.[0]) {
@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
       }
       if (result.results.length > 5) {
         await m.reply(
-          `_Masih ada ${result.results.length - 5} foto lagi, maksimal 5_`,
+          `_Aún quedan ${result.results.length - 5} fotos más, el máximo permitido es 5_`,
         );
       }
     }
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal mengambil data RedNote, coba lagi nanti");
+    m.reply("❌ Error al obtener los datos de RedNote, inténtalo de nuevo más tarde");
   }
 }
 
