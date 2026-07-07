@@ -16,9 +16,9 @@ import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
 
 const pluginConfig = {
   name: "family100",
-  alias: ["f100", "survei"],
+  alias: ["f100", "encuesta", "100latinos"],
   category: "game",
-  description: "Survey says! Tebak jawaban teratas survei",
+  description: "¡100 latinos dijeron! Adivina las respuestas más populares de la encuesta",
   usage: ".family100",
   example: ".family100",
   isOwner: false,
@@ -40,17 +40,17 @@ async function handler(m, { sock }) {
       const answered = session.answered || [];
       const total = session.question.jawaban.length;
 
-      let text = `Wah, sesi Family 100 masih jalan nih kak! 😱✨\n\n`;
+      let text = `¡Vaya, ya hay una sesión activa de Family 100 en este grupo! 😱✨\n\n`;
       text += `*${session.question.soal}*\n\n`;
-      text += `Terjawab: *${answered.length} dari ${total}*\n`;
+      text += `Adivinadas: *${answered.length} de ${total}*\n`;
       answered.forEach((ans, i) => {
         text += `${i + 1}. ✅ ${ans}\n`;
       });
       for (let i = answered.length; i < total; i++) {
         text += `${i + 1}. ❓ ???\n`;
       }
-      text += `\nSisa waktu: *${formatRemainingTime(remaining)}* ⏳\n`;
-      text += `Buruan di-reply pesannya buat jawab! 🔥`;
+      text += `\nTiempo restante: *${formatRemainingTime(remaining)}* ⏳\n`;
+      text += `¡Responde rápido al mensaje original del juego para participar! 🔥`;
       await m.reply(text);
       return;
     }
@@ -58,21 +58,21 @@ async function handler(m, { sock }) {
 
   const question = getRandomItem("family100.json");
   if (!question) {
-    await m.reply("Yah maaf banget kak, soal gamenya lagi kosong nih 😭💔");
+    await m.reply("Lo siento mucho, la base de preguntas para este juego está vacía en este momento. 😭💔");
     return;
   }
 
   const total = question.jawaban.length;
 
-  let text = `Waktunya main *FAMILY 100*! 🎉✨\n\n`;
-  text += `*Pertanyaan:* ${question.soal}\n\n`;
-  text += `Total Jawaban: *${total}* 📝\n`;
+  let text = `🎉✨ ¡Es hora de jugar a *FAMILY 100*! ✨🎉\n\n`;
+  text += `*Pregunta:* ${question.soal}\n\n`;
+  text += `Total de respuestas: *${total}* 📝\n`;
   for (let i = 0; i < total; i++) {
     text += `${i + 1}. ❓ ???\n`;
   }
-  text += `\nWaktu kamu cuman *120 detik* aja ya! ⏱️\n`;
-  text += `Hadiahnya? Random *EXP* & *Koin* buat setiap jawaban bener! 🎁💸\n\n`;
-  text += `Cara main: langsung *reply pesan ini* dengan jawabanmu, atau reply dengan kata *nyerah* kalau udah pusing banget 🏳️😂`;
+  text += `\n¡Tienes solo *120 segundos*! ⏱️\n`;
+  text += `¿El premio? ¡*EXP* y *Monedas* aleatorias por cada respuesta correcta! 🎁💸\n\n`;
+  text += `Cómo jugar: Responde directamente (*reply*) a este mensaje con tu respuesta, o escribe *nyerah* o *me rindo* si se te complica demasiado. 🏳️😂`;
 
   const sentMsg = await m.reply(text);
 
@@ -93,15 +93,15 @@ async function handler(m, { sock }) {
       (j) => !answered.includes(j.toLowerCase()),
     );
 
-    let timeoutText = `Yah sayang banget waktu udah habis kak! 😭😭⏱️\n\n`;
-    timeoutText += `Kalian berhasil nebak *${answered.length}* dari *${question.jawaban.length}* jawaban! ✨\n\n`;
+    let timeoutText = `⏱️ ¡El tiempo se ha agotado por completo! 😭😭\n\n`;
+    timeoutText += `¡Lograron adivinar *${answered.length}* de *${question.jawaban.length}* respuestas! ✨\n\n`;
     if (remaining.length > 0) {
-      timeoutText += `Ini nih jawaban yang kelewatan:\n`;
+      timeoutText += `Estas fueron las respuestas que les faltaron encontrar:\n`;
       remaining.forEach((ans) => {
         timeoutText += `• ${ans}\n`;
       });
     }
-    timeoutText += `\nMakasih udah main ya, ditunggu sesi berikutnya! 💖🎉`;
+    timeoutText += `\n¡Muchas gracias por jugar, los espero en la próxima ronda! 💖🎉`;
 
     endSession(chatId);
     await sock.sendMessage(chatId, { text: timeoutText }, { quoted: sentMsg });
@@ -118,21 +118,21 @@ async function family100AnswerHandler(m, sock) {
   const userAnswer = (m.body || "").toLowerCase().trim();
   if (!userAnswer || userAnswer.startsWith(".")) return false;
 
-  if (isSurrender(userAnswer)) {
+  if (isSurrender(userAnswer) || userAnswer === "me rindo" || userAnswer === "rendirse" || userAnswer === "rendicion") {
     const answered = session.answered || [];
     const remaining = session.question.jawaban.filter(
       (j) => !answered.includes(j.toLowerCase()),
     );
 
-    let text = `Walahh pada nyerah nih ceritanya? 🥺🏳️\n\n`;
-    text += `Padahal udah nebak *${answered.length}* dari *${session.question.jawaban.length}* lho! 👏\n\n`;
+    let text = `¿Cómo? ¿Se rinden tan fácil? 🥺🏳️\n\n`;
+    text += `¡Iban muy bien! Adivinaron *${answered.length}* de *${session.question.jawaban.length}* respuestas. 👏\n\n`;
     if (remaining.length > 0) {
-      text += `Nih aku kasih tau jawaban sisanya:\n`;
+      text += `Aquí tienen el resto de las respuestas ocultas:\n`;
       remaining.forEach((ans) => {
         text += `• ${ans}\n`;
       });
     }
-    text += `\nGapapa, next time pasti bisa full senyum! 💖✨`;
+    text += `\n¡No pasa nada, la próxima vez completarán el tablero! 💖✨`;
 
     endSession(chatId);
     await m.reply(text);
@@ -144,7 +144,7 @@ async function family100AnswerHandler(m, sock) {
 
   if (answered.includes(userAnswer)) {
     await m.react("⚠️");
-    await m.reply(`Hayo lho, jawaban *${userAnswer}* udah ada yang jawab tadi kak! Cari yang lain dong 😂✨`);
+    await m.reply(`¡Epa! Alguien ya adivinó *${userAnswer}* hace un momento. ¡Piensa en otra! 😂✨`);
     return true;
   }
 
@@ -177,21 +177,21 @@ async function family100AnswerHandler(m, sock) {
         const participants = Object.values(session.answeredBy);
         const uniqueParticipants = [...new Set(participants)];
 
-        let text = `WOAAHH KEREN BANGET! Semua jawaban ketebak dong! 🎉🔥✨\n\n`;
-        text += `*Pertanyaan:* ${session.question.soal}\n\n`;
+        let text = `🎉🔥 ¡BRUTAL! ¡Adivinaron absolutamente todas las respuestas del tablero! ✨🔥\n\n`;
+        text += `*Pregunta:* ${session.question.soal}\n\n`;
         session.question.jawaban.forEach((ans, i) => {
           const who = session.answeredBy[ans.toLowerCase()];
           text += `${i + 1}. ✅ ${ans} - @${who?.split("@")[0] || "?"}\n`;
         });
-        text += `\n🎊 Selamat buat kalian semua yang udah ikutan mikir! Gacor banget otaknya! 🧠💯`;
+        text += `\n🎊 ¡Felicidades a todos los que pusieron a trabajar sus neuronas! ¡Qué gran equipo! 🧠💯`;
 
         await m.reply(text, { mentions: uniqueParticipants });
         return true;
       }
 
-      const total = session.question.jawaban.length;
-      let text = `Benerrr banget! ✅🎉\n@${m.sender.split("@")[0]} dapet *+${answerReward.exp} EXP* & *+${answerReward.koin} Koin* nih! 💸✨\n\n`;
-      text += `*Pertanyaan:* ${session.question.soal}\n\n`;
+      const total = question.jawaban?.length || session.question.jawaban.length;
+      let text = `¡Eso es correcto! ✅🎉\n@${m.sender.split("@")[0]} ganó *+${answerReward.exp} EXP* & *+${answerReward.koin} Monedas* 💸✨\n\n`;
+      text += `*Pregunta:* ${session.question.soal}\n\n`;
       session.question.jawaban.forEach((ans, i) => {
         const isAnswered = session.answered.includes(ans.toLowerCase());
         if (isAnswered) {
@@ -200,7 +200,7 @@ async function family100AnswerHandler(m, sock) {
           text += `${i + 1}. ❓ ???\n`;
         }
       });
-      text += `\nAyo gas sisa *${total - session.answered.length}* jawaban lagi kak! 🔥⏱️`;
+      text += `\n¡Vamos por más! Quedan *${total - session.answered.length}* respuestas pendientes. 🔥⏱️`;
 
       await m.reply(text, { mentions: [m.sender] });
       return true;
@@ -208,7 +208,7 @@ async function family100AnswerHandler(m, sock) {
   }
 
   await m.react("❌");
-  await m.reply(`Tettt! ❌ Salah kak! Coba dipikir-pikir lagi deh 😂🧠`);
+  await m.reply(`¡Suena la alarma! ❌ ¡Respuesta incorrecta! Dale otra vuelta a tu idea 😂🧠`);
   return true;
 }
 
