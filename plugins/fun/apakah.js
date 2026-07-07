@@ -1,10 +1,10 @@
 const pluginConfig = {
     name: 'apakah',
-    alias: ['apa'],
+    alias: ['apa', 'es', 'acaso'],
     category: 'fun',
-    description: 'Tanya bot apakah sesuatu',
-    usage: '.apakah <pertanyaan>',
-    example: '.apakah aku bisa kaya?',
+    description: 'Pregúntale al bot si algo es o no',
+    usage: '.apakah <pregunta>',
+    example: '.apakah ¿puedo ser rico?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -15,33 +15,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Ya, tentu saja!',
-    'Tidak, sepertinya tidak.',
-    'Mungkin saja, coba lagi nanti.',
-    'Hmm... aku rasa iya.',
-    'Aku ragu, tapi bisa jadi.',
-    'Pasti! 100%!',
-    'Tidak mungkin.',
-    'Bisa jadi, siapa yang tau?',
-    'Menurutku sih iya.',
-    'Wah, kayaknya nggak deh.',
-    'Tentu, kenapa tidak?',
-    'Aku nggak tau, coba tanya yang lain.',
-    'Ya ampun, pasti lah!',
-    'Hmm... sepertinya tidak.',
-    'Aku yakin iya!',
-    'Nggak mungkin banget.',
-    'Mungkin, tapi jangan berharap terlalu tinggi.',
-    'Iya dong!',
-    'Nggak, maaf ya.',
-    'Bisa! Semangat!'
+    '¡Sí, por supuesto!',
+    'No, parece que no.',
+    'Puede ser, intenta preguntar más tarde.',
+    'Hmm... yo creo que sí.',
+    'Lo dudo, pero todo es posible.',
+    '¡Seguro! ¡100%!',
+    'Imposible.',
+    'Podría ser, ¿quién sabe?',
+    'Según yo, sí.',
+    'Vaya, no lo creo.',
+    'Claro, ¿por qué no?',
+    'No lo sé, pregúntale a alguien más.',
+    '¡Por Dios, claro que sí!',
+    'Hmm... parece que no.',
+    '¡Estoy seguro de que sí!',
+    'Para nada posible.',
+    'Quizás, pero no te hagas demasiadas ilusiones.',
+    '¡Claro que sí!',
+    'No, lo siento.',
+    '¡Se puede! ¡Ánimo!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`❓ *ᴀᴘᴀᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .apakah aku bisa jadi kaya?`);
+        return m.reply(`❓ *¿ACASO?*\n\n> ¡Ingresa una pregunta!\n\n*Ejemplo:*\n> .apakah ¿puedo ser rico?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];
