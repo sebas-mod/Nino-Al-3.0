@@ -4,9 +4,9 @@ import te from "../../src/lib/ourin-error.js";
 
 const pluginConfig = {
     name: "dungeon",
-    alias: ["dg", "explore", "labirin"],
+    alias: ["dg", "explore", "labirin", "mazmorra"],
     category: "game",
-    description: "Jelajahi dungeon dan lawan monster secara interaktif",
+    description: "Explora mazmorras y enfréntate a monstruos de forma interactiva",
     usage: ".dungeon",
     example: ".dungeon",
     isOwner: false,
@@ -21,13 +21,13 @@ const pluginConfig = {
 const DUNGEONS = [
     {
         id: 1,
-        name: "🌲 Hutan Gelap",
+        name: "🌲 Bosque Oscuro",
         levelReq: 1,
         monsters: [
-            "Goblin Liar",
-            "Slime Raksasa",
-            "Serigala Malam",
-            "Bandit Hutan",
+            "Goblin Salvaje",
+            "Slime Gigante",
+            "Lobo Nocturno",
+            "Bandido del Bosque",
         ],
         minReward: 100,
         maxReward: 300,
@@ -35,13 +35,13 @@ const DUNGEONS = [
     },
     {
         id: 2,
-        name: "🍄 Rawa Beracun",
+        name: "🍄 Pantano Venenoso",
         levelReq: 5,
         monsters: [
-            "Kodok Mutan",
-            "Pohon Berjalan",
-            "Laba-laba Racun",
-            "Viper Rawa",
+            "Rana Mutante",
+            "Árbol Viviente",
+            "Araña Venenosa",
+            "Víbora del Pantano",
         ],
         minReward: 250,
         maxReward: 500,
@@ -49,13 +49,13 @@ const DUNGEONS = [
     },
     {
         id: 3,
-        name: "🏰 Kastil Tua",
+        name: "🏰 Castillo Viejo",
         levelReq: 10,
         monsters: [
-            "Prajurit Tengkorak",
-            "Zombie Kelaparan",
-            "Hantu Penasaran",
-            "Gargoyle Batu",
+            "Guerrero Esqueleto",
+            "Zombi Hambriento",
+            "Alma en Pena",
+            "Gárgola de Piedra",
         ],
         minReward: 400,
         maxReward: 800,
@@ -63,13 +63,13 @@ const DUNGEONS = [
     },
     {
         id: 4,
-        name: "🏜️ Padang Pasir Kematian",
+        name: "🏜️ Desierto de la Muerte",
         levelReq: 15,
         monsters: [
-            "Kalajengking Raksasa",
-            "Mummy Bangkit",
-            "Worm Gurun",
-            "Jin Jahat",
+            "Escorpión Gigante",
+            "Momia Viviente",
+            "Gusano de Arena",
+            "Genio Maligno",
         ],
         minReward: 600,
         maxReward: 1200,
@@ -77,54 +77,54 @@ const DUNGEONS = [
     },
     {
         id: 5,
-        name: "🌋 Gunung Api",
+        name: "🌋 Volcán Activo",
         levelReq: 20,
-        monsters: ["Elemental Api", "Golem Magma", "Naga Kecil", "Hellhound"],
+        monsters: ["Elemental de Fuego", "Golem de Magma", "Dragón Joven", "Sabueso del Infierno"],
         minReward: 900,
         maxReward: 1700,
         dropChance: 60,
     },
     {
         id: 6,
-        name: "🧊 Gua Es Abadi",
+        name: "🧊 Cueva de Hielo Eterno",
         levelReq: 25,
-        monsters: ["Golem Es", "Raksasa Frost", "Yeti Ganas", "Serigala Salju"],
+        monsters: ["Golem de Hielo", "Gigante de Escarcha", "Yeti Feroz", "Lobo de las Nieves"],
         minReward: 1300,
         maxReward: 2400,
         dropChance: 65,
     },
     {
         id: 7,
-        name: "☁️ Reruntuhan Langit",
+        name: "☁️ Ruinas del Cielo",
         levelReq: 30,
-        monsters: ["Harpy Petir", "Griffin Liar", "Valkyrie Jatuh", "Golem Angin"],
+        monsters: ["Arpía de Tormenta", "Grifo Salvaje", "Valquiria Caída", "Golem de Viento"],
         minReward: 1800,
         maxReward: 3300,
         dropChance: 70,
     },
     {
         id: 8,
-        name: "🌊 Lautan Bayangan",
+        name: "🌊 Océano de las Sombras",
         levelReq: 35,
-        monsters: ["Kraken Bayi", "Siren Pemikat", "Hiu Hantu", "Leviathan Merah"],
+        monsters: ["Cría de Kraken", "Sirena Cautivadora", "Tiburón Fantasma", "Leviatán Carmesí"],
         minReward: 2500,
         maxReward: 4500,
         dropChance: 75,
     },
     {
         id: 9,
-        name: "🕳️ Jurang Ketiadaan",
+        name: "🕳️ Abismo de la Nada",
         levelReq: 40,
-        monsters: ["Malaikat Kematian", "Void Walker", "Shadow Fiend", "Behemoth"],
+        monsters: ["Ángel de la Muerte", "Caminante del Vacío", "Fiend de las Sombras", "Bégimo"],
         minReward: 3500,
         maxReward: 6000,
         dropChance: 80,
     },
     {
         id: 10,
-        name: "👹 Neraka Terdalam",
+        name: "👹 Inframundo Profundo",
         levelReq: 50,
-        monsters: ["Iblis Merah", "Succubus Mematikan", "Cerberus", "Raja Iblis"],
+        monsters: ["Demonio Rojo", "Súcubo Letal", "Cerbero", "Rey Demonio"],
         minReward: 5000,
         maxReward: 10000,
         dropChance: 90,
@@ -132,13 +132,13 @@ const DUNGEONS = [
 ];
 
 const LOOT_TABLE = [
-    { item: "iron", chance: 40, qty: [1, 5], icon: "⛏️" },
-    { item: "gold", chance: 20, qty: [1, 3], icon: "🪙" },
-    { item: "diamond", chance: 5, qty: [1, 2], icon: "💎" },
-    { item: "potion", chance: 30, qty: [1, 3], icon: "🧪" },
-    { item: "herb", chance: 25, qty: [2, 6], icon: "🌿" },
-    { item: "leather", chance: 35, qty: [2, 5], icon: "👞" },
-    { item: "mysterybox", chance: 3, qty: [1, 1], icon: "📦" },
+    { item: "hierro", chance: 40, qty: [1, 5], icon: "⛏️" },
+    { item: "oro", chance: 20, qty: [1, 3], icon: "🪙" },
+    { item: "diamante", chance: 5, qty: [1, 2], icon: "💎" },
+    { item: "pocion", chance: 30, qty: [1, 3], icon: "🧪" },
+    { item: "hierba", chance: 25, qty: [2, 6], icon: "🌿" },
+    { item: "cuero", chance: 35, qty: [2, 5], icon: "👞" },
+    { item: "cajamisteriosa", chance: 3, qty: [1, 1], icon: "📦" },
 ];
 
 async function handler(m, { sock }) {
@@ -164,9 +164,9 @@ async function handler(m, { sock }) {
                 db.save();
             } else {
                 return m.reply(
-                    `⚔️ *SESI DUNGEON MASIH AKTIF*\n\n` +
-                    `Kamu sedang berada di pertengahan eksplorasi!\n` +
-                    `> Balas chat terakhir bot untuk membatalkan (ketik \`batal\`) atau melanjutkan aksi (ketik \`serang\` / \`lari\`).`,
+                    `⚔️ *SESIÓN DE MAZMORRA ACTIVA*\n\n` +
+                    `¡Ya te encuentras en medio de una exploración!\n` +
+                    `> Responde al último mensaje del bot para cancelar (escribe \`batal\`) o continuar con la acción (escribe \`serang\` / \`lari\`).`,
                 );
             }
         }
@@ -174,7 +174,7 @@ async function handler(m, { sock }) {
         const available = DUNGEONS.filter((d) => userLevel >= d.levelReq);
         if (available.length === 0) {
             return m.reply(
-                `❌ *LEVEL TERLALU RENDAH*\n\n> Level kamu saat ini adalah *${userLevel}*. Kamu butuh minimal level *1* untuk memasuki dungeon paling mudah.`,
+                `❌ *NIVEL DEMASIADO BAJO*\n\n> Tu nivel actual es *${userLevel}*. Necesitas al menos nivel *1* para entrar a la mazmorra más fácil.`,
             );
         }
 
@@ -184,20 +184,20 @@ async function handler(m, { sock }) {
         };
         db.save();
 
-        let txt = `🏰 *LOBI DUNGEON*\n\n`;
-        txt += `📊 *Statistik Kamu:*\n`;
-        txt += `> Level: *${userLevel}*\n`;
-        txt += `> Stamina: *${user.rpg.stamina ?? 100}/100*\n\n`;
-        txt += `Pilih lokasi yang ingin kamu jelajahi:\n\n`;
+        let txt = `🏰 *LOBBY DE LA MAZMORRA*\n\n`;
+        txt += `📊 *Tus Estadísticas:*\n`;
+        txt += `> Nivel: *${userLevel}*\n`;
+        txt += `> Estamina: *${user.rpg.stamina ?? 100}/100*\n\n`;
+        txt += `Elige la ubicación que deseas explorar:\n\n`;
 
         for (const d of DUNGEONS) {
             if (userLevel >= d.levelReq) {
-                txt += `🔓 *${d.id}.* ${d.name} (Lv ${d.levelReq}+)\n`;
+                txt += `🔓 *${d.id}.* ${d.name} (Nivel ${d.levelReq}+)\n`;
             } else {
-                txt += `> 🔒 *${d.id}.* ${d.name} (Butuh Lv ${d.levelReq})\n`;
+                txt += `> 🔒 *${d.id}.* ${d.name} (Requiere Nivel ${d.levelReq})\n`;
             }
         }
-        txt += `\n> 💡 Balas pesan ini dengan *angka* lokasi yang 🔓 (contoh: \`1\`) atau ketik \`batal\` untuk keluar.`;
+        txt += `\n> 💡 Responde a este mensaje con el *número* de la ubicación desbloqueada 🔓 (ejemplo: \`1\`) o escribe \`batal\` para salir.`;
 
         return m.reply(txt);
     } catch (error) {
@@ -220,7 +220,7 @@ async function dungeonAnswerHandler(m, sock) {
         delete user.rpg.dungeon_session;
         db.save();
         await m.reply(
-            `⏰ *SESI DUNGEON KEDALUWARSA*\n\n> Sesi dungeon kamu sudah hangus karena tidak aktif selama 5 menit.`,
+            `⏰ *SESIÓN DE MAZMORRA EXPIRADA*\n\n> Tu sesión ha caducado por inactividad durante más de 5 minutos.`,
         );
         return true;
     }
@@ -228,10 +228,10 @@ async function dungeonAnswerHandler(m, sock) {
     const text = m.body.trim().toLowerCase();
     const userLevel = user.level || 1;
 
-    if (text === "batal" || text === "cancel" || text === "keluar") {
+    if (text === "batal" || text === "cancel" || text === "keluar" || text === "cancelar" || text === "salir") {
         delete user.rpg.dungeon_session;
         db.save();
-        await m.reply(`🚪 Kamu berhasil keluar dari Lobi Dungeon dengan selamat.`);
+        await m.reply(`🚪 Has salido con éxito y a salvo del Lobby de la Mazmorra.`);
         return true;
     }
 
@@ -243,14 +243,14 @@ async function dungeonAnswerHandler(m, sock) {
 
         if (!dungeon) {
             await m.reply(
-                `❌ *PILIHAN TIDAK VALID*\n\n> Dungeon nomor ${choiceId} tidak ditemukan.`,
+                `❌ *OPCIÓN NO VÁLIDA*\n\n> No se encontró la mazmorra número ${choiceId}.`,
             );
             return true;
         }
 
         if (userLevel < dungeon.levelReq) {
             await m.reply(
-                `🔒 *DUNGEON TERKUNCI*\n\n> Level kamu (*Lv ${userLevel}*) belum cukup untuk memasuki *${dungeon.name}*.\n> Kamu butuh minimal *Lv ${dungeon.levelReq}*.`,
+                `🔒 *MAZMORRA BLOQUEADA*\n\n> Tu nivel (*Nivel ${userLevel}*) no es suficiente para entrar a *${dungeon.name}*.\n> Necesitas al menos *Nivel ${dungeon.levelReq}*.`,
             );
             return true;
         }
@@ -260,10 +260,10 @@ async function dungeonAnswerHandler(m, sock) {
 
         if (user.rpg.stamina < staminaCost) {
             await m.reply(
-                `⚡ *STAMINA TIDAK CUKUP*\n\n` +
-                `Kamu butuh setidaknya *${staminaCost} stamina* untuk masuk.\n` +
-                `Sisa stamina kamu saat ini hanya *${user.rpg.stamina}*.\n\n` +
-                `> 💡 *Tips:* Gunakan perintah \`.rest\` atau batalkan dulu (ketik \`batal\`).`,
+                `⚡ *ESTAMINA INSUFICIENTE*\n\n` +
+                `Necesitas al menos *${staminaCost} de estamina* para ingresar.\n` +
+                `Tu estamina actual es de solo *${user.rpg.stamina}*.\n\n` +
+                `> 💡 *Consejo:* Usa el comando \`.rest\` o cancela la sesión (escribe \`batal\`).`,
             );
             return true;
         }
@@ -289,20 +289,20 @@ async function dungeonAnswerHandler(m, sock) {
         db.save();
 
         await m.react("🚪");
-        let txt = `🚪 *MEMASUKI DUNGEON*\n\n`;
-        txt += `Kamu melangkah perlahan ke dalam *${dungeon.name}*...\n`;
-        txt += `> ⚡ Stamina berkurang *${staminaCost}*\n\n`;
-        txt += `Tiba-tiba, seekor *👹 ${monster}* muncul dari kegelapan dan menghadang jalanmu!\n\n`;
-        txt += `*⚔️ APA YANG INGIN KAMU LAKUKAN?*\n`;
-        txt += `> Balas pesan ini dengan \`serang\` untuk melawan\n`;
-        txt += `> Balas pesan ini dengan \`lari\` untuk kabur (berisiko)`;
+        let txt = `🚪 *ENTRANDO A LA MAZMORRA*\n\n`;
+        txt += `Te adentras lentamente en las profundidades de *${dungeon.name}*...\n`;
+        txt += `> ⚡ Estamina reducida: *-${staminaCost}*\n\n`;
+        txt += `¡De repente, un *👹 ${monster}* emerge de las sombras bloqueando tu camino!\n\n`;
+        txt += `*⚔️ ¿QUÉ DESEAS HACER?*\n`;
+        txt += `> Responde a este mensaje con \`serang\` para atacar y luchar\n`;
+        txt += `> Responde a este mensaje con \`lari\` para escapar (arriesgado)`;
 
         await m.reply(txt);
         return true;
     }
 
     if (session.stage === "encounter") {
-        if (text === "serang" || text === "attack" || text === "lawan") {
+        if (text === "serang" || text === "attack" || text === "lawan" || text === "atacar" || text === "luchar") {
             const userPower =
                 (user.rpg.attack || 10) +
                 userLevel * 4 +
@@ -332,14 +332,14 @@ async function dungeonAnswerHandler(m, sock) {
                 user.koin = (user.koin || 0) + goldReward;
                 await addExpWithLevelCheck(sock, m, db, user, expReward);
 
-                reportText += `🎉 *KEMENANGAN GEMILANG!*\n\n`;
-                reportText += `Dengan serangan mematikan, kamu berhasil menebas *${session.monster}*!\n\n`;
-                reportText += `*🎁 HADIAH YANG DIDAPAT:*\n`;
+                reportText += `🎉 *¡VICTORIA GLORIOSA!*\n\n`;
+                reportText += `¡Con un ataque letal, has derrotado a *${session.monster}*!\n\n`;
+                reportText += `*🎁 RECOMPENSAS OBTENIDAS:*\n`;
                 reportText += `> ✨ EXP: *+${Math.floor(expReward)}*\n`;
-                reportText += `> 💰 Koin: *+${goldReward.toLocaleString()}*\n`;
+                reportText += `> 💰 Monedas: *+${goldReward.toLocaleString()}*\n`;
 
                 if (droppedItems.length > 0) {
-                    reportText += `\n*📦 BARANG JARAHAN (LOOT):*\n`;
+                    reportText += `\n*📦 BOTÍN ENCONTRADO (LOOT):*\n`;
                     reportText += `> ${droppedItems.join("\n> ")}\n`;
                 }
 
@@ -349,13 +349,13 @@ async function dungeonAnswerHandler(m, sock) {
                 user.koin = Math.max(0, (user.koin || 0) - goldLoss);
                 user.rpg.health = Math.max(1, (user.rpg.health || 100) - 40);
 
-                reportText += `💀 *KEKALAHAN TRAGIS!*\n\n`;
-                reportText += `Kekuatanmu belum sebanding! *${session.monster}* memukul mundur dirimu dengan telak.\n`;
-                reportText += `Kamu berhasil merangkak keluar dengan tubuh penuh luka.\n\n`;
-                reportText += `*💔 KERUGIAN:*\n`;
-                reportText += `> 💸 Uang jatuh: *-${goldLoss.toLocaleString()} Koin*\n`;
-                reportText += `> ❤️ Darah berkurang: *-40 HP*\n\n`;
-                reportText += `> 💡 *Tips:* Naikan levelmu, makan potion, atau perkuat senjata!`;
+                reportText += `💀 *¡DERROTA TRÁGICA!*\n\n`;
+                reportText += `¡Tu poder aún no es suficiente! El *${session.monster}* te ha asestado un golpe crítico implacable.\n`;
+                reportText += `Lograste salir arrastrándote de la mazmorra con el cuerpo lleno de heridas.\n\n`;
+                reportText += `*💔 PÉRDIDAS:*\n`;
+                reportText += `> 💸 Dinero perdido: *-${goldLoss.toLocaleString()} Monedas*\n`;
+                reportText += `> ❤️ Vida reducida: *-40 HP*\n\n`;
+                reportText += `> 💡 *Consejo:* ¡Sube de nivel, consume pociones o mejora tu equipamiento!`;
 
                 await m.react("💀");
             }
@@ -364,22 +364,22 @@ async function dungeonAnswerHandler(m, sock) {
             db.save();
             await m.reply(reportText);
             return true;
-        } else if (text === "lari" || text === "kabur" || text === "run") {
+        } else if (text === "lari" || text === "kabur" || text === "run" || text === "escapar" || text === "huir") {
             const escapeChance = Math.random() > 0.5;
             let reportText = "";
 
             if (escapeChance) {
-                reportText += `🏃‍♂️ *BERHASIL KABUR!*\n\n`;
-                reportText += `Kamu berbalik dan berlari sekuat tenaga. *${session.monster}* kehilangan jejakmu!\n`;
-                reportText += `Kamu selamat tanpa cedera, tapi petualangan ini sia-sia.`;
+                reportText += `🏃‍♂️ *¡LOGRASTE ESCAPAR!*\n\n`;
+                reportText += `Te diste la vuelta y corriste con todas tus fuerzas. ¡El *${session.monster}* te perdió el rastro!\n`;
+                reportText += `Has salido a salvo y sin un rasguño, pero esta incursión fue en vano.`;
                 await m.react("💨");
             } else {
                 const hpLoss = 25;
                 user.rpg.health = Math.max(1, (user.rpg.health || 100) - hpLoss);
-                reportText += `💥 *GAGAL KABUR!*\n\n`;
-                reportText += `Kakimu tersandung bebatuan! *${session.monster}* mengejarmu dan mendaratkan cakarnya di tubuhmu!\n\n`;
-                reportText += `*💔 KERUGIAN:*\n`;
-                reportText += `> ❤️ Darah berkurang: *-${hpLoss} HP*`;
+                reportText += `💥 *¡FALLASTE AL ESCAPAR!*\n\n`;
+                reportText += `¡Tropezaste con unas rocas! ¡El *${session.monster}* te alcanzó y descargó sus garras sobre ti!\n\n`;
+                reportText += `*💔 DAÑO RECIBIDO:*\n`;
+                reportText += `> ❤️ Vida reducida: *-${hpLoss} HP*`;
                 await m.react("🩸");
             }
 
@@ -389,10 +389,10 @@ async function dungeonAnswerHandler(m, sock) {
             return true;
         } else {
             await m.reply(
-                `❓ *PILIHAN TIDAK DIKENAL*\n\n` +
-                `> Balas dengan \`serang\` untuk melawan monster.\n` +
-                `> Balas dengan \`lari\` untuk kabur.\n` +
-                `> Balas dengan \`batal\` jika benar-benar menyerah.`,
+                `❓ *OPCIÓN NO RECONOCIDA*\n\n` +
+                `> Responde con \`serang\` para atacar al monstruo.\n` +
+                `> Responde con \`lari\` para escapar.\n` +
+                `> Responde con \`batal\` si deseas rendirte por completo.`,
             );
             return true;
         }
