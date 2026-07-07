@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "ytmp3",
   alias: ["youtubemp3", "ytaudio"],
   category: "download",
-  description: "Download audio YouTube",
+  description: "Descargar audio de YouTube",
   usage: ".ytmp3 <url>",
   example: ".ytmp3 https://youtube.com/watch?v=xxx",
   cooldown: 20,
@@ -29,15 +29,15 @@ async function getAudioDownload(url) {
     return { download: fallback.dl, title: fallback.title, isFallback: true };
   }
 
-  throw new Error(fallback?.mess || "Gagal mendapatkan audio download URL");
+  throw new Error(fallback?.mess || "No se pudo obtener la URL de descarga del audio");
 }
 
 async function handler(m, { sock }) {
   const url = m.text?.trim();
   if (!url)
-    return m.reply(`Contoh: ${m.prefix}ytmp4 https://youtube.com/watch?v=xxx`);
+    return m.reply(`Ejemplo: ${m.prefix}ytmp3 https://youtube.com/watch?v=xxx`);
   if (!url.includes("youtube.com") && !url.includes("youtu.be"))
-    return m.reply("❌ URL harus YouTube");
+    return m.reply("❌ La URL debe ser de YouTube");
 
   m.react("🕕");
 
@@ -66,9 +66,9 @@ async function handler(m, { sock }) {
     }
     m.react("✅");
   } catch (err) {
-    console.error("[YTMP4]", err);
+    console.error("[YTMP3]", err);
     m.react("❌");
-    m.reply("Gagal mengunduh video.");
+    m.reply("Error al descargar el audio.");
   }
 }
 
