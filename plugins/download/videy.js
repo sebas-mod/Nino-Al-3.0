@@ -8,7 +8,7 @@ const pluginConfig = {
     name: 'videy',
     alias: ['vdl', 'videydownload', 'videydl'],
     category: 'download',
-    description: 'Download video dari videy.co',
+    description: 'Descargar video de videy.co',
     usage: '.videy <url>',
     example: '.videy https://videy.co/v?id=7ZH1ZRIF',
     isOwner: false,
@@ -26,13 +26,13 @@ async function handler(m, { sock }) {
     if (!url) {
         return m.reply(
             `🎬 *ᴠɪᴅᴇʏ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-            `> Masukkan URL videy.co\n\n` +
-            `\`Contoh: ${m.prefix}videy https://videy.co/v?id=7ZH1ZRIF\``
+            `> Ingresa una URL de videy.co\n\n` +
+            `\`Ejemplo: ${m.prefix}videy https://videy.co/v?id=7ZH1ZRIF\``
         )
     }
     
     if (!url.match(/videy\.co/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link dari videy.co`)
+        return m.reply(`❌ URL no válida. Usa un enlace de videy.co`)
     }
     
     m.react('🕕')
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.url) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil video. Link tidak valid atau sudah expired.`)
+            return m.reply(`❌ Error al obtener el video. El enlace no es válido o ha expirado.`)
         }
         
         const videoUrl = data.data.url
