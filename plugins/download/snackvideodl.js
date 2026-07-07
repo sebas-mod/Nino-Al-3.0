@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'snackvideodl',
     alias: ['svdl', 'snackvideo', 'sv'],
     category: 'download',
-    description: 'Download video SnackVideo',
+    description: 'Descargar video de SnackVideo',
     usage: '.svdl <url>',
     example: '.svdl https://www.snackvideo.com/@xxx/video/xxx',
     isOwner: false,
@@ -21,15 +21,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *MODO DE USO*\n\n` +
             `> \`${m.prefix}svdl <url>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}svdl https://www.snackvideo.com/@xxx/video/xxx\``
         )
     }
     
     if (!url.match(/snackvideo\.com/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link SnackVideo.`)
+        return m.reply(`❌ URL no válida. Usa un enlace de SnackVideo.`)
     }
     
     await m.react('🕕')
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
         const data = await snackvideo(url)
         
         if (!data?.status || !data?.result?.videoUrl) {
-            return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+            return m.reply(`❌ Error al obtener el video. Intenta con otro enlace.`)
         }
         
         const result = data.result
