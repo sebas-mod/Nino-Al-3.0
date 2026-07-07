@@ -1,10 +1,10 @@
 import { games } from '../../src/lib/ourin-games.js'
 
 games.register('tebakkalimat', {
-    alias: ['tkl', 'peribahasa'],
+    alias: ['adivinafrase', 'frase', 'refran', 'proverbio'],
     emoji: '📖',
-    title: 'TEBAK KALIMAT',
-    description: 'Tebak kalimat atau peribahasa'
+    title: 'ADIVINA LA FRASE',
+    description: 'Adivina la frase, refrán o proverbio'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebakkalimat')
