@@ -7,7 +7,7 @@ async function tiktokDl(url) {
     return Number(numb).toLocaleString().replace(/,/g, ".");
   }
 
-  function formatDate(n, locale = "en") {
+  function formatDate(n, locale = "es") {
     let d = new Date(n);
     return d.toLocaleDateString(locale, {
       weekday: "long",
@@ -74,7 +74,7 @@ async function tiktokDl(url) {
     region: res.region,
     id: res.id,
     durations: res.duration,
-    duration: res.duration + " Seconds",
+    duration: res.duration + " Segundos",
     cover: "https://www.tikwm.com" + res.cover,
     size_wm: res.wm_size,
     size_nowm: res.size,
@@ -107,7 +107,7 @@ const pluginConfig = {
   name: ["tiktok", "tt", "ttmp4"],
   alias: ["tiktokdl", "ttdown"],
   category: "download",
-  description: "Download video/slide TikTok tanpa watermark",
+  description: "Descargar video/slide de TikTok sin marca de agua",
   usage: ".tiktok <url>",
   example: ".tiktok https://vt.tiktok.com/xxx",
   isOwner: false,
@@ -126,7 +126,7 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `📌 Contoh: *${prefix + command} https://vt.tiktok.com/...*`,
+      `📌 Ejemplo: *${prefix + command} https://vt.tiktok.com/...*`,
     );
   }
   m.react("🕕");
@@ -134,22 +134,22 @@ async function handler(m, { sock }) {
     const result = await tiktokDl(text);
     const builder = new AIRich(sock);
 
-    if (result.durations > 0 && result.duration !== "0 Seconds") {
+    if (result.durations > 0 && result.duration !== "0 Segundos") {
       const builder = new AIRich(sock);
       let zann = await result.data.find(
         (e) => e.type == "nowatermark_hd" || e.type == "nowatermark",
       );
       builder.addVideo(zann.url);
 
-      const authorText = `> 👤 *Author:* ${result.author.nickname} (@${result.author.fullname})\n`;
-      const descText = `> 📝 *Caption:* ${result.title || "-"}\n`;
-      const musicText = `> 🎵 *Music:* ${result.music_info.title} - ${result.music_info.author}\n`;
-      const durationText = result.durations > 0 ? `> ⏱️ *Duration:* ${result.duration}\n` : "";
-      const infoText = `> 📅 *Uploaded:* ${result.taken_at}\n${durationText}> 🌎 *Region:* ${result.region}`;
+      const authorText = `> 👤 *Autor:* ${result.author.nickname} (@${result.author.fullname})\n`;
+      const descText = `> 📝 *Descripción:* ${result.title || "-"}\n`;
+      const musicText = `> 🎵 *Música:* ${result.music_info.title} - ${result.music_info.author}\n`;
+      const durationText = result.durations > 0 ? `> ⏱️ *Duración:* ${result.duration}\n` : "";
+      const infoText = `> 📅 *Subido:* ${result.taken_at}\n${durationText}> 🌎 *Región:* ${result.region}`;
       builder.addText("# TIKTOK DOWNLOADER\n\n" + authorText + descText + musicText + infoText);
 
       builder.addTable([
-        ["👀 Views", "❤️ Likes", "💬 Comments", "🔁 Shares", "📥 Downloads"],
+        ["👀 Vistas", "❤️ Likes", "💬 Comentarios", "🔁 Compartidos", "📥 Descargas"],
         [result.stats.views, result.stats.likes, result.stats.comment, result.stats.share, result.stats.download]
       ]);
 
@@ -158,13 +158,13 @@ async function handler(m, { sock }) {
       await sock.sendMessage(
         m.chat,
         {
-          footer: "> 🌿 Mau dapetin audio nya juga? kalau mau bisa tekan tombol dibawah",
+          footer: "> 🌿 ¿Quieres obtener también el audio? Si es así, presiona el botón de abajo",
           text: "",
           interactiveButtons: [
             {
               name: "quick_reply",
               buttonParamsJson: JSON.stringify({
-                title: "📩 Unduh Audionya",
+                title: "📩 Descargar Audio",
                 id: `${m.prefix}ttmp3 ${text}`,
               }),
             },
@@ -188,7 +188,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("❌");
-    m.reply("Coba lagi nanti, atau bisa coba " + m.prefix + "tt2");
+    m.reply("Inténtalo de nuevo más tarde, o puedes probar con " + m.prefix + "tt2");
   }
 }
 
