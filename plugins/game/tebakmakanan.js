@@ -1,10 +1,10 @@
 import { games } from '../../src/lib/ourin-games.js'
 
 games.register('tebakmakanan', {
-    alias: ['makanan', 'food'],
+    alias: ['adivinacomida', 'comida', 'food'],
     emoji: '🍲',
-    title: 'TEBAK MAKANAN',
-    description: 'Tebak nama makanan',
+    title: 'ADIVINA LA COMIDA',
+    description: 'Adivina el nombre de la comida o plato',
     hasImage: true
 })
 
