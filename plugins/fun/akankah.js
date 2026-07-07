@@ -1,10 +1,10 @@
 const pluginConfig = {
     name: 'akankah',
-    alias: ['akan', 'will'],
+    alias: ['akan', 'will', 'pasara', 'ocurrira'],
     category: 'fun',
-    description: 'Tanya bot akankah sesuatu terjadi',
-    usage: '.akankah <pertanyaan>',
-    example: '.akankah aku sukses?',
+    description: 'Pregúntale al bot si algo sucederá',
+    usage: '.akankah <pregunta>',
+    example: '.akankah ¿seré exitoso?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -15,33 +15,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Ya, pasti akan terjadi!',
-    'Tidak, sepertinya tidak akan.',
-    'Mungkin akan, mungkin tidak.',
-    'InsyaAllah akan terjadi!',
-    'Hmm, sulit diprediksi.',
-    'Pasti! Yakin saja!',
-    'Kayaknya nggak deh.',
-    'Akan terjadi kalau kamu mau berusaha.',
-    'Suatu saat nanti, pasti.',
-    'Nggak akan, maaf.',
-    'Tentu akan! Tunggu saja!',
-    'Hmm, aku ragu.',
-    'Akan! Percaya sama proses!',
-    'Kemungkinannya kecil.',
-    'Pasti akan, aku yakin!',
-    'Nggak akan, cari yang lain aja.',
-    'Akan, tapi butuh waktu.',
-    'InsyaAllah!',
-    'Kalau jodoh, pasti akan.',
-    'Akan terjadi di saat yang tepat!'
+    '¡Sí, definitivamente sucederá!',
+    'No, parece que no va a pasar.',
+    'Tal vez sí, tal vez no.',
+    '¡Si Dios quiere, sucederá!',
+    'Hmm, es difícil de predecir.',
+    '¡Por supuesto! ¡Tenlo por seguro!',
+    'No lo creo.',
+    'Sucederá si estás dispuesto a esforzarte.',
+    'Algún día, con toda seguridad.',
+    'No pasará, lo siento.',
+    '¡Claro que sí! ¡Solo espera!',
+    'Hmm, lo dudo.',
+    '¡Sí! ¡Confía en el proceso!',
+    'Hay muy pocas probabilidades.',
+    '¡Pasará, estoy seguro!',
+    'No va a pasar, mejor busca otra cosa.',
+    'Pasará, pero tomará algo de tiempo.',
+    '¡Ojalá así sea!',
+    'Si es el destino, definitivamente pasará.',
+    '¡Sucederá en el momento perfecto!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`🔮 *ᴀᴋᴀɴᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .akankah aku sukses?`);
+        return m.reply(`🔮 *¿PASARÁ?*\n\n> ¡Ingresa una pregunta!\n\n*Ejemplo:*\n> .akankah ¿seré exitoso?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];
