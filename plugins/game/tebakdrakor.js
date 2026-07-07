@@ -1,10 +1,10 @@
 import { games } from '../../src/lib/ourin-games.js'
 
 games.register('tebakdrakor', {
-    alias: ['drakor', 'kdrama'],
+    alias: ['adivinadrama', 'kdrama', 'drakor'],
     emoji: '🇰🇷',
-    title: 'TEBAK DRAKOR',
-    description: 'Tebak judul drama Korea',
+    title: 'ADIVINA EL K-DRAMA',
+    description: 'Adivina el título de la serie o drama coreano',
     hasImage: true
 })
 
