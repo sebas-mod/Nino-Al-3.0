@@ -69,8 +69,8 @@ function send(sock, m, text, title, body) {
     {
       caption: `${config.info.website} ${text}`,
       url: `${config.info.website}`,
-      title: `𝗙𝗜𝗦𝗛 𝗜𝗧 𝗚𝗔𝗠𝗘𝗦`,
-      description: `dapatkan hadiah dan keseruannya dari hasil pancingan`,
+      title: `𝗙𝗜𝗦𝗛 𝗜𝗧 𝗚𝗔module`,
+      description: `¡Consigue recompensas y diviértete con los resultados de tu pesca!`,
       jpegThumbnail: thumbFish,
       previewType: 0,
     },
@@ -81,10 +81,10 @@ function send(sock, m, text, title, body) {
 
 const pluginConfig = {
   name: "fisht",
-  alias: ["fishit"],
+  alias: ["fishit", "pescar", "pez"],
   category: "game",
-  description: "Fishit - Fishing Rod Game",
-  usage: ".fisht <command>",
+  description: "Fishit - Juego de Caña de Pescar",
+  usage: ".fisht <comando>",
   example: ".fisht help",
   isOwner: false,
   isPremium: false,
@@ -104,8 +104,8 @@ async function handler(m, { sock }) {
 
   if (cmd === "fishit") {
     if (!sub || sub === "on" || sub === "off") {
-      if (!m.isGroup) return m.reply("_Toggle hanya di grup_");
-      if (!m.isOwner && !m.isAdmin) return m.reply("_Hanya admin/owner_");
+      if (!m.isGroup) return m.reply("_El interruptor solo funciona en grupos_");
+      if (!m.isOwner && !m.isAdmin) return m.reply("_Solo administradores u dueños_");
       const gd = db.getGroup(m.chat) || {};
       if (sub === "on") {
         gd.fishitEnabled = true;
@@ -113,51 +113,51 @@ async function handler(m, { sock }) {
         return send(
           sock,
           m,
-          `*FISHIT ENABLED*\n\nSemua member wajib main Fishit!\nKetik \`.fisht help\` untuk mulai`,
+          `*FISHIT ACTIVADO*\n\n¡Todos los miembros deben jugar Fishit!\nEscribe \`.fisht help\` para empezar`,
           "Fishit ON",
-          "Aktifkan",
+          "Activar",
         );
       }
       if (sub === "off") {
         gd.fishitEnabled = false;
         db.setGroup(m.chat, gd);
-        return send(sock, m, `*FISHIT DISABLED*`, "Fishit OFF", "Nonaktifkan");
+        return send(sock, m, `*FISHIT DESACTIVADO*`, "Fishit OFF", "Desactivar");
       }
       return m.reply(
-        `*Fishit:* ${gd.fishitEnabled ? "ON" : "OFF"}\n\`.fishit on/off\``,
+        `*Fishit:* ${gd.fishitEnabled ? "ACTIVADO" : "DESACTIVADO"}\n\`.fishit on/off\``,
       );
     }
   }
 
   if (cmd !== "fisht" && cmd !== "fishit") return;
 
-  if (!sub || sub === "help" || sub === "menu") {
+  if (!sub || sub === "help" || sub === "menu" || sub === "ayuda") {
     return send(
       sock,
       m,
-      `*FISHIT GAME*\n_Sistem permainan memancing terlengkap_\n\n` +
-        `*FISHING*\n\`.fisht mancing\` _Mulai memancing_\n\`.fisht view\` _Ambil tangkapan_\n\`.fisht sell\` _Jual ikan_\n\`.fisht fishbook\` _Koleksi ikan_\n\`.fisht mutbook\` _Koleksi mutasi_\n\`.fisht top\` _Leaderboard_\n\n` +
-        `*PROFILE*\n\`.fisht me\` _Profil kamu_\n\`.fisht stats\` _Stats detail_\n\`.fisht daily\` _Daily reward_\n\n` +
-        `*PULAU & ROD*\n\`.fisht travel\` _Daftar pulau_\n\`.fisht travel <pulau>\` _Pindah pulau_\n\`.fisht shop\` _Toko rod_\n\`.fisht buy <rod>\` _Beli rod_\n\`.fisht equip <rod>\` _Pasang rod_\n\`.fisht rods\` _Koleksi rod_\n\`.fisht enchant <key>\` _Enchant rod_\n\`.fisht enchants\` _Daftar enchant_\n\`.fisht rodup\` _Upgrade rod_\n\n` +
-        `*PRESTIGE*\n\`.fisht prestige\` _Info prestige_\n\`.fisht tokens\` _Token store_\n\`.fisht upgrade\` _Upgrade stats_\n\`.fisht gacha\` _Gacha_\n\`.fisht gacha ticket\` _Gacha pakai tiket_\n\n` +
-        `*JACKPOT*\n\`.fisht jackpot\` _Daftar jackpot_\n\`.fisht jackpot <tier>\` _Main jackpot_\n_Jackpot bisa kasih _Premium_, _Partner_, _Energi_, _Limit_, bahkan _UNLIMITED_!_`,
-      "Fishit Game",
-      "Fishing Rod Game",
+      `*JUEGO FISHIT*\n_El sistema de juego de pesca más completo_\n\n` +
+        `*PESCA*\n\`.fisht mancing\` _Empezar a pescar_\n\`.fisht view\` _Recoger captura_\n\`.fisht sell\` _Vender pescados_\n\`.fisht fishbook\` _Enciclopedia de peces_\n\`.fisht mutbook\` _Colección de mutaciones_\n\`.fisht top\` _Tabla de clasificación_\n\n` +
+        `*PERFIL*\n\`.fisht me\` _Tu perfil_\n\`.fisht stats\` _Estadísticas detalladas_\n\`.fisht daily\` _Recompensa diaria_\n\n` +
+        `*ISLAS Y CAÑAS*\n\`.fisht travel\` _Lista de islas_\n\`.fisht travel <isla>\` _Viajar a otra isla_\n\`.fisht shop\` _Tienda de cañas_\n\`.fisht buy <caña>\` _Comprar caña_\n\`.fisht equip <caña>\` _Equipar caña_\n\`.fisht rods\` _Colección de cañas_\n\`.fisht enchant <clave>\` _Encantar caña_\n\`.fisht enchants\` _Lista de encantamientos_\n\`.fisht rodup\` _Mejorar nivel de caña_\n\n` +
+        `*PRESTIGIO*\n\`.fisht prestige\` _Información de prestigio_\n\`.fisht tokens\` _Tienda de fichas (tokens)_\n\`.fisht upgrade\` _Mejorar estadísticas_\n\`.fisht gacha\` _Gacha con monedas_\n\`.fisht gacha ticket\` _Gacha usando tickets_\n\n` +
+        `*JACKPOT*\n\`.fisht jackpot\` _Lista de jackpots_\n\`.fisht jackpot <tier>\` _Jugar al jackpot_\n_¡El Jackpot te puede dar Premium, Socio, Energía, Límite o incluso ILIMITADO!_`,
+      "Juego Fishit",
+      "Juego de Cañas de Pescar",
     );
   }
-  if (sub === "mancing" || sub === "fish") {
+  if (sub === "mancing" || sub === "fish" || sub === "pescar") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     if (f.fishingPending && f.fishingPending.length > 0)
-      return m.reply(`_Masih ada tangkapan!_ \`.fisht view\` _dulu._`);
+      return m.reply(`_¡Aún tienes una captura pendiente!_ Usa \`.fisht view\` _primero._`);
     const now = Date.now();
     if (f.lastFishTime && now - f.lastFishTime < FC * 1000)
       return m.reply(
-        `_Tunggu *${Math.ceil((FC * 1000 - (now - f.lastFishTime)) / 1000)}* detik_`,
+        `_Por favor espera *${Math.ceil((FC * 1000 - (now - f.lastFishTime)) / 1000)}* segundos_`,
       );
     const rk = f.usedFishingRod || "basicrod";
     const rod = f.fishingRods[rk];
-    if (!rod) return m.reply(`_Rod aktif tidak ada!_ \`.fisht rods\``);
+    if (!rod) return m.reply(`_¡No tienes ninguna caña activa!_ Usa \`.fisht rods\``);
     const ik = f.currentIsland || "mousewood";
     const st = getUpgradedStats(f, rod);
     const eRod = {
@@ -184,8 +184,8 @@ async function handler(m, { sock }) {
     await send(
       sock,
       m,
-      `*_Memancing di ${islands[ik]?.name || ik}..._*\n_Rod: ${rod.name} | Luck: ${(st.luck * 100).toFixed(1)}%_`,
-      "Memancing...",
+      `*_Pescando en ${islands[ik]?.name || ik}..._*\n_Caña: ${rod.name} | Suerte: ${(st.luck * 100).toFixed(1)}%_`,
+      "Pescando...",
       islands[ik]?.name || "",
     );
     await new Promise((r) =>
@@ -194,24 +194,24 @@ async function handler(m, { sock }) {
         Math.min(Math.max(2000, 5000 - (rod.speed || 0) * 3000), 4000),
       ),
     );
-    let txt = `*HASIL MANCING!*\n\n`;
+    let txt = `*¡RESULTADO DE LA PESCA!*\n\n`;
     for (const c of catches) {
       txt += `${rc(c.rarity)} *${c.name}*\n   _${formatMoney(c.price)} | ${c.kg}kg_\n`;
       if (c.isMutated)
-        txt += `   _Mutasi: ${c.mutations.filter((x) => x !== "Normal").join(", ")}_\n`;
+        txt += `   _Mutación: ${c.mutations.filter((x) => x !== "Normal").join(", ")}_\n`;
     }
     txt += `\n*Total: ${formatMoney(tv)}*`;
-    if (f.streak >= 3) txt += `\n_Streak: ${f.streak}x_`;
-    txt += `\n\n\`.fisht view\` untuk mengambil!`;
+    if (f.streak >= 3) txt += `\n_Racha: ${f.streak}x_`;
+    txt += `\n\nUsa \`.fisht view\` para recoger la captura.`;
     db.markDirty("users");
-    return send(sock, m, txt, "Hasil Mancing!", formatMoney(tv));
+    return send(sock, m, txt, "¡Resultado!", formatMoney(tv));
   }
 
-  if (sub === "view") {
+  if (sub === "view" || sub === "recoger") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     if (!f.fishingPending || f.fishingPending.length === 0)
-      return m.reply(`_Tidak ada tangkapan._ \`.fisht mancing\` _dulu!_`);
+      return m.reply(`_No tienes capturas pendientes._ ¡Usa \`.fisht mancing\` _primero!_`);
     const catches = f.fishingPending;
     let tv = 0,
       te = 0,
@@ -240,20 +240,20 @@ async function handler(m, { sock }) {
     const rlu = addRodExp(f, f.usedFishingRod || "basicrod", te);
     const plu = addPlayerExp(f, te);
     f.fishingPending = [];
-    let txt = `*TANGKAPAN DIAMBIL!*\n\n+${formatMoney(tv)}\n+${te} EXP\n+${catches.length} ikan\n`;
-    if (nf.length > 0) txt += `\n*Ikan Baru:* ${nf.join(", ")}`;
-    if (nm.length > 0) txt += `\n*Mutasi Baru:* ${nm.join(", ")}`;
+    let txt = `*¡CAPTURA GUARDADA INVENTARIO!*\n\n+${formatMoney(tv)}\n+${te} EXP\n+${catches.length} peces\n`;
+    if (nf.length > 0) txt += `\n*Peces Nuevos:* ${nf.join(", ")}`;
+    if (nm.length > 0) txt += `\n*Mutaciones Nuevas:* ${nm.join(", ")}`;
     if (rlu) txt += `\n\n${rlu}`;
-    if (plu) txt += `\n*LEVEL UP! Level ${f.level}*`;
+    if (plu) txt += `\n*¡SUBISTE DE NIVEL! Nivel ${f.level}*`;
     db.markDirty("users");
-    return send(sock, m, txt, "Tangkapan Diambil!", `+${formatMoney(tv)}`);
+    return send(sock, m, txt, "¡Captura Recogida!", `+${formatMoney(tv)}`);
   }
 
-  if (sub === "sell") {
+  if (sub === "sell" || sub === "vender") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     if (!f.inventory || f.inventory.length === 0)
-      return m.reply(`_Inventory kosong!_ \`.fisht mancing\` _dulu._`);
+      return m.reply(`_¡Tu inventario está vacío!_ Ve a pescar con \`.fisht mancing\` _primero._`);
     let tv = 0;
     for (const fish of f.inventory) tv += fish.price || 0;
     const sb = UPGRADES.sell.effect(f.sellUpgrade || 0);
@@ -268,44 +268,44 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*IKAN TERJUAL!*\n\nJumlah: ${fc2}\nTotal: ${formatMoney(fv)}\nSaldo: ${formatMoney(f.money)}`,
-      "Ikan Terjual!",
+      `*¡PECES VENDIDOS!*\n\nCantidad: ${fc2}\nTotal Recibido: ${formatMoney(fv)}\nSaldo actual: ${formatMoney(f.money)}`,
+      "Peces Vendidos",
       formatMoney(fv),
     );
   }
 
-  if (sub === "me") {
+  if (sub === "me" || sub === "perfil") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const rod = f.fishingRods[f.usedFishingRod || "basicrod"];
     return send(
       sock,
       m,
-      `*PROFIL PEMANCING*\n\n*Level:* ${f.level} _(${f.exp}/${f.expToNextLevel} EXP)_\n*Uang:* ${formatMoney(f.money)}\n*Ikan:* ${f.fishCaught}\n*Rod:* ${rod ? rod.name : "Basic"} _(Lv.${rod ? rod.level : 1})_\n*Pulau:* ${islands[f.currentIsland] ? islands[f.currentIsland].name : f.currentIsland}\n*Streak:* ${f.streak || 0}\n*Prestige:* ${f.prestige || 0}\n*Tokens:* ${f.prestigeTokens || 0}\n*Tickets:* ${f.gachaTickets || 0}\n*FishBook:* ${f.fishFound ? f.fishFound.length : 0}\n*Mutasi:* ${f.mutationFound ? f.mutationFound.length : 0}\n*Upgrades:*\n  _Luck: Lv.${f.luckUpgrade || 0}_\n  _Speed: Lv.${f.speedUpgrade || 0}_\n  _Sell: Lv.${f.sellUpgrade || 0}_`,
-      "Profil",
-      `Level ${f.level}`,
+      `*PERFIL DE PESCADOR*\n\n*Nivel:* ${f.level} _(${f.exp}/${f.expToNextLevel} EXP)_\n*Dinero:* ${formatMoney(f.money)}\n*Peces atrapados:* ${f.fishCaught}\n*Caña:* ${rod ? rod.name : "Básica"} _(Nivel ${rod ? rod.level : 1})_\n*Isla actual:* ${islands[f.currentIsland] ? islands[f.currentIsland].name : f.currentIsland}\n*Racha:* ${f.streak || 0}\n*Prestigio:* ${f.prestige || 0}\n*Fichas (Tokens):* ${f.prestigeTokens || 0}\n*Tickets:* ${f.gachaTickets || 0}\n*Enciclopedia (FishBook):* ${f.fishFound ? f.fishFound.length : 0}\n*Mutaciones:* ${f.mutationFound ? f.mutationFound.length : 0}\n*Mejoras:*\n  _Suerte: Nivel ${f.luckUpgrade || 0}_\n  _Velocidad: Nivel ${f.speedUpgrade || 0}_\n  _Venta: Nivel ${f.sellUpgrade || 0}_`,
+      "Perfil",
+      `Nivel ${f.level}`,
     );
   }
 
-  if (sub === "stats") {
+  if (sub === "stats" || sub === "estadisticas") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const rod = f.fishingRods[f.usedFishingRod || "basicrod"];
     const st = getUpgradedStats(f, rod);
-    let txt = `*STATS DETAIL*\n\n*Rod: ${rod ? rod.name : "None"}*\n  _Lv.${rod ? rod.level : 1}/${rod ? rod.maxLevel : 5} | EXP ${rod ? rod.exp : 0}/${rod ? rod.expToNextLevel : 100}_\n  _Luck: ${(st.luck * 100).toFixed(1)}% | Speed: ${(st.speed * 100).toFixed(1)}%_\n  _Sell: +${(st.sellMultiplier * 100).toFixed(1)}% | Combo: ${rod ? rod.comboFish : 1}_\n`;
+    let txt = `*ESTADÍSTICAS DETALLADAS*\n\n*Caña: ${rod ? rod.name : "Ninguna"}*\n  _Nivel ${rod ? rod.level : 1}/${rod ? rod.maxLevel : 5} | EXP ${rod ? rod.exp : 0}/${rod ? rod.expToNextLevel : 100}_\n  _Suerte: ${(st.luck * 100).toFixed(1)}% | Velocidad: ${(st.speed * 100).toFixed(1)}%_\n  _Multiplicador Venta: +${(st.sellMultiplier * 100).toFixed(1)}% | Combo: ${rod ? rod.comboFish : 1}_\n`;
     if (rod && rod.enchant) {
       const e = rodEnchants[rod.enchant];
-      txt += `  _Enchant: ${e ? e.name : rod.enchant} (${e ? e.rarity : "?"})_\n`;
+      txt += `  _Encantamiento: ${e ? e.name : rod.enchant} (${e ? e.rarity : "?"})_\n`;
     }
-    txt += `\n*Upgrades*\n  _Luck: Lv.${f.luckUpgrade || 0} (+${(UPGRADES.luck.effect(f.luckUpgrade || 0) * 100).toFixed(1)}%)_\n  _Speed: Lv.${f.speedUpgrade || 0} (+${(UPGRADES.speed.effect(f.speedUpgrade || 0) * 100).toFixed(1)}%)_\n  _Sell: Lv.${f.sellUpgrade || 0} (+${(UPGRADES.sell.effect(f.sellUpgrade || 0) * 100).toFixed(1)}%)_`;
-    return send(sock, m, txt, "Stats Detail", rod ? rod.name : "");
+    txt += `\n*Mejoras del Jugador*\n  _Suerte: Nivel ${f.luckUpgrade || 0} (+${(UPGRADES.luck.effect(f.luckUpgrade || 0) * 100).toFixed(1)}%)_\n  _Velocidad: Nivel ${f.speedUpgrade || 0} (+${(UPGRADES.speed.effect(f.speedUpgrade || 0) * 100).toFixed(1)}%)_\n  _Venta: Nivel ${f.sellUpgrade || 0} (+${(UPGRADES.sell.effect(f.sellUpgrade || 0) * 100).toFixed(1)}%)_`;
+    return send(sock, m, txt, "Estadísticas Detalladas", rod ? rod.name : "");
   }
   if (sub === "fishbook") {
     const user = getOrCreateFischUser(db, m.sender);
     const found = user.fisch.fishFound || [];
     if (found.length === 0)
-      return m.reply(`_Fish Book kosong!_ \`.fisht mancing\` _dulu_`);
-    let txt = `*FISH BOOK* _(${found.length} spesies)_\n\n`;
+      return m.reply(`_¡Tu Fish Book está vacío!_ Ve a pescar con \`.fisht mancing\` _primero._`);
+    let txt = `*FISH BOOK* _(${found.length} especies)_\n\n`;
     for (const [k, isle] of Object.entries(islands)) {
       const fl = isle.listFish.filter((f) => found.includes(f.name));
       if (fl.length > 0) {
@@ -314,52 +314,52 @@ async function handler(m, { sock }) {
         txt += `\n`;
       }
     }
-    return send(sock, m, txt.trim(), "Fish Book", `${found.length} spesies`);
+    return send(sock, m, txt.trim(), "Fish Book", `${found.length} especies`);
   }
 
   if (sub === "mutbook") {
     const user = getOrCreateFischUser(db, m.sender);
     const found = user.fisch.mutationFound || [];
-    if (found.length === 0) return m.reply(`_Mutation Book kosong!_`);
+    if (found.length === 0) return m.reply(`_¡Tu libro de mutaciones está vacío!_`);
     let txt = `*MUTATION BOOK* _(${found.length})_\n\n`;
     for (const mut of found) {
       const d = mutations[mut];
       if (d) txt += `*${mut}* _x${d.multiplier}_\n`;
     }
-    return send(sock, m, txt.trim(), "Mutation Book", `${found.length} mutasi`);
+    return send(sock, m, txt.trim(), "Mutation Book", `${found.length} mutaciones`);
   }
 
-  if (sub === "travel") {
+  if (sub === "travel" || sub === "viajar") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     if (!sa[0]) {
-      let txt = `*DAFTAR PULAU*\n\n`;
+      let txt = `*LISTA DE ISLAS*\n\n`;
       for (const [k, isle] of Object.entries(islands)) {
         const req = travelRequirements[k];
         const ok = (f.travelFound || []).includes(k);
-        txt += `${ok ? "[OK]" : "[LOCK]"} *${isle.name}*${f.currentIsland === k ? " _< Now_" : ""}\n`;
+        txt += `${ok ? "[DESBLOQUEADA]" : "[BLOQUEADA]"} *${isle.name}*${f.currentIsland === k ? " _< Estás aquí_" : ""}\n`;
         txt += req
-          ? `   _${formatMoney(req.money)} | ${req.fish} fish_\n`
-          : `   _Free_\n`;
+          ? `    _${formatMoney(req.money)} | ${req.fish} peces atrapados_\n`
+          : `    _Gratis_\n`;
       }
       return send(
         sock,
         m,
-        txt + `\n\`.fisht travel <pulau>\``,
-        "Daftar Pulau",
+        txt + `\n\`.fisht travel <nombre_isla>\``,
+        "Lista de Islas",
         islands[f.currentIsland || "mousewood"]?.name || "",
       );
     }
     const tk = sa[0].toLowerCase();
-    if (!islands[tk]) return m.reply(`_Pulau tidak ada!_ \`.fisht travel\``);
+    if (!islands[tk]) return m.reply(`_¡Esa isla no existe!_ Revisa la lista con \`.fisht travel\``);
     if (f.currentIsland === tk)
-      return m.reply(`_Sudah di ${islands[tk].name}!_`);
+      return m.reply(`_¡Ya te encuentras en ${islands[tk].name}!_`);
     const req = travelRequirements[tk];
     if (req) {
       if ((f.money || 0) < req.money)
-        return m.reply(`_Uang kurang! Butuh ${formatMoney(req.money)}_`);
+        return m.reply(`_¡Dinero insuficiente! Necesitas ${formatMoney(req.money)}_`);
       if ((f.fishCaught || 0) < req.fish)
-        return m.reply(`_Ikan kurang! Butuh ${req.fish}_`);
+        return m.reply(`_¡No has pescado lo suficiente! Necesitas ${req.fish} peces atrapados en total._`);
       f.money -= req.money;
     }
     if (!(f.travelFound || []).includes(tk))
@@ -369,40 +369,40 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*PINDAH PULAU!*\n\nSekarang di *${islands[tk].name}*\n${islands[tk].listFish.length} jenis ikan tersedia`,
-      "Travel!",
+      `*¡MUDANZA DE ISLA!*\n\nAhora estás en *${islands[tk].name}*\n${islands[tk].listFish.length} tipos de peces disponibles para pescar.`,
+      "¡Buen viaje!",
       islands[tk].name,
     );
   }
 
-  if (sub === "shop") {
-    let txt = `*TOKO FISHING ROD*\n\n`;
+  if (sub === "shop" || sub === "tienda") {
+    let txt = `*TIENDA DE CAÑAS DE PESCAR*\n\n`;
     for (const [k, rod] of Object.entries(fishingRod)) {
       if (rod.price > 0)
-        txt += `*${rod.name}*\n   _${formatMoney(rod.price)}_\n   _Luck +${(rod.luck * 100).toFixed(0)}% | Speed +${(rod.speed * 100).toFixed(0)}% | Combo: ${rod.comboFish}_\n   _${rod.description}_\n\n`;
+        txt += `*${rod.name}*\n    _${formatMoney(rod.price)}_\n    _Suerte +${(rod.luck * 100).toFixed(0)}% | Velocidad +${(rod.speed * 100).toFixed(0)}% | Combo: ${rod.comboFish}_\n    _${rod.description}_\n\n`;
     }
     return send(
       sock,
       m,
-      txt + `\`.fisht buy <rod>\``,
-      "Toko Rod",
-      "Pilih rod terbaik",
+      txt + `\`.fisht buy <caña>\``,
+      "Tienda de Cañas",
+      "Elige la mejor caña",
     );
   }
 
-  if (sub === "buy") {
+  if (sub === "buy" || sub === "comprar") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const rk = sa[0] ? sa[0].toLowerCase() : "";
-    if (!rk) return m.reply(`_Tentukan rod!_ \`.fisht shop\``);
-    if (!fishingRod[rk]) return m.reply(`_Rod tidak ada!_ \`.fisht shop\``);
+    if (!rk) return m.reply(`_¡Especifica qué caña quieres comprar!_ Revisa \`.fisht shop\``);
+    if (!fishingRod[rk]) return m.reply(`_¡Esa caña no existe!_ Revisa la lista en \`.fisht shop\``);
     if (f.fishingRods[rk])
-      return m.reply(`_Sudah punya ${fishingRod[rk].name}!_`);
+      return m.reply(`_¡Ya posees la caña ${fishingRod[rk].name}!_`);
     if (fishingRod[rk].price === 0)
-      return m.reply(`_Rod ini dari Token/Prestige!_`);
+      return m.reply(`_¡Esta caña solo se puede obtener con Fichas de Prestigio!_`);
     if ((f.money || 0) < fishingRod[rk].price)
       return m.reply(
-        `_Uang kurang! Butuh ${formatMoney(fishingRod[rk].price)}_`,
+        `_¡Dinero insuficiente! Necesitas ${formatMoney(fishingRod[rk].price)}_`,
       );
     f.money -= fishingRod[rk].price;
     f.fishingRods[rk] = { ...fishingRod[rk] };
@@ -410,90 +410,90 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*ROD DIBELI!*\n\n*${fishingRod[rk].name}*\n_Ketik_ \`.fisht equip ${rk}\` _untuk memasang_`,
-      "Rod Baru!",
+      `*¡CAÑA COMPRADA!*\n\n*${fishingRod[rk].name}*\n_Escribe_ \`.fisht equip ${rk}\` _puedes activarla ahora._`,
+      "¡Nueva Caña!",
       fishingRod[rk].name,
     );
   }
 
-  if (sub === "equip") {
+  if (sub === "equip" || sub === "equipar") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const rk = sa[0] ? sa[0].toLowerCase() : "";
-    if (!rk) return m.reply(`_Tentukan rod!_ \`.fisht rods\``);
+    if (!rk) return m.reply(`_¡Especifica qué caña equipar!_ Revisa tus opciones con \`.fisht rods\``);
     if (!f.fishingRods[rk])
-      return m.reply(`_Tidak punya rod ini!_ \`.fisht rods\``);
+      return m.reply(`_¡No eres dueño de esta caña!_ Revisa tu colección con \`.fisht rods\``);
     f.usedFishingRod = rk;
     db.markDirty("users");
     return send(
       sock,
       m,
-      `*ROD DIPASANG!*\n\n*${f.fishingRods[rk].name}* _sekarang aktif_`,
-      "Equip Rod!",
+      `*¡CAÑA EQUIPADA!*\n\n*${f.fishingRods[rk].name}* _ahora está activa._`,
+      "¡Equipado!",
       f.fishingRods[rk].name,
     );
   }
 
-  if (sub === "rods") {
+  if (sub === "rods" || sub === "cañas") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const rods = f.fishingRods || {};
-    if (Object.keys(rods).length === 0) return m.reply(`_Tidak punya rod!_`);
-    let txt = `*KOLEKSI ROD*\n\n`;
+    if (Object.keys(rods).length === 0) return m.reply(`_¡No tienes cañas!_`);
+    let txt = `*COLECCIÓN DE CAÑAS*\n\n`;
     for (const [k, rod] of Object.entries(rods)) {
-      txt += `*${rod.name}*${f.usedFishingRod === k ? " _AKTIF_" : ""}\n  _Lv.${rod.level || 1}/${rod.maxLevel} | Luck ${(rod.luck * 100).toFixed(0)}% | Speed ${(rod.speed * 100).toFixed(0)}%_\n`;
+      txt += `*${rod.name}*${f.usedFishingRod === k ? " _[ACTIVA]_" : ""}\n  _Nivel ${rod.level || 1}/${rod.maxLevel} | Suerte ${(rod.luck * 100).toFixed(0)}% | Velocidad ${(rod.speed * 100).toFixed(0)}%_\n`;
       if (rod.enchant)
-        txt += `  _Enchant: ${rodEnchants[rod.enchant] ? rodEnchants[rod.enchant].name : rod.enchant}_\n`;
+        txt += `  _Encanto: ${rodEnchants[rod.enchant] ? rodEnchants[rod.enchant].name : rod.enchant}_\n`;
     }
     return send(
       sock,
       m,
-      txt + `\n\`.fisht equip <rod>\``,
-      "Koleksi Rod",
-      `${Object.keys(rods).length} rod`,
+      txt + `\n\`.fisht equip <caña>\``,
+      "Colección de Cañas",
+      `${Object.keys(rods).length} cañas`,
     );
   }
-  if (sub === "enchant") {
+  if (sub === "enchant" || sub === "encantar") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const rk = f.usedFishingRod || "basicrod";
     const rod = f.fishingRods[rk];
-    if (!rod) return m.reply(`_Rod aktif tidak ada!_`);
+    if (!rod) return m.reply(`_¡No tienes una caña activa para encantar!_`);
     const ek = sa[0] ? sa[0].toLowerCase() : "";
     if (!ek) {
       if (rod.enchant) {
         const e = rodEnchants[rod.enchant];
         return m.reply(
-          `_Enchant saat ini: *${e ? e.name : rod.enchant}* (${e ? e.rarity : "?"})_\n\`.fisht enchant <key>\` untuk ganti`,
+          `_Encantamiento actual: *${e ? e.name : rod.enchant}* (${e ? e.rarity : "?"})_\nEscribe \`.fisht enchant <clave>\` para cambiarlo.`,
         );
       }
-      return m.reply(`_Tentukan enchant!_ \`.fisht enchants\``);
+      return m.reply(`_¡Especifica un encantamiento!_ Revisa la lista con \`.fisht enchants\``);
     }
     if (!rodEnchants[ek])
-      return m.reply(`_Enchant tidak ada!_ \`.fisht enchants\``);
+      return m.reply(`_¡Ese encantamiento no existe!_ Revisa la lista con \`.fisht enchants\``);
     const ench = rodEnchants[ek];
     const cost = encCost(ench.rarity);
     if ((f.money || 0) < cost)
-      return m.reply(`_Uang kurang! Butuh ${formatMoney(cost)}_`);
+      return m.reply(`_¡Dinero insuficiente! Necesitas ${formatMoney(cost)}_`);
     f.money -= cost;
     rod.enchant = ek;
     db.markDirty("users");
     return send(
       sock,
       m,
-      `*ENCHANT DIPASANG!*\n\n*${ench.name}* _(${ench.rarity})_ ke *${rod.name}*\n_${ench.desc}_\n_Biaya: ${formatMoney(cost)}_`,
-      "Enchant!",
+      `*¡ENCANTAMIENTO APLICADO!*\n\n*${ench.name}* _(${ench.rarity})_ a tu caña *${rod.name}*\n_${ench.desc}_\n_Costo total: ${formatMoney(cost)}_`,
+      "¡Encantado!",
       ench.name,
     );
   }
 
-  if (sub === "enchants") {
+  if (sub === "enchants" || sub === "encantamientos") {
     const byR = {};
     for (const [k, e] of Object.entries(rodEnchants)) {
       if (!byR[e.rarity]) byR[e.rarity] = [];
       byR[e.rarity].push({ key: k, name: e.name, desc: e.desc });
     }
-    let txt = `*DAFTAR ENCHANTMENT*\n\n`;
+    let txt = `*LISTA DE ENCANTAMIENTOS*\n\n`;
     for (const r of [
       "common",
       "rare",
@@ -505,29 +505,29 @@ async function handler(m, { sock }) {
     ]) {
       const list = byR[r];
       if (!list) continue;
-      txt += `${rc(r)} *${r.toUpperCase()}* _${formatMoney(encCost(r))}_\n`;
+      txt += `${rc(r)} *${r.toUpperCase()}* _Precio por aplicar: ${formatMoney(encCost(r))}_\n`;
       for (const e of list) txt += `  \`${e.key}\`: ${e.name} _${e.desc}_\n`;
       txt += `\n`;
     }
     return send(
       sock,
       m,
-      txt.trim() + `\n\`.fisht enchant <key>\``,
-      "Enchantments",
-      "Pilih enchant",
+      txt.trim() + `\n\`.fisht enchant <clave>\``,
+      "Encantamientos",
+      "Elige un encantamiento",
     );
   }
 
-  if (sub === "rodup") {
+  if (sub === "rodup" || sub === "mejorarcaña") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const rk = f.usedFishingRod || "basicrod";
     const rod = f.fishingRods[rk];
-    if (!rod) return m.reply(`_Rod aktif tidak ada!_`);
-    if (rod.level >= rod.maxLevel) return m.reply(`_Rod sudah max level!_`);
+    if (!rod) return m.reply(`_¡No tienes una caña activa!_`);
+    if (rod.level >= rod.maxLevel) return m.reply(`_¡Tu caña ya alcanzó el nivel máximo!_`);
     const cost = Math.floor(rod.price * 0.1 * rod.level) || 10000 * rod.level;
     if ((f.money || 0) < cost)
-      return m.reply(`_Uang kurang! Butuh ${formatMoney(cost)}_`);
+      return m.reply(`_¡Dinero insuficiente! Necesitas ${formatMoney(cost)}_`);
     f.money -= cost;
     const res = addRodExp(f, rk, Math.floor(rod.expToNextLevel * 0.5));
     db.markDirty("users");
@@ -535,14 +535,14 @@ async function handler(m, { sock }) {
       sock,
       m,
       res
-        ? `*ROD UPGRADED!*\n\n${res}\n_Biaya: ${formatMoney(cost)}_`
-        : `*ROD EXP UP!*\n\n+${Math.floor(rod.expToNextLevel * 0.5)} EXP\n_Biaya: ${formatMoney(cost)}_`,
-      "Rod Upgrade!",
+        ? `*¡CAÑA MEJORADA!*\n\n${res}\n_Costo: ${formatMoney(cost)}_`
+        : `*¡EXP DE CAÑA AUMENTADA!*\n\n+${Math.floor(rod.expToNextLevel * 0.5)} EXP\n_Costo: ${formatMoney(cost)}_`,
+      "¡Mejora de Caña!",
       rod.name,
     );
   }
 
-  if (sub === "daily") {
+  if (sub === "daily" || sub === "diario") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const now = new Date();
@@ -550,7 +550,7 @@ async function handler(m, { sock }) {
       const diff = now.getTime() - new Date(f.lastDaily).getTime();
       if (diff < 86400000)
         return m.reply(
-          `_Daily sudah diambil! Tunggu *${Math.ceil((86400000 - diff) / 3600000)}* jam._`,
+          `_¡Ya reclamaste tu recompensa diaria! Vuelve en *${Math.ceil((86400000 - diff) / 3600000)}* horas._`,
         );
     }
     const ld = f.lastDaily ? new Date(f.lastDaily) : null;
@@ -569,9 +569,9 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*DAILY REWARD!*\n\n*Streak:* ${f.dailyStreak} hari\n+${formatMoney(rw.money)}\n+${rw.tickets} Tiket Gacha\n*Saldo:* ${formatMoney(f.money)}`,
-      "Daily Reward!",
-      `Streak ${f.dailyStreak}`,
+      `*¡RECOMPENSA DIARIA!*\n\n*Racha:* ${f.dailyStreak} días seguidos\n+${formatMoney(rw.money)}\n+${rw.tickets} Ticket(s) de Gacha\n*Saldo:* ${formatMoney(f.money)}`,
+      "Recompensa Diaria",
+      `Racha de ${f.dailyStreak} días`,
     );
   }
 
@@ -581,37 +581,37 @@ async function handler(m, { sock }) {
     const useT = sa[0] && sa[0].toLowerCase() === "ticket";
     if (useT) {
       if ((f.gachaTickets || 0) < 1)
-        return m.reply(`_Tiket habis! Punya ${f.gachaTickets || 0}_`);
+        return m.reply(`_¡Te quedaste sin tickets! Tienes: ${f.gachaTickets || 0}_`);
       f.gachaTickets -= 1;
     } else {
       if ((f.money || 0) < GACHA_COST_COINS)
-        return m.reply(`_Uang kurang! Butuh ${formatMoney(GACHA_COST_COINS)}_`);
+        return m.reply(`_¡Dinero insuficiente! Necesitas ${formatMoney(GACHA_COST_COINS)}_`);
       f.money -= GACHA_COST_COINS;
     }
     const result = doGachaPull(f);
     const item = result.item;
-    let txt = `*GACHA RESULT!*\n\n`;
+    let txt = `*¡RESULTADO DEL GACHA!*\n\n`;
     switch (item.type) {
       case "rod":
         if (fishingRod[item.value] && !f.fishingRods[item.value]) {
           f.fishingRods[item.value] = { ...fishingRod[item.value] };
-          txt += `DAPAT ROD: *${item.label}*\n`;
+          txt += `¡GANASTE UNA CAÑA!: *${item.label}*\n`;
         } else if (f.fishingRods[item.value]) {
           const ref = Math.floor(
             (fishingRod[item.value] ? fishingRod[item.value].price : 0) * 0.3 ||
               100000,
           );
           f.money = (f.money || 0) + ref;
-          txt += `Duplikat: *${item.label}* _+${formatMoney(ref)}_\n`;
+          txt += `Duplicada: *${item.label}* _(Reembolso: +${formatMoney(ref)})_\n`;
         }
         break;
       case "tickets":
         f.gachaTickets = (f.gachaTickets || 0) + item.value;
-        txt += `+${item.value} Tiket\n`;
+        txt += `+${item.value} Ticket(s)\n`;
         break;
       case "tokens":
         f.prestigeTokens = (f.prestigeTokens || 0) + item.value;
-        txt += `+${item.value} Tokens\n`;
+        txt += `+${item.value} Ficha(s) (Tokens)\n`;
         break;
       case "coins":
         f.money = (f.money || 0) + item.value;
@@ -627,61 +627,61 @@ async function handler(m, { sock }) {
             const rk2 = f.usedFishingRod || "basicrod";
             if (f.fishingRods[rk2]) {
               f.fishingRods[rk2].enchant = ek2;
-              txt += `Enchant: *${ed.name}* _(${item.value})_ ke rod!\n`;
+              txt += `Encantamiento: *${ed.name}* _(${item.value})_ transferido a tu caña activa.\n`;
             }
           }
         }
         break;
       case "xp_boost":
         f.exp = (f.exp || 0) + Math.floor(f.expToNextLevel * 0.5);
-        txt += `XP Boost x${item.value}!\n`;
+        txt += `¡Potenciador de XP x${item.value}!\n`;
         break;
       default:
         txt += `${item.label}\n`;
     }
-    if (result.isSSR) txt += `\n*SSR PULL!*`;
-    if (result.pity) txt += `\n*Pity Activated!*`;
-    txt += `\n\n_Pity: ${f.gachaPity}/${GACHA_PITY_LIMIT}_\n_Saldo: ${formatMoney(f.money)} | Tiket: ${f.gachaTickets}_`;
+    if (result.isSSR) txt += `\n*¡TIRO SSR DE LA SUERTE!*`;
+    if (result.pity) txt += `\n*¡Sistema de Compasión (Pity) Activado!*`;
+    txt += `\n\n_Contador Pity: ${f.gachaPity}/${GACHA_PITY_LIMIT}_\n_Tu Dinero: ${formatMoney(f.money)} | Tickets: ${f.gachaTickets}_`;
     db.markDirty("users");
-    return send(sock, m, txt, "Gacha!", result.isSSR ? "SSR PULL!" : "Result");
+    return send(sock, m, txt, "Gacha", result.isSSR ? "¡TIRO SSR EXCLUSIVO!" : "Resultado");
   }
-  if (sub === "upgrade") {
+  if (sub === "upgrade" || sub === "mejorar") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const type = sa[0] ? sa[0].toLowerCase() : "";
     if (!type || !UPGRADES[type]) {
-      let txt = `*UPGRADE SHOP*\n\n`;
+      let txt = `*TIENDA DE MEJORAS PERMANENTES*\n\n`;
       for (const [k, u] of Object.entries(UPGRADES)) {
         const lv = f[k + "Upgrade"] || 0;
-        txt += `*${u.name}* _(Lv.${lv}/${u.maxLevel})_\n  _${u.desc}_\n  ${lv >= u.maxLevel ? "_MAXED_" : `_Next: ${formatMoney(u.getCost(lv))}_`}\n\n`;
+        txt += `*${u.name}* _(Nivel ${lv}/${u.maxLevel})_\n  _${u.desc}_\n  ${lv >= u.maxLevel ? "_NIVEL MÁXIMO_" : `_Siguiente mejora: ${formatMoney(u.getCost(lv))}_`}\n\n`;
       }
       return send(
         sock,
         m,
         txt + `\`.fisht upgrade <luck/speed/sell>\``,
-        "Upgrade Shop",
-        "Tingkatkan stats",
+        "Tienda de Mejoras",
+        "Aumenta tus estadísticas",
       );
     }
     const upg = UPGRADES[type];
     const lv = f[type + "Upgrade"] || 0;
-    if (lv >= upg.maxLevel) return m.reply(`_Sudah max!_`);
+    if (lv >= upg.maxLevel) return m.reply(`_¡Ya está al nivel máximo!_`);
     const cost = upg.getCost(lv);
     if ((f.money || 0) < cost)
-      return m.reply(`_Uang kurang! Butuh ${formatMoney(cost)}_`);
+      return m.reply(`_¡Dinero insuficiente! Necesitas ${formatMoney(cost)}_`);
     f.money -= cost;
     f[type + "Upgrade"] = lv + 1;
     db.markDirty("users");
     return send(
       sock,
       m,
-      `*${upg.name} LEVEL UP!*\n\n_Level ${lv + 1}_\n_Biaya: ${formatMoney(cost)}_\n_${upg.desc}_`,
-      "Upgrade!",
-      `${upg.name} Lv.${lv + 1}`,
+      `*¡MEJORA DE ${upg.name.toUpperCase()} ADQUIRIDA!*\n\n_Nivel actual: ${lv + 1}_\n_Costo: ${formatMoney(cost)}_\n_${upg.desc}_`,
+      "¡Estadísticas Mejoradas!",
+      `${upg.name} Nivel ${lv + 1}`,
     );
   }
 
-  if (sub === "prestige") {
+  if (sub === "prestige" || sub === "prestigio") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     const cp = f.prestige || 0;
@@ -694,11 +694,11 @@ async function handler(m, { sock }) {
         { fish: 25000, money: 1e22 },
       ];
       const req = reqs[cp];
-      if (!req) return m.reply(`_Sudah max prestige!_`);
+      if (!req) return m.reply(`_¡Ya alcanzaste el nivel de prestigio máximo disponible!_`);
       if ((f.fishCaught || 0) < req.fish)
-        return m.reply(`_Ikan kurang! Butuh ${req.fish}_`);
+        return m.reply(`_¡Te faltan peces! Requiere un total de ${req.fish} peces atrapados._`);
       if ((f.money || 0) < req.money)
-        return m.reply(`_Uang kurang! Butuh ${formatMoney(req.money)}_`);
+        return m.reply(`_¡Dinero insuficiente! Requiere un total de ${formatMoney(req.money)}_`);
       f.prestige = cp + 1;
       f.money = Math.floor(f.money * 0.1);
       f.fishCaught = 0;
@@ -706,12 +706,12 @@ async function handler(m, { sock }) {
       f.prestigeTokens =
         (f.prestigeTokens || 0) + [50, 150, 500, 1000, 5000][cp];
       const titles = [
-        "Pemancing Baru",
-        "Veteran",
-        "Master Angler",
-        "Legend",
-        "Transcendent",
-        "God of Fishing",
+        "Pescador Novato",
+        "Veterano de las Aguas",
+        "Maestro Pescador",
+        "Leyenda Viviente",
+        "Trascendental",
+        "Dios de la Pesca",
       ];
       if (cp === 0 && !f.fishingRods.prestigerod)
         f.fishingRods.prestigerod = { ...fishingRod.prestigerod };
@@ -721,50 +721,50 @@ async function handler(m, { sock }) {
       return send(
         sock,
         m,
-        `*PRESTIGE UP!*\n\n*Title:* ${titles[f.prestige]}\n*Tokens:* ${f.prestigeTokens}\n\n_Uang -90%, fish count reset_`,
-        "PRESTIGE!",
+        `*¡AVANCE DE PRESTIGIO!*\n\n*Título obtenido:* ${titles[f.prestige]}\n*Fichas (Tokens) ganadas:* ${f.prestigeTokens}\n\n_Nota: Se dedujo el 90% de tu dinero y se reinició el contador de peces._`,
+        "¡PRESTIGIO!",
         titles[f.prestige],
       );
     }
-    let txt = `*PRESTIGE SYSTEM*\n\n*Prestige:* ${cp}\n*Tokens:* ${f.prestigeTokens || 0}\n\n`;
+    let txt = `*SISTEMA DE PRESTIGIO*\n\n*Tu Prestigio:* ${cp}\n*Fichas (Tokens):* ${f.prestigeTokens || 0}\n\n`;
     const allReqs = [
-      { lv: 1, fish: 500, money: 1e10, rw: "Prestige Rod + 50 tokens" },
-      { lv: 2, fish: 1500, money: 1e12, rw: "Luck +20% + 150 tokens" },
-      { lv: 3, fish: 4000, money: 1e14, rw: "Cosmic Rod + 500 tokens" },
-      { lv: 4, fish: 10000, money: 1e19, rw: "2x EXP + 1000 tokens" },
-      { lv: 5, fish: 25000, money: 1e22, rw: "Eternity Rod + 5000 tokens" },
+      { lv: 1, fish: 500, money: 1e10, rw: "Caña Prestige Rod + 50 tokens" },
+      { lv: 2, fish: 1500, money: 1e12, rw: "Bono Suerte +20% + 150 tokens" },
+      { lv: 3, fish: 4000, money: 1e14, rw: "Caña Cósmica Cosmic Rod + 500 tokens" },
+      { lv: 4, fish: 10000, money: 1e19, rw: "Doble de Experiencia (2x EXP) + 1000 tokens" },
+      { lv: 5, fish: 25000, money: 1e22, rw: "Caña Eterna Eternity Rod + 5000 tokens" },
     ];
     for (const r of allReqs)
-      txt += `${cp >= r.lv ? "[OK]" : "[LOCK]"} *P${r.lv}*: _${r.fish} fish | ${formatMoney(r.money)}_\n  _${r.rw}_\n\n`;
+      txt += `${cp >= r.lv ? "[COMPLETADO]" : "[BLOQUEADO]"} *P${r.lv}*: _${r.fish} peces | ${formatMoney(r.money)}_\n  _Premio: ${r.rw}_\n\n`;
     return send(
       sock,
       m,
-      txt + `\`.fisht prestige confirm\` _(hati-hati!)_`,
-      "Prestige",
-      `P${cp}`,
+      txt + `\`.fisht prestige confirm\` _(¡Atención! Esta acción no se puede deshacer)_`,
+      "Prestigio",
+      `Rango P${cp}`,
     );
   }
 
-  if (sub === "tokens") {
+  if (sub === "tokens" || sub === "fichas") {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     if (!sa[0]) {
-      let txt = `*TOKEN STORE*\n\n*Tokens:* ${f.prestigeTokens || 0}\n\n`;
+      let txt = `*TIENDA DE TOKENS DE PRESTIGIO*\n\n*Tus Fichas:* ${f.prestigeTokens || 0}\n\n`;
       for (const item of TOKEN_SHOP)
-        txt += `*${item.name}* _${item.cost} tokens_\n`;
+        txt += `*${item.name}* _Costo: ${item.cost} fichas_\n`;
       return send(
         sock,
         m,
-        txt + `\n\`.fisht tokens <id>\``,
-        "Token Store",
-        `${f.prestigeTokens || 0} tokens`,
+        txt + `\n\`.fisht tokens <id_item>\``,
+        "Tienda de Fichas",
+        `${f.prestigeTokens || 0} fichas`,
       );
     }
     const iid = sa[0].toLowerCase();
     const item = TOKEN_SHOP.find((i) => i.id === iid);
-    if (!item) return m.reply(`_Item tidak ada!_ \`.fisht tokens\``);
+    if (!item) return m.reply(`_¡Ese artículo no existe en la tienda!_ Revisa las opciones con \`.fisht tokens\``);
     if ((f.prestigeTokens || 0) < item.cost)
-      return m.reply(`_Tokens kurang! Butuh ${item.cost}_`);
+      return m.reply(`_¡Fichas insuficientes! Necesitas un total de ${item.cost}_`);
     f.prestigeTokens -= item.cost;
     switch (item.type) {
       case "rod":
@@ -772,7 +772,7 @@ async function handler(m, { sock }) {
           f.fishingRods[item.value] = { ...fishingRod[item.value] };
         } else {
           f.prestigeTokens += item.cost;
-          return m.reply(`_Sudah punya rod ini!_`);
+          return m.reply(`_¡Ya eres dueño de esta caña de pescar!_`);
         }
         break;
       case "tickets":
@@ -786,8 +786,8 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*ITEM DIBELI!*\n\n*${item.name}* _seharga ${item.cost} tokens_`,
-      "Token Store!",
+      `*¡COMPRA COMPLETADA!*\n\n*${item.name}* _adquirido por ${item.cost} fichas_`,
+      "Canje de Fichas",
       item.name,
     );
   }
@@ -796,48 +796,48 @@ async function handler(m, { sock }) {
     const user = getOrCreateFischUser(db, m.sender);
     const f = user.fisch;
     if (!sa[0]) {
-      let txt = `*JACKPOT SYSTEM*\n\n_Sistem jackpot dengan hadiah besar!_\n_Bisa dapat _Premium_, _Partner_, _Energi_, _Limit_, bahkan _UNLIMITED_!_\n\n`;
+      let txt = `*SISTEMA DE JACKPOT (PREMIO MAYOR)*\n\n_¡Un sistema arriesgado con recompensas colosales!_\n_Puedes ganar estatus Premium, Partner, Energía, Límites extendidos o incluso beneficios ILIMITADOS en el bot_\n\n`;
       for (const pool of JACKPOT_POOLS) {
-        txt += `*${pool.name}*\n  _Biaya: ${formatMoney(pool.cost)}_\n  _Rate: ${pool.weight}%_\n  _Rewards:_\n`;
+        txt += `*${pool.name}*\n  _Precio por tiro: ${formatMoney(pool.cost)}_\n  _Probabilidad base: ${pool.weight}%_\n  _Recompensas posibles:_\n`;
         for (const rw of pool.rewards) {
           const label =
             {
-              coins: "Koin",
-              energi: "Energi",
-              limit: "Limit",
-              tickets: "Gacha Tickets",
-              tokens: "Prestige Tokens",
-              exp_boost: "EXP Boost",
-              premium_7d: "Premium 7 Hari",
-              premium_30d: "Premium 30 Hari",
-              partner_7d: "Partner 7 Hari",
-              partner_30d: "Partner 30 Hari",
-              unlimited_energi: "UNLIMITED Energi",
-              unlimited_limit: "UNLIMITED Limit",
+              coins: "Monedas",
+              energi: "Energía",
+              limit: "Límite",
+              tickets: "Tickets de Gacha",
+              tokens: "Fichas de Prestigio",
+              exp_boost: "Potenciador EXP",
+              premium_7d: "Premium 7 Días",
+              premium_30d: "Premium 30 Días",
+              partner_7d: "Socio (Partner) 7 Días",
+              partner_30d: "Socio (Partner) 30 Días",
+              unlimited_energi: "Energía ILIMITADA",
+              unlimited_limit: "Límite ILIMITADO",
             }[rw.type] || rw.type;
-          txt += `    _${label}: ${rw.min === rw.max ? rw.min : `${rw.min}-${rw.max}`} (${rw.weight}%)_\n`;
+          txt += `     _${label}: ${rw.min === rw.max ? rw.min : `${rw.min}-${rw.max}`} (${rw.weight}%)_\n`;
         }
         txt += `\n`;
       }
       return send(
         sock,
         m,
-        txt + `\`.fisht jackpot <mini/mega/ultra/legend>\``,
-        "Jackpot!",
-        "Hadiah Besar",
+        txt + `\n\`.fisht jackpot <mini/mega/ultra/legend>\``,
+        "Jackpot",
+        "Grandes Premios",
       );
     }
     const poolId = sa[0].toLowerCase();
     const pool = JACKPOT_POOLS.find((p) => p.id === poolId);
-    if (!pool) return m.reply(`_Tier tidak ada!_ \`.fisht jackpot\``);
+    if (!pool) return m.reply(`_¡Ese nivel de pozo no existe!_ Elige de la lista con \`.fisht jackpot\``);
     if ((f.money || 0) < pool.cost)
-      return m.reply(`_Uang kurang! Butuh ${formatMoney(pool.cost)}_`);
+      return m.reply(`_¡Dinero insuficiente! Necesitas ${formatMoney(pool.cost)}_`);
     f.money -= pool.cost;
     const result = doJackpotPull(f, poolId);
-    if (!result) return m.reply(`_Gagal! Coba lagi._`);
+    if (!result) return m.reply(`_¡Error en la tirada! Inténtalo de nuevo._`);
     const applied = applyJackpotReward(db, f, m.sender, result);
     db.markDirty("users");
-    let txt = `*${pool.name.toUpperCase()}!*\n\n`;
+    let txt = `*¡POZO ${pool.name.toUpperCase()}!*\n\n`;
     const isBig = [
       "premium_7d",
       "premium_30d",
@@ -846,18 +846,18 @@ async function handler(m, { sock }) {
       "unlimited_energi",
       "unlimited_limit",
     ].includes(result.reward.type);
-    if (isBig) txt += `*JACKPOT BESAR!*\n\n`;
-    txt += `${applied.desc}\n\n_Biaya: ${formatMoney(pool.cost)}_\n_Saldo: ${formatMoney(f.money)}_`;
+    if (isBig) txt += `*¡RECOMPENSA MAYOR DE JACKPOT!* 🥳🎉\n\n`;
+    txt += `${applied.desc}\n\n_Costo del tiro: ${formatMoney(pool.cost)}_\n_Tu saldo actual: ${formatMoney(f.money)}_`;
     return send(
       sock,
       m,
       txt,
-      isBig ? "JACKPOT BESAR!" : pool.name,
+      isBig ? "¡PREMIO MAYOR!" : pool.name,
       applied.desc,
     );
   }
 
-  if (sub === "top") {
+  if (sub === "top" || sub === "leaderboard") {
     const users = db.db.data.users || {};
     const rankings = [];
     for (const [jid, ud] of Object.entries(users)) {
@@ -870,21 +870,21 @@ async function handler(m, { sock }) {
           prestige: ud.fisch.prestige || 0,
         });
     }
-    if (rankings.length === 0) return m.reply(`_Belum ada pemain!_`);
+    if (rankings.length === 0) return m.reply(`_¡Aún no hay ningún jugador registrado!_`);
     rankings.sort((a, b) => {
       if (b.prestige !== a.prestige) return b.prestige - a.prestige;
       if (b.fishCaught !== a.fishCaught) return b.fishCaught - a.fishCaught;
       return b.money - a.money;
     });
-    let txt = `*LEADERBOARD FISCHIT*\n\n`;
+    let txt = `*TABLA DE CLASIFICACIÓN (FISHIT)*\n\n`;
     const top = rankings.slice(0, 10);
     for (let i = 0; i < top.length; i++) {
       const p = top[i];
       const medal =
-        i === 0 ? "1." : i === 1 ? "2." : i === 2 ? "3." : `${i + 1}.`;
-      txt += `${medal} @${p.jid}\n  _P${p.prestige} | ${p.fishCaught} fish | ${formatMoney(p.money)}_\n`;
+        i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}.`;
+      txt += `${medal} @${p.jid}\n  _Prestigio: P${p.prestige} | ${p.fishCaught} peces | Saldo: ${formatMoney(p.money)}_\n`;
     }
-    return send(sock, m, txt.trim(), "Leaderboard", "Top Pemain");
+    return send(sock, m, txt.trim(), "Tabla de Clasificación", "Top Jugadores");
   }
 }
 
